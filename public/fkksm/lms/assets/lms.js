@@ -1,4 +1,9 @@
-(function () {
+window.handleGoogleCredential = function (response) {
+  if (!response || !response.credential) return;
+  var field = document.getElementById('googleCredential');
+  var form = document.getElementById('googleLoginForm');
+  if (field && form) { field.value = response.credential; form.submit(); }
+};(function () {
   'use strict';
   var toggle = document.querySelector('[data-sidebar-toggle]');
   var sidebar = document.getElementById('sidebar');
