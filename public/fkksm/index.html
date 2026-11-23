@@ -1,0 +1,428 @@
+<!doctype html>
+<html lang="id">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Content-Security-Policy"
+    content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; img-src 'self' data: https://images.unsplash.com; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; frame-src https://maps.google.com https://www.google.com; form-action 'self'; upgrade-insecure-requests">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="FKKSM MM2100 — an industrial Human Resources community.">
+  <title>FKKSM MM2100 | Industrial HR Community</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=28">
+  <script src="script.js?v=15" defer></script>
+</head>
+
+<body>
+
+  <!-- TOP LINE -->
+  <div class="topline">
+    <div class="topline-inner">
+      <span><i class="status-dot"></i> FOR THE PEOPLE BEHIND INDUSTRY</span>
+      <span>CONNECT · SHARE · GROW</span>
+    </div>
+  </div>
+
+  <!-- TICKER -->
+  <div class="news-ticker">
+    <span class="ticker-label">● TERBARU</span>
+    <div class="ticker-track">
+      <div class="ticker-content">
+        Pendaftaran Anggota Baru Kini Dibuka — Bergabung dengan 1.200+ industri hingga 31 Mei &nbsp;|&nbsp;
+        MediaByte: Tren Jasa Iklan Smart Factory Kuartal II 2026 &nbsp;|&nbsp;
+        Forum Kolaborasi Industri Regional: Jakarta, 20 Juni 2026 &nbsp;|&nbsp;
+        Selanjutnya → FKKSM Summit 2026 di JIExpo, 14–16 Oktober &nbsp;|&nbsp;
+        Pendaftaran Anggota Baru Kini Dibuka — Bergabung dengan 1.200+ industri hingga 31 Mei &nbsp;|&nbsp;
+        MediaByte: Tren Jasa Iklan Smart Factory Kuartal II 2026 &nbsp;|&nbsp;
+        Forum Kolaborasi Industri Regional: Jakarta, 20 Juni 2026 &nbsp;|&nbsp;
+        Selanjutnya → FKKSM Summit 2026 di JIExpo, 14–16 Oktober &nbsp;|&nbsp;
+      </div>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="header-brand" href="#home" aria-label="FKKSM MM2100 Community home">
+        <img class="header-logo" src="logo-transparent.png" alt="FKKSM logo">
+        <span class="header-brand-text">
+          <strong>FKKSM MM2100</strong>
+          <small>community</small>
+        </span>
+      </a>
+      <div class="nav-menu">
+        <button class="menu-toggle" type="button" aria-label="Buka menu navigasi" aria-expanded="false"
+          aria-controls="site-menu">
+          <span></span><span></span><span></span>
+        </button>
+        <div class="nav-panel" id="site-menu" hidden>
+          <nav class="main-nav" aria-label="Main navigation">
+            <a href="#home">MENU</a>
+            <a href="#about">ABOUT US</a>
+            <a href="#program">PROGRAM</a>
+            <a href="berita.html">NEWS</a>
+            <a href="#events">EVENTS</a>
+            <a href="hubungi.html">CONTACT</a>
+          </nav>
+          <div class="nav-tools">
+            <button class="language-toggle" id="languageToggle" type="button"
+              aria-label="Ganti ke bahasa Inggris">ID</button>
+            <button class="theme-toggle" id="themeToggle" type="button" aria-pressed="false">Mode gelap</button>
+            <a class="lms-button" href="lms/index.php" aria-label="Buka LMS FKKSM">LMS</a>
+            <a class="member-button" href="members.html">MEMBERS</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ══════════════════════════════════════════
+         HERO
+    ══════════════════════════════════════════ -->
+    <section class="hero" id="home">
+      <div class="container hero-inner">
+        <div class="hero-copy">
+          <p class="hero-tag"><span class="tag-dot"></span> TRANSFORMASI &amp; KOLABORASI INDUSTRI INDONESIA</p>
+          <h1>Semua Informasi &amp; Sinergi,<br> dalam <span>Satu Tempat.</span></h1>
+          <p class="hero-description">Wadah representasi industri, pakar, institusi pendidikan, dan pembuat kebijakan
+            untuk memacu kemajuan teknologi dan daya saing nasional bersama FKKSM.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#program">Jelajahi Program FKKSM →</a>
+            <a class="btn btn-secondary" href="members.html">Lihat Direktori Anggota</a>
+          </div>
+          <div class="hero-meta">
+            <span>Diakui Kementerian Perindustrian</span>
+            <span>Data Kelola Berstandar Nasional</span>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <div class="hero-card-head">
+            <span>UPCOMING SUMMIT 2026</span>
+            <span class="pill-muted">Kota Terbatas</span>
+          </div>
+          <div class="hero-slide-wrap">
+            <div class="hero-slides" id="heroSlides" data-active-slide="0">
+              <div class="hero-slide active"><img src="assets/images/activity-01.jpg" alt="FKKSM summit event"></div>
+              <div class="hero-slide"><img src="assets/images/activity-02.jpg" alt="Seminar industri"></div>
+              <div class="hero-slide"><img src="assets/images/activity-03.jpg" alt="Konferensi nasional"></div>
+            </div>
+            <button class="hero-slide-btn prev" type="button" aria-label="Slide sebelumnya">&#8249;</button>
+            <button class="hero-slide-btn next" type="button" aria-label="Slide berikutnya">&#8250;</button>
+            <div class="hero-slide-dots" id="heroSliderDots">
+              <button class="dot active" type="button" data-slide="0" aria-label="Tampilkan slide 1"></button>
+              <button class="dot" type="button" data-slide="1" aria-label="Tampilkan slide 2"></button>
+              <button class="dot" type="button" data-slide="2" aria-label="Tampilkan slide 3"></button>
+            </div>
+          </div>
+          <div class="event-location"><span>📍</span> Jakarta International Expo (JIExpo)</div>
+          <h3>FKKSM National Conference &amp; Summit 2026</h3>
+          <p>Pertemuan akbar tahunan lebih dari 1.200 delegasi lintas manufaktur, teknologi, dan kebijakan industri.</p>
+          <div class="event-footer">
+            <div>
+              <small>Jadwal Acara</small>
+              <strong>14 - 16 Oktober 2026</strong>
+            </div>
+            <a class="btn btn-primary btn-small" href="#events">Daftar Delegasi →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         STATS
+    ══════════════════════════════════════════ -->
+    <section class="stats-section">
+      <div class="container stats-grid">
+        <article class="stat-card">
+          <h2>250+</h2>
+          <p>Perusahaan<br>Anggota Korporasi<br>Aktif</p>
+        </article>
+        <article class="stat-card">
+          <h2>45</h2>
+          <p>Program<br>Kerja Berjalan 2026</p>
+        </article>
+        <article class="stat-card">
+          <h2>18</h2>
+          <p>Mitra<br>Kampus<br>Konsorsium</p>
+        </article>
+        <article class="stat-card">
+          <h2>12</h2>
+          <p>Provinsi<br>Jangkauan Korwil<br>Nasional</p>
+        </article>
+        <article class="stat-card stat-card-donut">
+          <div class="donut-wrap">
+            <div class="donut-chart" aria-label="100% sinergi">
+              <span class="donut-value">100%</span>
+              <small>SINERGI</small>
+            </div>
+          </div>
+          <div class="legend-wrap">
+            <div class="legend-title">KOMPOSISI EKOSISTEM</div>
+            <ul class="legend">
+              <li><span class="swatch purple"></span> Manufaktur <strong>40%</strong></li>
+              <li><span class="swatch teal"></span> Teknologi &amp; AI <strong>30%</strong></li>
+              <li><span class="swatch aqua"></span> Akademisi / Riset <strong>20%</strong></li>
+              <li><span class="swatch gray"></span> Logistik &amp; Mitra <strong>10%</strong></li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         ACTIVITY SLIDESHOW BAND — "RANGKAIAN KEGIATAN FKKSM 2026"
+    ══════════════════════════════════════════ -->
+    <section class="activity-band" id="activities">
+      <div class="activity-band-left">
+        <div class="activity-badge">
+          <img class="activity-badge-logo" src="logo-transparent.png" alt="FKKSM logo">
+          <div>
+            <div class="activity-badge-title">FKKSM COMMUNITY</div>
+            <div class="activity-badge-sub">MM2100 OFFICE</div>
+          </div>
+        </div>
+        <h2 class="activity-title">RANGKAIAN<br>KEGIATAN<br>FKKSM2026</h2>
+        <div class="act-thumbs" id="actThumbs">
+          <button class="act-thumb active" type="button" data-idx="0" aria-label="Tampilkan kegiatan 1"><img src="assets/images/activity-01.jpg" alt=""></button>
+          <button class="act-thumb" type="button" data-idx="1" aria-label="Tampilkan kegiatan 2"><img src="assets/images/activity-02.jpg" alt=""></button>
+          <button class="act-thumb" type="button" data-idx="2" aria-label="Tampilkan kegiatan 3"><img src="assets/images/activity-03.jpg" alt=""></button>
+          <button class="act-thumb" type="button" data-idx="3" aria-label="Tampilkan kegiatan 4"><img src="assets/images/activity-04.jpg" alt=""></button>
+          <button class="act-thumb" type="button" data-idx="4" aria-label="Tampilkan kegiatan 5"><img src="assets/images/activity-05.jpg" alt=""></button>
+          <button class="act-thumb" type="button" data-idx="5" aria-label="Tampilkan kegiatan 6"><img src="assets/images/activity-06.jpg" alt=""></button>
+        </div>
+      </div>
+      <div class="activity-main">
+        <div class="activity-main-slides" id="actMainSlides">
+          <div class="activity-main-slide active"><img src="assets/images/activity-01.jpg" alt="Kegiatan 1"></div>
+          <div class="activity-main-slide"><img src="assets/images/activity-02.jpg" alt="Kegiatan 2"></div>
+          <div class="activity-main-slide"><img src="assets/images/activity-03.jpg" alt="Kegiatan 3"></div>
+          <div class="activity-main-slide"><img src="assets/images/activity-04.jpg" alt="Kegiatan 4"></div>
+          <div class="activity-main-slide"><img src="assets/images/activity-05.jpg" alt="Kegiatan 5"></div>
+          <div class="activity-main-slide"><img src="assets/images/activity-06.jpg" alt="Kegiatan 6"></div>
+        </div>
+        <button class="act-nav-btn act-nav-prev" type="button" aria-label="Kegiatan sebelumnya">&#8249;</button>
+        <button class="act-nav-btn act-nav-next" type="button" aria-label="Kegiatan berikutnya">&#8250;</button>
+        <div class="act-counter" id="actCounter">1 / 6</div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         AKSELERASI STANDAR INDUSTRI MM2100
+    ══════════════════════════════════════════ -->
+    <section class="aksel-section">
+      <div class="container">
+        <div class="aksel-header">
+          <div>
+            <p class="eyebrow dark"><span class="eyebrow-line"></span> PILAR LAYANAN UTAMA</p>
+            <h2 class="aksel-title">Akselerasi Standar Industri MM2100</h2>
+          </div>
+          <a href="#program" class="section-link">Lihat seluruh layanan →</a>
+        </div>
+        <div class="aksel-grid">
+          <article class="aksel-card">
+            <div class="aksel-icon">🤝</div>
+            <h3>HRDcomms &amp; Services</h3>
+            <p>Layanan komunikasi dan konsultasi SDM komprehensif untuk perusahaan anggota kawasan industri MM2100.</p>
+            <a href="#program" class="aksel-link">Selengkapnya →</a>
+          </article>
+          <article class="aksel-card">
+            <div class="aksel-icon">📋</div>
+            <h3>Jaminan Regulasi</h3>
+            <p>Pemantauan dan advokasi kepatuhan regulasi ketenagakerjaan nasional untuk perlindungan industri.</p>
+            <a href="#program" class="aksel-link">Selengkapnya →</a>
+          </article>
+          <article class="aksel-card">
+            <div class="aksel-icon">🏭</div>
+            <h3>Koneksi Industri &amp; IV</h3>
+            <p>Jaringan kolaborasi lintas industri dan akselerasi transformasi menuju Industri 4.0 bagi anggota.</p>
+            <a href="#program" class="aksel-link">Selengkapnya →</a>
+          </article>
+          <article class="aksel-card">
+            <div class="aksel-icon">👔</div>
+            <h3>CEO &amp; Para Ketua</h3>
+            <p>Forum eksklusif bagi pemimpin puncak industri untuk berbagi visi dan membangun sinergi strategis.</p>
+            <a href="#program" class="aksel-link">Selengkapnya →</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         LAYANAN TERPADU MANDIRI ANGGOTA
+    ══════════════════════════════════════════ -->
+    <section class="layanan-section">
+      <div class="container">
+        <div class="section-topline">
+          <div>
+            <p class="eyebrow dark"><span class="eyebrow-line"></span> EKOSISTEM DIGITAL FKKSM</p>
+            <h2 class="content-title">Layanan Terpadu Mandiri Anggota</h2>
+          </div>
+          <a href="#program" class="section-link">Lihat semua layanan ↗</a>
+        </div>
+        <div class="layanan-grid">
+          <article class="layanan-card">
+            <div class="layanan-card-icon layanan-icon-1">📚</div>
+            <div class="layanan-card-body">
+              <span class="layanan-tag">LMS</span>
+              <h3>FKKSM Learning System</h3>
+              <p>Platform pembelajaran online terintegrasi untuk pengembangan kompetensi SDM industri anggota kawasan MM2100.</p>
+              <div class="layanan-meta"><span>250+ Kursus Aktif</span><span>·</span><span>Bersertifikat</span></div>
+              <a href="lms/index.php" class="layanan-btn">Akses LMS →</a>
+            </div>
+          </article>
+          <article class="layanan-card">
+            <div class="layanan-card-icon layanan-icon-2">💬</div>
+            <div class="layanan-card-body">
+              <span class="layanan-tag">FORUM</span>
+              <h3>Forum Diskusi MM2100</h3>
+              <p>Ruang diskusi interaktif bagi praktisi industri untuk berbagi pengetahuan, regulasi, dan solusi lintas perusahaan.</p>
+              <div class="layanan-meta"><span>1.200+ Anggota</span><span>·</span><span>Real-time</span></div>
+              <a href="#contact" class="layanan-btn">Bergabung →</a>
+            </div>
+          </article>
+          <article class="layanan-card">
+            <div class="layanan-card-icon layanan-icon-3">🛡️</div>
+            <div class="layanan-card-body">
+              <span class="layanan-tag">DUKUNGAN</span>
+              <h3>Dukungan MM2100</h3>
+              <p>Layanan bantuan teknis dan konsultasi operasional langsung dari tim sekretariat FKKSM untuk seluruh anggota.</p>
+              <div class="layanan-meta"><span>Senin–Jumat</span><span>·</span><span>08:30–17:00 WIB</span></div>
+              <a href="#contact" class="layanan-btn">Hubungi Kami →</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         INFORMASI & EDARAN TERKINI
+    ══════════════════════════════════════════ -->
+    <section class="content-section stories-section" id="news">
+      <div class="container">
+        <div class="section-topline">
+          <div>
+            <p class="eyebrow dark"><span class="eyebrow-line"></span> BERITA &amp; EDARAN</p>
+            <h2 class="content-title">Informasi &amp; Edaran Terkini</h2>
+          </div>
+          <a class="section-link" href="#news">Semua informasi ↗</a>
+        </div>
+        <div class="story-cards">
+          <article class="story-card">
+            <img src="assets/images/story-01.jpg" alt="Para pemimpin industri berdiskusi bersama">
+            <div class="story-card-body">
+              <span class="story-category">KOLABORASI INDUSTRI</span>
+              <h3>FKKSM resmi tandatangani MoU penguatan ekosistem</h3>
+              <p>Kolaborasi baru memperluas ruang berbagi dan sinergi bagi pelaku industri.</p>
+              <div class="story-date">📅 15 Nov 2026</div>
+              <a href="#contact">Baca selengkapnya →</a>
+            </div>
+          </article>
+          <article class="story-card">
+            <img src="assets/images/activity-04.jpg" alt="Tim industri melakukan rapat">
+            <div class="story-card-body">
+              <span class="story-category">KEPEMIMPINAN</span>
+              <h3>Forum Dialog Pemimpin Industri Manufaktur</h3>
+              <p>Praktisi bertukar strategi untuk membangun tempat kerja yang produktif dan tangguh.</p>
+              <div class="story-date">📅 10 Nov 2026</div>
+              <a href="#contact">Baca selengkapnya →</a>
+            </div>
+          </article>
+          <article class="story-card">
+            <img src="assets/images/story-03.jpg" alt="Teknologi di lingkungan industri">
+            <div class="story-card-body">
+              <span class="story-category">TRANSFORMASI DIGITAL</span>
+              <h3>Laporan kesiapan industri nasional Q3 2026</h3>
+              <p>Temuan terbaru tentang adopsi teknologi dan kebutuhan kompetensi masa depan.</p>
+              <div class="story-date">📅 05 Nov 2026</div>
+              <a href="#contact">Baca selengkapnya →</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         CTA — PERLUAT JARINGAN HR
+    ══════════════════════════════════════════ -->
+    <section class="join-section" id="join">
+      <div class="container">
+        <div class="join-card">
+          <div class="join-card-inner">
+            <div class="join-card-left">
+              <p class="eyebrow">BERGABUNG DENGAN KOMUNITAS</p>
+              <h2>Perluat Jaringan HR &amp; Biosistem<br>Industri Anda Hari Ini!</h2>
+              <p>Perluas jaringan, berbagi praktik terbaik, dan tumbuh bersama komunitas pemimpin industri Indonesia.</p>
+            </div>
+            <div class="join-card-right">
+              <div class="join-actions">
+                <a class="btn btn-light" href="#contact">Daftar Keanggotaan ↗</a>
+                <a class="btn btn-glass" href="hubungi.html">Hubungi Sekretariat</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         PARTNERS — DIPERCAYA OLEH
+    ══════════════════════════════════════════ -->
+    <section class="partners-section ecosystem-section">
+      <div class="container">
+        <p class="partners-kicker">KEMITRAAN &amp; KOLABORASI STRATEGIS</p>
+        <h2 class="partners-title">Dipercaya oleh Institusi, BUMN, dan Pemimpin Industri Terkemuka</h2>
+        <div class="partner-ribbon" aria-label="Mitra dan institusi">
+          <span class="partner-chip"><b>⌂</b><strong>Kementerian RI<small>Regulator Nasional</small></strong></span>
+          <span class="partner-chip"><b>⚖</b><strong>Kemnaker RI<small>Ketenagakerjaan</small></strong></span>
+          <span class="partner-chip"><b>▦</b><strong>Disnaker Kab. Bekasi<small>Pemerintah Daerah</small></strong></span>
+          <span class="partner-chip"><b class="chip-logo">MM</b><strong>MM2100 Industrial Town<small>Kawasan Industri</small></strong></span>
+          <span class="partner-chip"><b class="chip-logo">BeFa</b><strong>BeFa Industrial Estate<small>Pengelola Kawasan</small></strong></span>
+          <span class="partner-chip"><b>◉</b><strong>BNSP RI<small>Sertifikasi Profesi</small></strong></span>
+          <span class="partner-chip"><b>✚</b><strong>BPJS Ketenagakerjaan<small>Jaminan Sosial</small></strong></span>
+          <span class="partner-chip"><b>✚</b><strong>BPJS Kesehatan<small>Proteksi Kesehatan</small></strong></span>
+          <span class="partner-chip"><b>◇</b><strong>APINDO Kab. Bekasi<small>Asosiasi Pengusaha</small></strong></span>
+          <span class="partner-chip"><b>▣</b><strong>KADIN Indonesia<small>Kamar Dagang &amp; Industri</small></strong></span>
+        </div>
+        <div class="ecosystem-cards">
+          <article class="ecosystem-card"><span class="ecosystem-icon icon-blue">▦</span><h3>Pengelola Kawasan</h3><p>Sinergi tata kelola sarana prasarana industri terpadu, keamanan, dan perizinan bersama pengembang MM2100 &amp; BeFa Estate.</p><a href="#contact">MM2100 &amp; BeFa <b>→</b></a></article>
+          <article class="ecosystem-card"><span class="ecosystem-icon icon-cyan">◇</span><h3>Pendidikan &amp; Vokasi</h3><p>Program magang tersertifikasi, penyerapan lulusan, dan kurikulum industri berbasis teknologi manufaktur terkini.</p><a href="#contact">Politeknik Mitra Industri <b>→</b></a></article>
+          <article class="ecosystem-card"><span class="ecosystem-icon icon-coral">♧</span><h3>Kemanusiaan &amp; CSR</h3><p>Aksi donor darah berkala, tanggap darurat bencana industri, dan bakti sosial masyarakat lingkar kawasan.</p><a href="#contact">PMI Bekasi &amp; Lions Club <b>→</b></a></article>
+          <article class="ecosystem-card"><span class="ecosystem-icon icon-violet">✓</span><h3>Teknologi &amp; Tata Kelola</h3><p>Standarisasi tata kelola hukum korporasi, kepatuhan legalitas ketenagakerjaan, serta platform digitalisasi anggota.</p><a href="#contact">Alfons. &amp; Mitra <b>→</b></a></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         CONTACT & MAP
+    ══════════════════════════════════════════ -->
+
+
+  </main>
+
+
+  <footer class="site-footer reference-footer" id="contact">
+    <div class="container footer-layout">
+      <div class="footer-about">
+        <a class="footer-brand" href="#home"><img class="footer-logo" src="logo-transparent.png" alt="Logo FKKSM"><span class="footer-brand-name"><strong>FKKSM MM2100</strong><small>FORUM HRD &amp; MANAJEMEN SDM KAWASAN MM2100</small></span></a>
+        <p class="footer-description">Forum Komunikasi Karyawan &amp; Manajemen HRD Kawasan Industri MM2100 Cikarang Barat. Wadah sinergi multi-industri, kepatuhan ketenagakerjaan, serta pengembangan SDM unggul berdaya saing global.</p>
+        <ul class="footer-contact-list"><li>⌖ Gedung Pengelola MM2100 Lt. 2, Jl. Danau Indah Kav. 1, Cikarang Barat, Bekasi, Jawa Barat 17530</li><li>☎ +62 21 898 2100 / +62 21 898 2101</li><li>✉ sekretariat@fkksm-mm2100.id</li></ul>
+        <div class="footer-map"><iframe title="Peta kawasan industri MM2100" src="https://maps.google.com/maps?q=Kawasan%20Industri%20MM2100%20Cikarang%20Barat&amp;z=13&amp;output=embed" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe><a href="https://maps.google.com/?q=Kawasan+Industri+MM2100+Cikarang+Barat" target="_blank" rel="noopener noreferrer">⌖ Lokasi Sekretariat FKKSM</a></div>
+      </div>
+      <nav class="footer-column" aria-label="Direktori dan regulasi"><h2>Direktori &amp; Regulasi</h2><a href="members.html">Profil FKKSM</a><a href="#about">Struktur Organisasi</a><a href="members.html">Direktori Perusahaan MM2100</a><a href="members.html">Direktori Anggota HRD</a><a href="#program">Regulasi Ketenagakerjaan</a><a href="#program">Standar K3 &amp; Keselamatan Kerja</a></nav>
+      <nav class="footer-column" aria-label="Ekosistem digital"><h2>Ekosistem Digital</h2><a href="lms/index.php">LMS Pelatihan Mandiri</a><a href="#join">CareerHub Bursa Kerja</a><a href="members.html">Kalender Agenda &amp; Seminar</a><a href="#program">Registrasi Delegasi KTT</a><a href="#contact">Portal Pengurus / Admin CMS</a></nav>
+      <div class="footer-column footer-social"><h2>Terhubung Bersama Kami</h2><p>Ikuti saluran informasi resmi FKKSM MM2100 untuk perkembangan industri terkini.</p><div class="social-links"><a href="#contact" aria-label="Bagikan">↗</a><a href="#contact" aria-label="LinkedIn">in</a><a href="#contact" aria-label="Instagram">◎</a><a href="mailto:sekretariat@fkksm-mm2100.id" aria-label="Email">✉</a></div><span class="footer-status">STATUS: KEMITRAAN AKTIF</span></div>
+    </div>
+    <div class="container footer-bottom"><span>© 2026 FKKSM Kawasan Industri MM2100 Cikarang Barat, Bekasi. All rights reserved.</span><a href="#contact">Kebijakan Privasi</a><a href="#contact">Ketentuan Layanan</a><a href="#contact">Pusat Bantuan</a></div>
+  </footer>
+
+
+</body>
+
+</html>
