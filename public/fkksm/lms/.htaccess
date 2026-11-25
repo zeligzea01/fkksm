@@ -1,7 +1,0 @@
-Options -Indexes
-<Files "config.php">
-  Require all denied
-</Files>
-<FilesMatch "(^\.ht|\.sql$|\.md$)">
-  Require all denied
-</FilesMatch>

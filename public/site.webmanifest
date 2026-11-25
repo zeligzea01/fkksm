@@ -1,0 +1,22 @@
+{
+  "name": "FKKSM MM2100 | Industrial HR Community & LMS Upskill",
+  "short_name": "FKKSM MM2100",
+  "description": "Platform resmi Human Resources & Pelatihan Vokasi Bersertifikasi Kawasan Industri MM2100 Cikarang Barat.",
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#2563eb",
+  "background_color": "#ffffff",
+  "start_url": "/",
+  "display": "standalone"
+}
+
