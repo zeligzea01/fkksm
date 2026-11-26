@@ -1,155 +1,151 @@
 @extends('layouts.lms')
 
-@section('title', 'Dashboard LMS | FKKSM MM2100')
-@section('header_title', 'DASHBOARD KONTROL LMS & KOMPETENSI')
+@section('title', 'Dashboard | FKKSM Learning Management System')
+@section('header_eyebrow', 'Selamat datang kembali')
+@section('header_title', 'Ruang Belajar')
 
 @section('content')
-    <!-- Top Welcome & Industrial Indicator -->
-    <div class="mb-8 p-6 rounded-xl bg-gradient-to-r from-[#0C3553] via-[#123A5A] to-[#132B45] text-white border border-[#176D91]/40 shadow-sm relative overflow-hidden">
-        <div class="absolute right-0 top-0 bottom-0 w-1/3 bg-industrial-grid-dark opacity-30 pointer-events-none"></div>
-        <div class="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-4">
-            <div>
-                <div class="flex items-center gap-2 mb-1">
-                    <span class="w-2 h-2 rounded-full bg-[#54D6D0]"></span>
-                    <span class="font-mono text-[10px] text-[#54D6D0] uppercase tracking-widest font-bold">
-                        SESI AKTIF KAWASAN MM2100
-                    </span>
-                </div>
-                <h1 class="font-heading font-extrabold text-2xl sm:text-3xl uppercase tracking-wide">
-                    SELAMAT DATANG, {{ auth()->user()->name }}
-                </h1>
-                <p class="text-xs text-[#D8EDF7] mt-0.5 font-medium">
-                    Hak Akses: <strong class="text-white uppercase font-mono">{{ auth()->user()->role_name }}</strong> · Perusahaan: {{ auth()->user()->company ?? 'Kawasan Industri MM2100' }}
-                </p>
-            </div>
-            <div class="flex items-center gap-3 shrink-0">
-                <a href="{{ route('lms.courses.index') }}" class="px-4 py-2 rounded-lg bg-[#10A9BC] hover:bg-[#54D6D0] hover:text-[#132B45] text-white font-heading font-bold uppercase tracking-wider text-xs transition shadow-sm">
-                    Katalog Pelatihan →
-                </a>
-            </div>
-        </div>
-    </div>
-
     @if (auth()->user()->isAdmin())
-        <!-- Administrator Dashboard -->
-        <div class="space-y-8">
-            <!-- Stats Grid -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
-                <div class="p-4 rounded-xl bg-white border border-[#DCE6EE] shadow-xs">
-                    <span class="text-[10px] font-bold text-[#61758A] uppercase tracking-wider block font-heading">TOTAL PENGGUNA</span>
-                    <span class="font-heading font-bold text-3xl text-[#132B45] mt-1 block leading-none">{{ $stats['total_users'] }}</span>
-                    <span class="text-[10px] text-[#10A9BC] font-mono mt-1 block">● Terdaftar di Basis Data</span>
+        <!-- Administrator Integrated Control Center -->
+        <div class="space-y-6">
+            <!-- Hero Status Banner -->
+            <div class="bg-lms-hero rounded-xl p-6 text-white flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div class="space-y-1.5">
+                    <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-white/15 text-[11px] font-mono font-medium uppercase tracking-wider">
+                        <span class="w-1.5 h-1.5 rounded-full bg-[#54D6D0]"></span>
+                        Admin &amp; CMS Control Center
+                    </span>
+                    <h2 class="text-2xl font-bold tracking-tight">
+                        Selamat datang, {{ auth()->user()->name }}
+                    </h2>
+                    <p class="text-xs text-white/85 max-w-2xl">
+                        Kelola seluruh data halaman utama (<code class="font-mono bg-white/15 px-1.5 py-0.5 rounded">/</code>), kursus beserta skill badges, voucher, subscription peserta, dan log audit keamanan sistem dari satu tempat.
+                    </p>
                 </div>
-                <div class="p-4 rounded-xl bg-white border border-[#DCE6EE] shadow-xs">
-                    <span class="text-[10px] font-bold text-[#61758A] uppercase tracking-wider block font-heading">PROGRAM KURSUS</span>
-                    <span class="font-heading font-bold text-3xl text-[#10A9BC] mt-1 block leading-none">{{ $stats['total_courses'] }}</span>
-                    <span class="text-[10px] text-[#61758A] font-mono mt-1 block">Standar BNSP &amp; K3</span>
-                </div>
-                <div class="p-4 rounded-xl bg-white border border-[#DCE6EE] shadow-xs">
-                    <span class="text-[10px] font-bold text-[#61758A] uppercase tracking-wider block font-heading">PESERTA AKTIF</span>
-                    <span class="font-heading font-bold text-3xl text-[#176D91] mt-1 block leading-none">{{ $stats['active_enrollments'] }}</span>
-                    <span class="text-[10px] text-emerald-600 font-mono mt-1 block">Sedang Mengikuti Kelas</span>
-                </div>
-                <div class="p-4 rounded-xl bg-white border border-[#DCE6EE] shadow-xs">
-                    <span class="text-[10px] font-bold text-[#61758A] uppercase tracking-wider block font-heading">SERTIFIKAT SAH</span>
-                    <span class="font-heading font-bold text-3xl text-[#123A5A] mt-1 block leading-none">{{ $stats['issued_certificates'] }}</span>
-                    <span class="text-[10px] text-[#54D6D0] font-mono mt-1 block bg-[#132B45] px-1 rounded inline-block">QR Verified</span>
-                </div>
-                <div class="p-4 rounded-xl bg-white border border-[#DCE6EE] shadow-xs">
-                    <span class="text-[10px] font-bold text-[#61758A] uppercase tracking-wider block font-heading">LEADS / PIC MASUK</span>
-                    <span class="font-heading font-bold text-3xl text-amber-600 mt-1 block leading-none">{{ $stats['pending_leads'] }}</span>
-                    <span class="text-[10px] text-amber-700 font-mono mt-1 block">Perlu Follow-up</span>
-                </div>
-                <div class="p-4 rounded-xl bg-white border border-[#DCE6EE] shadow-xs">
-                    <span class="text-[10px] font-bold text-[#61758A] uppercase tracking-wider block font-heading">TUGAS MASUK</span>
-                    <span class="font-heading font-bold text-3xl text-rose-600 mt-1 block leading-none">{{ $stats['submissions_to_review'] }}</span>
-                    <span class="text-[10px] text-rose-600 font-mono mt-1 block">Antrean Penilaian</span>
+                <div class="flex flex-wrap items-center gap-3 shrink-0">
+                    <a href="{{ route('lms.landing-cms.index') }}" class="px-4 py-2.5 rounded-lg bg-[#10A9BC] hover:bg-[#0E97A8] text-white font-semibold text-xs inline-flex items-center gap-2 lms-transition">
+                        <span>Kelola Halaman Home (/)</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                    </a>
+                    <a href="{{ route('home') }}" target="_blank" class="px-4 py-2.5 rounded-lg bg-white/15 hover:bg-white/25 text-white font-semibold text-xs border border-white/25 lms-transition">
+                        Pratinjau Web ↗
+                    </a>
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
-                <!-- Recent Activity & Audit Logs -->
-                <div class="lg:col-span-7 bg-white rounded-xl p-6 border border-[#DCE6EE] shadow-xs">
-                    <div class="flex items-center justify-between mb-4 pb-3 border-b border-[#DCE6EE]">
+            <!-- Telemetry Metrics Grid (Monospace Tabular Nums) -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                <div class="bg-white rounded-xl border border-slate-200 p-4">
+                    <span class="text-xs font-medium text-slate-500 block">Total Pengguna</span>
+                    <span class="font-mono tabular-nums font-bold text-2xl text-slate-900 mt-1 block">{{ $stats['total_users'] }}</span>
+                    <a href="{{ route('lms.users.index') }}" class="text-[11px] font-medium text-[#0E97A8] hover:underline mt-1.5 inline-block">Kelola akun →</a>
+                </div>
+                <div class="bg-white rounded-xl border border-slate-200 p-4">
+                    <span class="text-xs font-medium text-slate-500 block">Program Kursus</span>
+                    <span class="font-mono tabular-nums font-bold text-2xl text-slate-900 mt-1 block">{{ $stats['total_courses'] }}</span>
+                    <a href="{{ route('lms.courses.index') }}" class="text-[11px] font-medium text-[#0E97A8] hover:underline mt-1.5 inline-block">Atur modul &amp; skill →</a>
+                </div>
+                <div class="bg-white rounded-xl border border-slate-200 p-4">
+                    <span class="text-xs font-medium text-slate-500 block">Subscription Aktif</span>
+                    <span class="font-mono tabular-nums font-bold text-2xl text-[#0E97A8] mt-1 block">{{ $stats['active_subscriptions'] }}</span>
+                    <a href="{{ route('lms.subscriptions.index') }}" class="text-[11px] font-medium text-[#0E97A8] hover:underline mt-1.5 inline-block">Kelola paket →</a>
+                </div>
+                <div class="bg-white rounded-xl border border-slate-200 p-4">
+                    <span class="text-xs font-medium text-slate-500 block">Sertifikat Sah</span>
+                    <span class="font-mono tabular-nums font-bold text-2xl text-slate-900 mt-1 block">{{ $stats['issued_certificates'] }}</span>
+                    <a href="{{ route('lms.certificates.index') }}" class="text-[11px] font-medium text-[#0E97A8] hover:underline mt-1.5 inline-block">Audit sertifikat →</a>
+                </div>
+            </div>
+
+            <!-- Landing CMS Quick Matrix + Leads & Audit -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                <!-- Left: Landing Page CMS Sections Shortcut -->
+                <div class="lg:col-span-7 bg-white rounded-xl border border-slate-200 p-6 space-y-4">
+                    <div class="flex items-center justify-between pb-3 border-b border-slate-100">
                         <div>
-                            <h3 class="font-heading font-bold text-lg text-[#132B45] uppercase tracking-wide">
-                                AKTIVITAS SISTEM &amp; AUDIT TRAIL TERKINI
-                            </h3>
-                            <p class="text-xs text-[#61758A]">Pencatatan real-time jejak keamanan, perubahan data, dan otentikasi.</p>
+                            <h3 class="font-semibold text-base text-slate-900">Konten Dinamis Halaman Home (<code class="font-mono text-xs text-[#0E97A8]">/</code>)</h3>
+                            <p class="text-xs text-slate-500 mt-0.5">Ubah banner, webinar, kategori, skill badges kursus terlaris, lowongan, dan FAQ secara langsung.</p>
                         </div>
-                        <a href="{{ route('lms.audit.index') }}" class="text-xs font-bold text-[#10A9BC] hover:underline font-heading uppercase tracking-wider">
-                            Semua Log (100% Audit) →
-                        </a>
+                        <a href="{{ route('lms.landing-cms.index') }}" class="text-xs font-semibold text-[#0E97A8] hover:underline shrink-0">Buka CMS →</a>
                     </div>
-                    <div class="space-y-3">
-                        @forelse ($recentActivities as $log)
-                            <div class="p-3 rounded-lg bg-[#F5F8FC] border border-[#DCE6EE] flex items-start justify-between gap-3 text-xs">
-                                <div class="flex items-start gap-2.5">
-                                    <span class="w-2 h-2 rounded-full bg-[#10A9BC] mt-1.5 shrink-0"></span>
-                                    <div>
-                                        <p class="font-bold text-[#132B45] uppercase font-mono text-[11px]">{{ $log->action_label }}</p>
-                                        <p class="text-[#61758A] text-xs mt-0.5 leading-relaxed">{{ $log->details }}</p>
-                                        <span class="text-[10px] text-[#A5B4C2] font-mono mt-1 block">
-                                            User: {{ $log->user->name ?? 'Sistem Publik' }} · IP: {{ $log->ip_address ?? '127.0.0.1' }}
-                                        </span>
-                                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                        @foreach ([
+                            ['key' => 'hero_slides', 'label' => 'Hero Carousel Banners', 'desc' => 'Banner promo utama & CTA'],
+                            ['key' => 'what_you_learn', 'label' => 'Live Webinar & Jadwal', 'desc' => 'Jadwal webinar & instruktur'],
+                            ['key' => 'bestseller_courses', 'label' => 'Kursus Terlaris + Skills', 'desc' => 'Kartu kursus & skill badges'],
+                            ['key' => 'prakerja_section', 'label' => 'Pelatihan Prakerja', 'desc' => 'Kartu Prakerja & skill badges'],
+                            ['key' => 'job_vacancies', 'label' => 'Lowongan Kerja Karier', 'desc' => 'Bursa karier mitra MM2100'],
+                            ['key' => 'faq_items', 'label' => 'FAQ & Testimoni', 'desc' => 'Tanya jawab & ulasan alumni'],
+                        ] as $cmsLink)
+                            <a href="{{ route('lms.landing-cms.index', ['section' => $cmsLink['key']]) }}" class="p-3.5 rounded-lg border border-slate-200 hover:border-[#10A9BC] hover:bg-[#E7F6F8]/40 lms-transition flex items-center justify-between group">
+                                <div>
+                                    <span class="font-semibold text-slate-800 group-hover:text-[#0E97A8] block">{{ $cmsLink['label'] }}</span>
+                                    <span class="text-[11px] text-slate-500">{{ $cmsLink['desc'] }}</span>
                                 </div>
-                                <span class="text-[10px] text-[#61758A] font-mono shrink-0 whitespace-nowrap">
-                                    {{ $log->created_at->diffForHumans() }}
-                                </span>
-                            </div>
-                        @empty
-                            <p class="text-xs text-[#61758A] py-6 text-center">Belum ada aktivitas tercatat pada log sistem.</p>
-                        @endforelse
+                                <span class="text-slate-400 group-hover:text-[#0E97A8]">→</span>
+                            </a>
+                        @endforeach
+                    </div>
+
+                    <!-- Recent Audit Trail -->
+                    <div class="pt-4 border-t border-slate-100">
+                        <div class="flex items-center justify-between mb-3">
+                            <h4 class="font-semibold text-sm text-slate-900">Aktivitas &amp; Audit Trail Terkini</h4>
+                            <a href="{{ route('lms.audit.index') }}" class="text-xs font-semibold text-[#0E97A8] hover:underline">Lihat semua →</a>
+                        </div>
+                        <div class="space-y-2">
+                            @forelse ($recentActivities->take(4) as $log)
+                                <div class="p-3 rounded-lg bg-slate-50 border border-slate-200/70 flex items-center justify-between gap-3 text-xs">
+                                    <div class="min-w-0">
+                                        <span class="font-mono text-[11px] font-semibold text-[#0E97A8] uppercase">{{ $log->action_label }}</span>
+                                        <p class="text-slate-700 truncate">{{ $log->details }}</p>
+                                    </div>
+                                    <span class="font-mono text-[11px] text-slate-400 shrink-0">{{ $log->created_at->diffForHumans() }}</span>
+                                </div>
+                            @empty
+                                <p class="text-xs text-slate-400 py-4 text-center">Belum ada aktivitas.</p>
+                            @endforelse
+                        </div>
                     </div>
                 </div>
 
-                <!-- Recent Leads & Quick Actions -->
+                <!-- Right: Leads & Quick Actions -->
                 <div class="lg:col-span-5 space-y-6">
-                    <div class="bg-white rounded-xl p-6 border border-[#DCE6EE] shadow-xs">
-                        <div class="flex items-center justify-between mb-4 pb-3 border-b border-[#DCE6EE]">
+                    <div class="bg-white rounded-xl border border-slate-200 p-6 space-y-4">
+                        <div class="flex items-center justify-between pb-3 border-b border-slate-100">
                             <div>
-                                <h3 class="font-heading font-bold text-lg text-[#132B45] uppercase tracking-wide">
-                                    PEMINAT PELATIHAN MASUK
-                                </h3>
-                                <p class="text-xs text-[#61758A]">Pengajuan dari PIC korporasi kawasan MM2100.</p>
+                                <h3 class="font-semibold text-base text-slate-900">Leads / Permintaan Masuk</h3>
+                                <p class="text-xs text-slate-500"><span class="font-mono font-bold text-amber-600">{{ $stats['pending_leads'] }}</span> permintaan menunggu tindak lanjut.</p>
                             </div>
-                            <a href="{{ route('lms.leads.index') }}" class="text-xs font-bold text-[#10A9BC] hover:underline font-heading uppercase tracking-wider">
-                                Kelola Leads →
-                            </a>
+                            <a href="{{ route('lms.leads.index') }}" class="text-xs font-semibold text-[#0E97A8] hover:underline">Kelola →</a>
                         </div>
-                        <div class="space-y-3">
+                        <div class="space-y-2.5">
                             @forelse ($recentLeads as $lead)
-                                <div class="p-3 rounded-lg bg-[#F5F8FC] border border-[#DCE6EE] text-xs space-y-1">
-                                    <div class="flex justify-between items-start">
-                                        <span class="font-bold text-[#132B45]">{{ $lead->full_name }}</span>
-                                        <span class="px-2 py-0.5 rounded text-[9px] font-mono font-bold uppercase {{ $lead->status === 'new' ? 'bg-amber-100 text-amber-800' : 'bg-slate-200 text-slate-700' }}">
+                                <div class="p-3 rounded-lg bg-slate-50 border border-slate-200/70 text-xs space-y-1">
+                                    <div class="flex justify-between items-center">
+                                        <span class="font-semibold text-slate-900">{{ $lead->full_name }}</span>
+                                        <span class="px-2 py-0.5 rounded text-[10px] font-mono font-medium {{ $lead->status === 'new' ? 'bg-amber-100 text-amber-800' : 'bg-slate-200 text-slate-700' }}">
                                             {{ $lead->status_label }}
                                         </span>
                                     </div>
-                                    <p class="text-[11px] text-[#61758A] font-mono">{{ $lead->email }} · {{ $lead->phone }}</p>
-                                    <p class="text-[11px] text-[#10A9BC] font-semibold truncate">{{ $lead->interest }}</p>
+                                    <p class="text-[11px] font-mono text-slate-500">{{ $lead->email ?? $lead->phone }}</p>
+                                    <p class="text-[11px] text-[#0E97A8] font-medium truncate">{{ $lead->interest }}</p>
                                 </div>
                             @empty
-                                <p class="text-xs text-[#61758A] py-6 text-center">Belum ada calon peserta baru.</p>
+                                <p class="text-xs text-slate-400 py-4 text-center">Belum ada leads baru.</p>
                             @endforelse
                         </div>
                     </div>
 
-                    <!-- Industrial Security Card -->
-                    <div class="bg-[#132B45] rounded-xl p-6 text-white border border-[#0C3553] shadow-xs space-y-3">
-                        <span class="text-[10px] font-mono text-[#54D6D0] uppercase tracking-widest block font-bold">
-                            ● INTEGRITAS SISTEM AUDIT KAWASAN
-                        </span>
-                        <h4 class="font-heading font-bold text-xl uppercase tracking-wide text-white leading-snug">
-                            STANDAR KEPATUHAN KEMNAKER &amp; ISO 27001
-                        </h4>
-                        <p class="text-xs text-[#A5B4C2] leading-relaxed">
-                            Seluruh operasi penerbitan sertifikat digital, perubahan silabus, serta permohonan in-house training terikat dengan jejak audit permanen.
-                        </p>
-                        <a href="{{ route('lms.audit.index') }}" class="inline-flex items-center px-4 py-2 rounded-lg bg-[#10A9BC] hover:bg-[#0E97A8] text-white font-heading font-bold text-xs uppercase tracking-wider transition">
-                            Buka Laporan Audit Lengkap →
-                        </a>
+                    <div class="bg-white rounded-xl border border-slate-200 p-6 space-y-3">
+                        <h4 class="font-semibold text-sm text-slate-900">Aksi Cepat Manajemen</h4>
+                        <div class="grid grid-cols-2 gap-2.5 text-xs">
+                            <a href="{{ route('lms.courses.create') }}" class="px-3 py-2.5 rounded-lg bg-[#10A9BC] hover:bg-[#0E97A8] text-white font-semibold text-center lms-transition">+ Tambah Kursus</a>
+                            <a href="{{ route('lms.vouchers.index') }}" class="px-3 py-2.5 rounded-lg border border-slate-200 hover:border-[#10A9BC] text-slate-700 font-semibold text-center lms-transition">Buat Voucher</a>
+                            <a href="{{ route('lms.assessments.index') }}" class="px-3 py-2.5 rounded-lg border border-slate-200 hover:border-[#10A9BC] text-slate-700 font-semibold text-center lms-transition">Review Tugas ({{ $stats['submissions_to_review'] }})</a>
+                            <a href="{{ route('lms.settings.index') }}" class="px-3 py-2.5 rounded-lg border border-slate-200 hover:border-[#10A9BC] text-slate-700 font-semibold text-center lms-transition">Pengaturan Portal</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -157,62 +153,50 @@
 
     @elseif (auth()->user()->isInstructor())
         <!-- Instructor Dashboard -->
-        <div class="space-y-8">
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
-                <div class="p-5 rounded-xl bg-white border border-[#DCE6EE] shadow-xs">
-                    <span class="text-[10px] font-bold text-[#61758A] uppercase tracking-wider block font-heading">KURSUS SAYA</span>
-                    <span class="font-heading font-bold text-4xl text-[#10A9BC] mt-2 block leading-none">{{ $stats['my_courses'] }}</span>
-                    <span class="text-xs text-[#61758A] mt-1 block">Kelas Diampu Aktif</span>
+        <div class="space-y-6">
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div class="p-5 rounded-xl bg-white border border-slate-200">
+                    <span class="text-xs font-medium text-slate-500 block">Kursus Diampu</span>
+                    <span class="font-mono tabular-nums font-bold text-3xl text-[#0E97A8] mt-1 block">{{ $stats['my_courses'] }}</span>
                 </div>
-                <div class="p-5 rounded-xl bg-white border border-[#DCE6EE] shadow-xs">
-                    <span class="text-[10px] font-bold text-[#61758A] uppercase tracking-wider block font-heading">TOTAL PESERTA</span>
-                    <span class="font-heading font-bold text-4xl text-[#132B45] mt-2 block leading-none">{{ $stats['total_students'] }}</span>
-                    <span class="text-xs text-emerald-600 mt-1 block font-mono">Peserta Terdaftar</span>
+                <div class="p-5 rounded-xl bg-white border border-slate-200">
+                    <span class="text-xs font-medium text-slate-500 block">Peserta Terdaftar</span>
+                    <span class="font-mono tabular-nums font-bold text-3xl text-slate-900 mt-1 block">{{ $stats['total_students'] }}</span>
                 </div>
-                <div class="p-5 rounded-xl bg-white border border-[#DCE6EE] shadow-xs">
-                    <span class="text-[10px] font-bold text-[#61758A] uppercase tracking-wider block font-heading">EVALUASI MENUNGGU REVIEW</span>
-                    <span class="font-heading font-bold text-4xl text-rose-600 mt-2 block leading-none">{{ $stats['pending_submissions'] }}</span>
-                    <span class="text-xs text-rose-600 mt-1 block font-mono">Jawaban Kuis / Tugas K3</span>
+                <div class="p-5 rounded-xl bg-white border border-slate-200">
+                    <span class="text-xs font-medium text-slate-500 block">Menunggu Penilaian</span>
+                    <span class="font-mono tabular-nums font-bold text-3xl text-rose-600 mt-1 block">{{ $stats['pending_submissions'] }}</span>
                 </div>
             </div>
 
-            <!-- Instructor Courses -->
-            <div class="bg-white rounded-xl p-6 border border-[#DCE6EE] shadow-xs">
-                <div class="flex items-center justify-between mb-6 pb-3 border-b border-[#DCE6EE]">
+            <div class="bg-white rounded-xl p-6 border border-slate-200">
+                <div class="flex items-center justify-between mb-6 pb-3 border-b border-slate-100">
                     <div>
-                        <h3 class="font-heading font-bold text-xl text-[#132B45] uppercase tracking-wide">
-                            KURSUS YANG ANDA KELOLA
-                        </h3>
-                        <p class="text-xs text-[#61758A]">Kelola kurikulum, modul video, materi bacaan, dan kuis kelulusan.</p>
+                        <h3 class="font-semibold text-base text-slate-900">Kursus yang Anda Kelola</h3>
+                        <p class="text-xs text-slate-500">Kelola kurikulum, skill badges, modul video, dan kuis kelulusan.</p>
                     </div>
-                    <a href="{{ route('lms.courses.create') }}" class="px-4 py-2 rounded-lg bg-[#10A9BC] hover:bg-[#0E97A8] text-white font-heading font-bold text-xs uppercase tracking-wider transition">
+                    <a href="{{ route('lms.courses.create') }}" class="px-4 py-2 rounded-lg bg-[#10A9BC] hover:bg-[#0E97A8] text-white font-semibold text-xs lms-transition">
                         + Tambah Kursus Baru
                     </a>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4">
                     @foreach ($myCourses as $course)
-                        <div class="p-5 rounded-xl border border-[#DCE6EE] bg-[#F5F8FC] hover:bg-white hover:border-[#10A9BC] transition flex flex-col justify-between shadow-xs">
+                        <div class="p-5 rounded-xl border border-slate-200 bg-white hover:border-[#10A9BC] lms-transition flex flex-col justify-between">
                             <div>
-                                <span class="px-2 py-0.5 rounded text-[9px] font-mono font-bold bg-[#D8EDF7] text-[#123A5A] uppercase tracking-wider">
+                                <span class="px-2 py-0.5 rounded text-[10px] font-mono font-medium bg-[#E7F6F8] text-[#0E97A8]">
                                     {{ $course->category }}
                                 </span>
-                                <h4 class="font-heading font-bold text-xl text-[#132B45] mt-2 leading-snug line-clamp-2">
-                                    {{ $course->title }}
-                                </h4>
-                                <div class="flex items-center gap-4 text-xs text-[#61758A] mt-3 font-mono">
+                                <h4 class="font-semibold text-base text-slate-900 mt-2 leading-snug line-clamp-2">{{ $course->title }}</h4>
+                                <div class="flex items-center gap-3 text-xs text-slate-500 mt-3 font-mono tabular-nums">
                                     <span>{{ $course->enrollments_count }} Peserta</span>
-                                    <span>•</span>
+                                    <span>&bull;</span>
                                     <span>{{ $course->materials_count }} Materi</span>
                                 </div>
                             </div>
-                            <div class="pt-4 mt-4 border-t border-[#DCE6EE] flex items-center justify-between">
-                                <a href="{{ route('lms.courses.edit', $course) }}" class="text-xs font-bold text-[#61758A] hover:text-[#132B45]">
-                                    Edit Info Kursus
-                                </a>
-                                <a href="{{ route('lms.materials.index') }}" class="text-xs font-bold text-[#10A9BC] hover:underline font-heading uppercase tracking-wider">
-                                    Kelola Modul →
-                                </a>
+                            <div class="pt-4 mt-4 border-t border-slate-100 flex items-center justify-between">
+                                <a href="{{ route('lms.courses.edit', $course) }}" class="text-xs font-medium text-slate-600 hover:text-slate-900">Edit Info &amp; Skills</a>
+                                <a href="{{ route('lms.materials.index') }}" class="text-xs font-semibold text-[#0E97A8] hover:underline">Kelola Modul →</a>
                             </div>
                         </div>
                     @endforeach
@@ -221,115 +205,297 @@
         </div>
 
     @else
-        <!-- Student Dashboard -->
-        <div class="space-y-8">
-            <!-- Active Enrollments -->
-            <div class="bg-white rounded-xl p-6 border border-[#DCE6EE] shadow-xs">
-                <div class="flex items-center justify-between mb-6 pb-3 border-b border-[#DCE6EE]">
-                    <div>
-                        <h3 class="font-heading font-bold text-xl text-[#132B45] uppercase tracking-wide">
-                            KURSUS YANG SEDANG SAYA IKUTI
-                        </h3>
-                        <p class="text-xs text-[#61758A]">Lanjutkan modul pembelajaran dan raih sertifikat kompetensi resmi.</p>
+        <!-- Student Dashboard (100% Matching Figma Layar 1 / Html -> Body (5).svg) -->
+        <div class="space-y-6">
+            <!-- Top Row: Hero Progress Card (8 cols) + Perjalanan belajarmu (4 cols) -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                <!-- Hero Card matching Figma -->
+                <div class="lg:col-span-8 bg-lms-hero rounded-xl p-6 text-white flex items-center justify-between gap-6 relative overflow-hidden">
+                    <div class="space-y-3 relative z-10 max-w-lg">
+                        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/15 text-[10px] font-semibold uppercase tracking-wider">
+                            <svg class="w-3 h-3 text-[#54D6D0]" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            SELANGKAH LEBIH MAJU
+                        </span>
+
+                        <h2 class="text-xl sm:text-2xl font-bold tracking-tight leading-snug">
+                            Ide hebat dimulai dari <span class="text-[#54D6D0]">kompetensi yang terus diasah.</span>
+                        </h2>
+
+                        @if ($featuredEnrollment && $featuredEnrollment->course)
+                            @php
+                                $fcMatTotal = $featuredEnrollment->course->materials->count();
+                                $fcMatDone = $featuredEnrollment->course->materials->filter(fn($m) => isset($completedMaterialIds[$m->id]))->count();
+                            @endphp
+                            <p class="text-xs text-white/80 font-mono tabular-nums">
+                                {{ $featuredEnrollment->course->title }} &bull; Materi {{ $fcMatDone }} dari {{ $fcMatTotal }} &bull; {{ $featuredEnrollment->course->duration_hours }} Jam
+                            </p>
+                            <div class="pt-1">
+                                <a href="{{ route('lms.classroom.show', $featuredEnrollment->course) }}" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-[#10A9BC] hover:bg-[#0E97A8] text-white font-semibold text-xs lms-transition">
+                                    <span>Lanjutkan belajar</span>
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                                </a>
+                            </div>
+                        @else
+                            <p class="text-xs text-white/80">
+                                Mulailah perjalanan belajarmu sekarang dan raih sertifikat kompetensi industri MM2100.
+                            </p>
+                            <div class="pt-1">
+                                <a href="{{ route('lms.courses.index') }}" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-[#10A9BC] hover:bg-[#0E97A8] text-white font-semibold text-xs lms-transition">
+                                    <span>Mulai belajar</span>
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                                </a>
+                            </div>
+                        @endif
                     </div>
-                    <a href="{{ route('lms.courses.index') }}" class="text-xs font-bold text-[#10A9BC] hover:underline font-heading uppercase tracking-wider">
-                        Katalog Kursus Lengkap →
-                    </a>
+
+                    <!-- Decorative Book & Chat Bubbles SVG matching Figma -->
+                    <div class="hidden sm:flex items-center justify-center shrink-0">
+                        <svg class="w-32 h-32 opacity-90" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="28" y="84" width="72" height="16" rx="4" fill="#A7F3D0" fill-opacity="0.35"/>
+                            <rect x="32" y="66" width="66" height="16" rx="4" fill="#0C3553" stroke="#54D6D0" stroke-width="1.5"/>
+                            <rect x="38" y="48" width="58" height="16" rx="4" fill="#54D6D0" fill-opacity="0.85"/>
+                            <rect x="22" y="20" width="48" height="28" rx="10" fill="white" fill-opacity="0.9"/>
+                            <rect x="64" y="12" width="46" height="26" rx="10" fill="#A7F3D0" fill-opacity="0.95"/>
+                        </svg>
+                    </div>
                 </div>
 
-                @if ($enrollments->isEmpty())
-                    <div class="text-center py-12 bg-[#F5F8FC] rounded-xl border border-dashed border-[#DCE6EE]">
-                        <div class="w-12 h-12 rounded-full bg-[#D8EDF7] text-[#123A5A] flex items-center justify-center mx-auto mb-3">
-                            <svg class="w-6 h-6 text-[#10A9BC]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
-                        </div>
-                        <h4 class="font-heading font-bold text-xl text-[#132B45] uppercase">Belum Ada Kursus yang Diikuti</h4>
-                        <p class="text-xs text-[#61758A] max-w-sm mx-auto mt-1 mb-4">
-                            Pilih program pelatihan industri yang sesuai dengan kebutuhan peningkatan kompetensi Anda di MM2100.
-                        </p>
-                        <a href="{{ route('lms.courses.index') }}" class="px-5 py-2.5 rounded-lg bg-[#10A9BC] hover:bg-[#0E97A8] text-white font-heading font-bold text-xs uppercase tracking-wider transition">
-                            Lihat Katalog Pelatihan
-                        </a>
+                <!-- Perjalanan belajarmu Card matching Figma -->
+                @php
+                    $circumference = 2 * 3.14159 * 36;
+                    $dashOffset = $circumference - ($progressPercent / 100) * $circumference;
+                @endphp
+                <div class="lg:col-span-4 bg-white rounded-xl border border-slate-200 p-5 flex flex-col justify-between gap-4">
+                    <div class="flex items-center justify-between">
+                        <h3 class="font-semibold text-base text-slate-900">Perjalanan belajarmu</h3>
+                        <span class="w-8 h-8 rounded-lg bg-[#E7F6F8] text-[#0E97A8] flex items-center justify-center">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+                        </span>
                     </div>
-                @else
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        @foreach ($enrollments as $enrollment)
-                            @php
-                                $totalMat = $enrollment->course->materials->count();
-                                $completedMat = $enrollment->course->materials->filter(fn($m) => isset($completedMaterialIds[$m->id]))->count();
-                                $pct = $totalMat > 0 ? (int)round(($completedMat / $totalMat) * 100) : 0;
-                            @endphp
-                            <div class="p-5 rounded-xl border border-[#DCE6EE] bg-white hover:border-[#10A9BC] transition flex flex-col justify-between shadow-xs">
-                                <div>
-                                    <div class="flex justify-between items-center mb-2">
-                                        <span class="px-2 py-0.5 rounded text-[9px] font-mono font-bold bg-[#D8EDF7] text-[#123A5A] uppercase">
-                                            {{ $enrollment->course->category }}
-                                        </span>
-                                        <span class="text-xs font-mono font-bold {{ $pct >= 100 ? 'text-emerald-600' : 'text-[#10A9BC]' }}">
-                                            {{ $pct }}% SELESAI
-                                        </span>
-                                    </div>
-                                    <h4 class="font-heading font-bold text-xl text-[#132B45] leading-snug line-clamp-2">
-                                        {{ $enrollment->course->title }}
-                                    </h4>
-                                    <p class="text-xs text-[#61758A] mt-1">Instruktur: {{ $enrollment->course->instructor->name ?? 'Tim Instruktur FKKSM' }}</p>
 
-                                    <!-- Progress bar -->
-                                    <div class="w-full bg-[#EDF5FA] rounded-full h-2 mt-4 overflow-hidden border border-[#DCE6EE]">
-                                        <div class="bg-gradient-to-r from-[#10A9BC] to-[#54D6D0] h-2 rounded-full transition-all duration-500" style="width: {{ $pct }}%"></div>
-                                    </div>
-                                    <div class="flex justify-between text-[11px] text-[#61758A] font-mono mt-1.5">
-                                        <span>{{ $completedMat }} dari {{ $totalMat }} materi</span>
-                                        <span class="font-bold {{ $pct >= 100 ? 'text-emerald-600' : 'text-[#132B45]' }}">
-                                            {{ $pct >= 100 ? 'LULUS KOMPETENSI' : 'DALAM PROSES' }}
-                                        </span>
-                                    </div>
-                                </div>
-
-                                <div class="pt-4 mt-4 border-t border-[#DCE6EE]">
-                                    <a href="{{ route('lms.classroom.show', $enrollment->course) }}" class="w-full py-2.5 rounded-lg bg-[#132B45] hover:bg-[#10A9BC] text-white font-heading font-bold text-xs uppercase tracking-wider text-center block transition shadow-xs">
-                                        {{ $pct >= 100 ? 'Tinjau Materi Kelas' : 'Lanjutkan Belajar →' }}
-                                    </a>
-                                </div>
+                    <div class="flex items-center gap-5">
+                        <!-- Circular Donut Ring SVG -->
+                        <div class="relative w-24 h-24 shrink-0">
+                            <svg class="w-full h-full -rotate-90" viewBox="0 0 88 88">
+                                <defs>
+                                    <linearGradient id="ringGrad" x1="0" y1="0" x2="1" y2="1">
+                                        <stop offset="0%" stop-color="#0C3553"/>
+                                        <stop offset="100%" stop-color="#54D6D0"/>
+                                    </linearGradient>
+                                </defs>
+                                <circle cx="44" cy="44" r="36" fill="none" stroke="#F1F5F9" stroke-width="8"/>
+                                <circle cx="44" cy="44" r="36" fill="none" stroke="url(#ringGrad)" stroke-width="8" stroke-linecap="round" stroke-dasharray="{{ $circumference }}" stroke-dashoffset="{{ $dashOffset }}"/>
+                            </svg>
+                            <div class="absolute inset-0 flex flex-col items-center justify-center text-center">
+                                <span class="font-mono tabular-nums font-bold text-lg text-slate-900 leading-none">{{ $progressPercent }}%</span>
+                                <span class="text-[10px] text-slate-400 mt-0.5">selesai</span>
                             </div>
-                        @endforeach
+                        </div>
+
+                        <div class="space-y-2 text-xs font-medium text-slate-700 tabular-nums">
+                            <div class="flex items-center gap-2">
+                                <span class="w-2 h-2 rounded-full bg-[#10A9BC]"></span>
+                                <span><strong class="font-mono text-slate-900">{{ $completedMaterials }}/{{ $totalMaterials }}</strong> materi selesai</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="w-2 h-2 rounded-full bg-[#10A9BC]"></span>
+                                <span><strong class="font-mono text-slate-900">{{ $completedModules }}/{{ $totalModules }}</strong> modul tuntas</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="w-2 h-2 rounded-full bg-amber-500"></span>
+                                <span><strong class="font-mono text-slate-900">{{ $completedQuizzes }}/{{ $totalQuizzes }}</strong> kuis dikerjakan</span>
+                            </div>
+                        </div>
                     </div>
-                @endif
+
+                    <div class="px-3.5 py-2 rounded-lg bg-emerald-50 border border-emerald-200/70 text-emerald-800 text-xs font-medium flex items-center gap-2">
+                        <svg class="w-4 h-4 text-emerald-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                        <span>
+                            {{ $progressPercent >= 100 ? 'Seluruh materi tuntas. Pertahankan prestasi!' : ($progressPercent >= 50 ? 'Separuh jalan. Pertahankan semangatmu!' : 'Langkah awal yang baik. Ayo lanjutkan!') }}
+                        </span>
+                    </div>
+                </div>
             </div>
 
-            <!-- Earned Certificates -->
-            @if ($certificates->isNotEmpty())
-                <div class="bg-white rounded-xl p-6 border border-[#DCE6EE] shadow-xs">
-                    <div class="flex items-center justify-between mb-4 pb-3 border-b border-[#DCE6EE]">
-                        <div>
-                            <h3 class="font-heading font-bold text-xl text-[#132B45] uppercase tracking-wide">
-                                SERTIFIKAT KOMPETENSI RESMI SAYA
-                            </h3>
-                            <p class="text-xs text-[#61758A]">Sertifikat digital dengan tanda tangan elektronik dan verifikasi QR Code.</p>
-                        </div>
+            <!-- Middle Row: Progres Pembelajaran & Rekapan Terakhir Pembelajaran -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white rounded-xl border border-slate-200 p-6 space-y-4">
+                    <div class="w-10 h-10 rounded-xl bg-[#E7F6F8] text-[#0E97A8] flex items-center justify-center">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
                     </div>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                        @foreach ($certificates as $cert)
-                            <div class="p-4 rounded-xl border border-emerald-300 bg-emerald-50/40 flex flex-col justify-between">
-                                <div>
-                                    <div class="flex items-center gap-2 mb-2">
-                                        <span class="w-5 h-5 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center">
-                                            <svg class="w-3.5 h-3.5 text-emerald-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
-                                        </span>
-                                        <span class="text-xs font-mono font-bold text-emerald-900">{{ $cert->certificate_no }}</span>
-                                    </div>
-                                    <h4 class="font-heading font-bold text-base text-[#132B45] line-clamp-1">{{ $cert->course->title }}</h4>
-                                    <span class="text-[11px] text-[#61758A] font-mono block mt-1">Diterbitkan: {{ $cert->issued_at->format('d M Y') }}</span>
+                    <div>
+                        <h3 class="font-semibold text-base text-slate-900">Progres Pembelajaran</h3>
+                        <p class="text-xs text-slate-500 mt-1 leading-relaxed">
+                            Memantau persentase penyelesaian kelas aktif Anda (<strong class="font-mono text-slate-800">{{ $enrollments->count() }} program terdaftar</strong>, <strong class="font-mono text-slate-800">{{ $certificates->count() }} sertifikat terbit</strong>).
+                        </p>
+                    </div>
+                    <div class="space-y-2.5 pt-2">
+                        @forelse ($enrollments->take(2) as $enr)
+                            @php
+                                $eTotal = $enr->course?->materials->count() ?? 0;
+                                $eDone = $enr->course?->materials->filter(fn($m) => isset($completedMaterialIds[$m->id]))->count() ?? 0;
+                                $ePct = $eTotal > 0 ? (int) round(($eDone / $eTotal) * 100) : 0;
+                            @endphp
+                            <div class="p-3 rounded-lg bg-slate-50 border border-slate-200/70 space-y-1.5">
+                                <div class="flex justify-between text-xs">
+                                    <span class="font-semibold text-slate-800 truncate pr-2">{{ $enr->course->title }}</span>
+                                    <span class="font-mono font-semibold text-[#0E97A8] tabular-nums shrink-0">{{ $ePct }}%</span>
                                 </div>
-                                <div class="pt-3 mt-3 border-t border-emerald-200 flex items-center justify-between">
-                                    <a href="{{ route('lms.certificates.show', $cert) }}" class="text-xs font-bold text-emerald-800 hover:underline font-heading uppercase tracking-wider">
-                                        Lihat Sertifikat Digital →
-                                    </a>
+                                <div class="w-full bg-slate-200 rounded-full h-1.5 overflow-hidden">
+                                    <div class="bg-[#10A9BC] h-1.5 rounded-full" style="width: {{ $ePct }}%"></div>
                                 </div>
                             </div>
-                        @endforeach
+                        @empty
+                            <p class="text-xs text-slate-400">Belum ada program yang diikuti saat ini.</p>
+                        @endforelse
                     </div>
                 </div>
-            @endif
+
+                <div class="bg-white rounded-xl border border-slate-200 p-6 space-y-4">
+                    <div class="w-10 h-10 rounded-xl bg-teal-50 text-[#0E97A8] flex items-center justify-center">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-base text-slate-900">Rekapan Terakhir Pembelajaran</h3>
+                        <p class="text-xs text-slate-500 mt-1 leading-relaxed">
+                            Riwayat materi terakhir yang diselesaikan dan status keanggotaan paket belajar Anda.
+                        </p>
+                    </div>
+                    <div class="space-y-2.5 pt-2">
+                        @if ($latestProgress && $latestProgress->material)
+                            <div class="p-3 rounded-lg bg-slate-50 border border-slate-200/70 flex items-center justify-between gap-3 text-xs">
+                                <div class="min-w-0">
+                                    <span class="font-semibold text-slate-800 block truncate">{{ $latestProgress->material->title }}</span>
+                                    <span class="text-[11px] text-slate-500 block truncate">{{ $latestProgress->material->course->title ?? '' }}</span>
+                                    <span class="text-[10px] font-mono text-slate-400">Selesai pada {{ $latestProgress->completed_at->format('d M Y, H:i') }}</span>
+                                </div>
+                                <a href="{{ route('lms.classroom.show', $latestProgress->material->course_id) }}" class="px-3 py-1.5 rounded-lg bg-white border border-slate-200 text-slate-700 hover:border-[#10A9BC] text-[11px] font-semibold shrink-0">
+                                    Buka
+                                </a>
+                            </div>
+                        @else
+                            <div class="p-3 rounded-lg bg-slate-50 border border-slate-200/70 text-xs text-slate-500">
+                                Belum ada materi yang ditandai selesai. Mulai materi pertama di menu <strong>Modul</strong>.
+                            </div>
+                        @endif
+
+                        <div class="p-3 rounded-lg bg-slate-50 border border-slate-200/70 flex items-center justify-between text-xs">
+                            <span class="text-slate-600">Paket Layanan Aktif: <strong class="text-slate-900">{{ $activeSubscription?->plan?->name ?? 'Akses Standar' }}</strong></span>
+                            <a href="{{ route('lms.subscriptions.index') }}" class="text-[#0E97A8] font-semibold hover:underline">Detail →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Row: Materi untukmu (Left) & Uji pemahamanmu (Right) -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                <!-- Materi untukmu -->
+                <div class="lg:col-span-6 space-y-3">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-2">
+                            <span class="w-1 h-4 rounded-full bg-[#10A9BC]"></span>
+                            <h3 class="font-semibold text-base text-slate-900">Materi untukmu</h3>
+                        </div>
+                        <a href="{{ route('lms.courses.index') }}" class="text-xs font-semibold text-[#0E97A8] hover:underline">Semua materi →</a>
+                    </div>
+
+                    <div class="bg-white rounded-xl border border-slate-200 divide-y divide-slate-100">
+                        @forelse ($recommendedMaterials as $mat)
+                            @php $matDone = isset($completedMaterialIds[$mat->id]); @endphp
+                            <div class="p-4 flex items-center justify-between gap-3">
+                                <div class="flex items-center gap-3 min-w-0">
+                                    <div class="w-10 h-10 rounded-lg {{ $matDone ? 'bg-emerald-50 text-emerald-600' : 'bg-[#E7F6F8] text-[#0E97A8]' }} flex items-center justify-center shrink-0">
+                                        @if ($mat->content_type === 'link')
+                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                        @else
+                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                                        @endif
+                                    </div>
+                                    <div class="min-w-0">
+                                        <p class="font-semibold text-sm text-slate-900 truncate">{{ $mat->title }}</p>
+                                        <p class="text-[11px] text-slate-500 truncate">{{ $mat->course->title }} &bull; {{ $mat->content_type_label }}</p>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-center gap-2 shrink-0">
+                                    @if ($matDone)
+                                        <span class="px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 text-[11px] font-medium">Selesai</span>
+                                        <a href="{{ route('lms.classroom.show', ['course' => $mat->course_id, 'material' => $mat->id]) }}" class="p-1.5 text-emerald-600 hover:bg-emerald-50 rounded-lg" title="Tinjau Materi">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                        </a>
+                                    @else
+                                        <span class="px-2.5 py-1 rounded-full bg-slate-100 text-slate-600 text-[11px] font-medium">Belum selesai</span>
+                                        <a href="{{ route('lms.classroom.show', ['course' => $mat->course_id, 'material' => $mat->id]) }}" class="w-8 h-8 rounded-full bg-[#10A9BC] hover:bg-[#0E97A8] text-white flex items-center justify-center lms-transition" title="Buka Materi">
+                                            <svg class="w-3.5 h-3.5 ml-0.5" fill="currentColor" viewBox="0 0 20 20"><path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z"/></svg>
+                                        </a>
+                                    @endif
+                                </div>
+                            </div>
+                        @empty
+                            <div class="p-8 text-center text-xs text-slate-400">
+                                Daftarlah ke kursus di menu <strong>Modul</strong> untuk melihat materi pembelajaran Anda.
+                            </div>
+                        @endforelse
+                    </div>
+                </div>
+
+                <!-- Uji pemahamanmu -->
+                <div class="lg:col-span-6 space-y-3">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-2">
+                            <span class="w-1 h-4 rounded-full bg-[#10A9BC]"></span>
+                            <h3 class="font-semibold text-base text-slate-900">Uji pemahamanmu</h3>
+                        </div>
+                        <a href="{{ route('lms.assessments.index') }}" class="text-xs font-semibold text-[#0E97A8] hover:underline">Semua kuis →</a>
+                    </div>
+
+                    <div class="bg-white rounded-xl border border-slate-200 divide-y divide-slate-100">
+                        @forelse ($upcomingQuizzes as $quiz)
+                            @php $sub = $quiz->submissions->first(); @endphp
+                            <div class="p-4 flex items-center justify-between gap-3">
+                                <div class="flex items-center gap-3 min-w-0">
+                                    <div class="w-10 h-10 rounded-lg {{ $sub ? 'bg-emerald-50 text-emerald-600' : 'bg-[#E7F6F8] text-[#0E97A8]' }} flex items-center justify-center shrink-0">
+                                        @if ($sub)
+                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                        @else
+                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+                                        @endif
+                                    </div>
+                                    <div class="min-w-0">
+                                        <p class="font-semibold text-sm text-slate-900 truncate">{{ $quiz->title }}</p>
+                                        <p class="text-[11px] text-slate-500 truncate">
+                                            {{ $quiz->course->title }} &bull;
+                                            @if ($sub && $sub->score !== null)
+                                                <span class="text-emerald-700 font-semibold font-mono">Selesai &bull; Nilai {{ number_format((float)$sub->score, 0) }}/100</span>
+                                            @elseif ($sub)
+                                                <span class="text-amber-700 font-medium">Dikirim &bull; Menunggu nilai</span>
+                                            @else
+                                                <span class="text-[#0E97A8] font-medium">Siap dikerjakan</span>
+                                            @endif
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="shrink-0">
+                                    @if ($sub)
+                                        <a href="{{ route('lms.assessments.show', $quiz) }}" class="px-3.5 py-2 rounded-lg border border-slate-200 hover:bg-slate-50 text-slate-700 font-semibold text-xs lms-transition">
+                                            Lihat hasil
+                                        </a>
+                                    @else
+                                        <a href="{{ route('lms.assessments.show', $quiz) }}" class="px-4 py-2 rounded-lg bg-[#10A9BC] hover:bg-[#0E97A8] text-white font-semibold text-xs lms-transition">
+                                            Mulai kuis
+                                        </a>
+                                    @endif
+                                </div>
+                            </div>
+                        @empty
+                            <div class="p-8 text-center text-xs text-slate-400">
+                                Belum ada kuis atau evaluasi aktif pada program yang Anda ikuti.
+                            </div>
+                        @endforelse
+                    </div>
+                </div>
+            </div>
         </div>
     @endif
 @endsection

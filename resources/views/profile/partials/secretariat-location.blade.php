@@ -1,6 +1,6 @@
 <!-- Lokasi Sekretariat & Interactive Google Map -->
 <section class="py-16 bg-white border-b border-slate-200" id="lokasi">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="fkksm-container">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
             <div class="lg:col-span-5 space-y-6">
                 <div>

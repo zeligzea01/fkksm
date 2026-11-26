@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\ActivityLog;
 use App\Models\Certificate;
 use App\Models\Course;
+use App\Models\LandingSection;
 use App\Models\Lead;
+use App\Models\Setting;
 use App\Models\User;
 use App\Models\Voucher;
 use Illuminate\Http\RedirectResponse;
@@ -17,6 +19,9 @@ class FrontendController extends Controller
 {
     public function index(): View
     {
+        // Dynamic landing sections controlled by Admin CMS
+        $sections = LandingSection::getAllForHome();
+
         // Optimized pagination with eager loading
         $courses = Course::published()
             ->with(['instructor', 'materials'])
@@ -44,13 +49,21 @@ class FrontendController extends Controller
             return Voucher::where('status', 'active')->take(3)->get();
         });
 
+        $siteSettings = [
+            'contact_email' => Setting::get('contact_email', 'sekretariat@fkksm-mm2100.or.id'),
+            'contact_phone' => Setting::get('contact_phone', '+62 21 8980 1234'),
+            'address' => Setting::get('address', 'Kawasan Industri MM2100, Cikarang Barat, Bekasi 17530'),
+        ];
+
         return view('landing-pages.index', compact(
+            'sections',
             'courses',
             'totalCourses',
             'totalStudents',
             'totalCertificates',
             'totalMembers',
-            'vouchers'
+            'vouchers',
+            'siteSettings'
         ));
     }
 
@@ -113,16 +126,16 @@ class FrontendController extends Controller
 
     public function verifyCertificate(Request $request, ?string $code = null): View
     {
-        $searchCode = $code ?? $request->query('code');
+        $rawCode = trim((string) ($code ?? $request->query('code', '')));
+        $searchCode = $rawCode !== '' ? mb_substr($rawCode, 0, 80) : null;
         $certificate = null;
 
         if ($searchCode) {
             $certificate = Certificate::with(['user', 'course', 'issuer'])
-                ->where('certificate_no', trim($searchCode))
+                ->where('certificate_no', $searchCode)
                 ->first();
         }
 
         return view('landing-pages.certificate-verify', compact('certificate', 'searchCode'));
     }
 }
-

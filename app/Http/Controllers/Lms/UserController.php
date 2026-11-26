@@ -5,10 +5,10 @@ namespace App\Http\Controllers\Lms;
 use App\Http\Controllers\Controller;
 use App\Models\ActivityLog;
 use App\Models\User;
+use App\Support\SecurityHelper;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\View\View;
 
 class UserController extends Controller
@@ -17,17 +17,18 @@ class UserController extends Controller
     {
         abort_unless(Auth::user()->isAdmin(), 403);
 
-        $search = $request->query('search');
+        $search = trim((string) $request->query('search', ''));
         $role = $request->query('role');
         $status = $request->query('status');
 
         $query = User::withCount(['enrollments', 'certificates'])->latest();
 
-        if ($search) {
-            $query->where(function ($q) use ($search) {
-                $q->where('name', 'like', "%{$search}%")
-                  ->orWhere('email', 'like', "%{$search}%")
-                  ->orWhere('username', 'like', "%{$search}%");
+        if ($search !== '') {
+            $escaped = SecurityHelper::escapeLike($search);
+            $query->where(function ($q) use ($escaped) {
+                $q->where('name', 'like', "%{$escaped}%")
+                  ->orWhere('email', 'like', "%{$escaped}%")
+                  ->orWhere('username', 'like', "%{$escaped}%");
             });
         }
 

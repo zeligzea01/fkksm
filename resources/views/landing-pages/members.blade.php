@@ -13,7 +13,7 @@
     ]"
 />
 
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+<div class="fkksm-container py-16">
     <!-- Bagan Struktur Organisasi -->
     <div class="bg-white rounded-xl p-8 border border-[#DCE6EE] shadow-sm mb-16">
         <div class="text-center max-w-2xl mx-auto mb-8">

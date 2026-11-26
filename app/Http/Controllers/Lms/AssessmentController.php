@@ -18,7 +18,7 @@ class AssessmentController extends Controller
     {
         $user = Auth::user();
 
-        if ($user->isAdmin() || $user->isInstructor()) {
+        if ($user->isAdmin()) {
             $assessments = Assessment::with(['course', 'submissions.user'])->latest()->paginate(15);
             $pendingSubmissions = AssessmentSubmission::with(['assessment.course', 'user'])
                 ->where('status', 'submitted')
@@ -29,8 +29,24 @@ class AssessmentController extends Controller
             return view('lms.assessments.index', compact('assessments', 'pendingSubmissions', 'courses'));
         }
 
-        // Student assessments
-        $enrolledCourseIds = $user->enrollments()->pluck('course_id');
+        if ($user->isInstructor()) {
+            $myCourseIds = Course::where('instructor_id', $user->id)->pluck('id');
+            $assessments = Assessment::whereIn('course_id', $myCourseIds)
+                ->with(['course', 'submissions.user'])
+                ->latest()
+                ->paginate(15);
+            $pendingSubmissions = AssessmentSubmission::with(['assessment.course', 'user'])
+                ->whereHas('assessment', fn ($q) => $q->whereIn('course_id', $myCourseIds))
+                ->where('status', 'submitted')
+                ->latest()
+                ->get();
+            $courses = Course::where('instructor_id', $user->id)->get();
+
+            return view('lms.assessments.index', compact('assessments', 'pendingSubmissions', 'courses'));
+        }
+
+        // Student assessments (only active/completed enrolled courses)
+        $enrolledCourseIds = $user->enrollments()->whereIn('status', ['active', 'completed'])->pluck('course_id');
         $assessments = Assessment::whereIn('course_id', $enrolledCourseIds)
             ->where('is_published', true)
             ->with(['course', 'submissions' => fn ($q) => $q->where('user_id', $user->id)])
@@ -42,15 +58,21 @@ class AssessmentController extends Controller
 
     public function store(Request $request): RedirectResponse
     {
-        abort_unless(Auth::user()->isInstructor(), 403);
+        $user = Auth::user();
+        abort_unless($user->isInstructor(), 403);
 
         $validated = $request->validate([
             'course_id' => ['required', 'exists:courses,id'],
             'title' => ['required', 'string', 'max:180'],
             'assessment_type' => ['required', 'in:quiz,assignment,evaluation'],
-            'instructions' => ['nullable', 'string'],
+            'instructions' => ['nullable', 'string', 'max:10000'],
             'due_at' => ['nullable', 'date'],
         ]);
+
+        $course = Course::findOrFail($validated['course_id']);
+        if (!$user->isAdmin() && $course->instructor_id !== $user->id) {
+            abort(403, 'Anda tidak dapat menambahkan evaluasi untuk kelas instruktur lain.');
+        }
 
         $assessment = Assessment::create([
             'course_id' => $validated['course_id'],
@@ -61,27 +83,65 @@ class AssessmentController extends Controller
             'due_at' => $validated['due_at'] ?? null,
         ]);
 
-        ActivityLog::record(Auth::id(), 'assessment_created', "Evaluasi baru dibuat: {$assessment->title}");
+        ActivityLog::record($user->id, 'assessment_created', "Evaluasi baru dibuat: {$assessment->title}");
 
         return back()->with('success', "Evaluasi '{$assessment->title}' berhasil dibuat.");
     }
 
-    public function show(Assessment $assessment): View
+    public function show(Assessment $assessment): View|RedirectResponse
     {
-        $assessment->load(['course', 'submissions' => fn ($q) => $q->where('user_id', Auth::id())]);
-        $mySubmission = $assessment->submissions->first();
+        $user = Auth::user();
+        $assessment->load('course.modules.materials');
+        $this->authorizeAssessmentAccess($user, $assessment);
+
+        if (!$user->isAdmin() && !$user->isInstructor() && $assessment->course) {
+            $publishedMaterialIds = $assessment->course->materials()->where('is_published', true)->pluck('id');
+            if ($publishedMaterialIds->isNotEmpty()) {
+                $completedCount = \App\Models\UserProgress::where('user_id', $user->id)
+                    ->whereIn('material_id', $publishedMaterialIds)
+                    ->count();
+                if ($completedCount < $publishedMaterialIds->count()) {
+                    return redirect()->route('lms.classroom.show', $assessment->course)
+                        ->with('warning', 'Latihan Akhir masih terkunci. Selesaikan seluruh tahapan Video, Materi, dan Latihan Soal di ruang belajar terlebih dahulu.');
+                }
+            }
+        }
+
+        $assessment->load([
+            'submissions' => fn ($q) => $user->isInstructor()
+                ? $q->with('user')
+                : $q->where('user_id', $user->id),
+        ]);
+        $mySubmission = $user->isInstructor() ? null : $assessment->submissions->first();
 
         return view('lms.assessments.show', compact('assessment', 'mySubmission'));
     }
 
     public function submit(Request $request, Assessment $assessment): RedirectResponse
     {
+        $user = Auth::user();
+        $assessment->load('course.modules.materials');
+        $this->authorizeAssessmentAccess($user, $assessment);
+
+        if (!$user->isAdmin() && !$user->isInstructor() && $assessment->course) {
+            $publishedMaterialIds = $assessment->course->materials()->where('is_published', true)->pluck('id');
+            if ($publishedMaterialIds->isNotEmpty()) {
+                $completedCount = \App\Models\UserProgress::where('user_id', $user->id)
+                    ->whereIn('material_id', $publishedMaterialIds)
+                    ->count();
+                if ($completedCount < $publishedMaterialIds->count()) {
+                    return redirect()->route('lms.classroom.show', $assessment->course)
+                        ->with('warning', 'Latihan Akhir masih terkunci. Selesaikan seluruh tahapan Video, Materi, dan Latihan Soal di ruang belajar terlebih dahulu.');
+                }
+            }
+        }
+
         $validated = $request->validate([
-            'response_text' => ['required', 'string', 'min:5'],
+            'response_text' => ['required', 'string', 'min:5', 'max:20000'],
         ]);
 
-        $submission = AssessmentSubmission::updateOrCreate(
-            ['assessment_id' => $assessment->id, 'user_id' => Auth::id()],
+        AssessmentSubmission::updateOrCreate(
+            ['assessment_id' => $assessment->id, 'user_id' => $user->id],
             [
                 'response_text' => $validated['response_text'],
                 'status' => 'submitted',
@@ -89,10 +149,28 @@ class AssessmentController extends Controller
             ]
         );
 
-        ActivityLog::record(Auth::id(), 'assessment_submitted', "Mengumpulkan tugas/evaluasi: {$assessment->title}");
+        ActivityLog::record($user->id, 'assessment_submitted', "Mengumpulkan tugas/evaluasi: {$assessment->title}");
 
         return redirect()->route('lms.assessments.show', $assessment)
             ->with('success', 'Jawaban/tugas Anda telah berhasil dikumpulkan dan sedang menunggu penilaian instruktur.');
+    }
+
+    private function authorizeAssessmentAccess($user, Assessment $assessment): void
+    {
+        if ($user->isAdmin()) {
+            return;
+        }
+        if ($user->isInstructor()) {
+            abort_unless($assessment->course && $assessment->course->instructor_id === $user->id, 403, 'Akses terbatas untuk kelas Anda.');
+            return;
+        }
+
+        abort_unless($assessment->is_published && $assessment->course && $assessment->course->status === 'published', 404);
+        $isEnrolled = $user->enrollments()
+            ->where('course_id', $assessment->course_id)
+            ->whereIn('status', ['active', 'completed'])
+            ->exists();
+        abort_unless($isEnrolled, 403, 'Silakan mendaftar pada kursus terkait untuk mengakses evaluasi.');
     }
 
     public function grade(Request $request, AssessmentSubmission $submission): RedirectResponse

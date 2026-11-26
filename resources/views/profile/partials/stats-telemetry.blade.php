@@ -1,6 +1,6 @@
 <!-- Stats & Ecosystem Telemetry Section -->
 <section class="py-12 bg-white border-b border-slate-200">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="fkksm-container">
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
             
             <div class="p-6 rounded-xl bg-slate-50 border border-slate-200">

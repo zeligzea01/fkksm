@@ -13,7 +13,7 @@
     ]"
 />
 
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+<div class="fkksm-container py-16">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
         <!-- Contact Form -->
         <div class="lg:col-span-7 bg-white rounded-xl p-8 border border-[#DCE6EE] shadow-sm">
@@ -21,7 +21,7 @@
                 Formulir Kontak &amp; Permohonan Program
             </h2>
             <p class="text-xs text-[#61758A] mb-6">Pesan yang Anda kirimkan akan tercatat langsung pada sistem registrasi dan audit internal FKKSM.</p>
-
+ 
             <form action="{{ route('leads.submit') }}" method="POST" class="space-y-4">
                 @csrf
                 <input type="hidden" name="source" value="Halaman Hubungi Kami FKKSM">

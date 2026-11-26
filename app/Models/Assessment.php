@@ -16,16 +16,21 @@ class Assessment extends Model
         'title',
         'assessment_type',
         'instructions',
-        'is_optional',
+        'quiz_payload',
+        'passing_score',
         'is_published',
         'due_at',
     ];
 
-    protected $casts = [
-        'is_optional' => 'boolean',
-        'is_published' => 'boolean',
-        'due_at' => 'datetime',
-    ];
+    protected function casts(): array
+    {
+        return [
+            'is_published' => 'boolean',
+            'due_at' => 'datetime',
+            'quiz_payload' => 'array',
+            'passing_score' => 'integer',
+        ];
+    }
 
     public function course(): BelongsTo
     {
@@ -36,15 +41,4 @@ class Assessment extends Model
     {
         return $this->hasMany(AssessmentSubmission::class);
     }
-
-    public function getTypeLabelAttribute(): string
-    {
-        return match ($this->assessment_type) {
-            'quiz' => 'Kuis',
-            'assignment' => 'Tugas Praktik',
-            'evaluation' => 'Evaluasi Akhir',
-            default => ucfirst($this->assessment_type),
-        };
-    }
 }
-

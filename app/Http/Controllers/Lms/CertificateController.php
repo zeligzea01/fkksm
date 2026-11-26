@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Lms;
 use App\Http\Controllers\Controller;
 use App\Models\ActivityLog;
 use App\Models\Certificate;
+use App\Support\SecurityHelper;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -12,22 +13,35 @@ use Illuminate\View\View;
 
 class CertificateController extends Controller
 {
-    public function index(): View
+    public function index(Request $request): View
     {
         $user = Auth::user();
+        $search = trim((string) $request->query('search', ''));
+        $sort = $request->query('sort', 'latest');
 
-        if ($user->isAdmin()) {
-            $certificates = Certificate::with(['user', 'course', 'issuer'])
-                ->latest('issued_at')
-                ->paginate(20);
-        } else {
-            $certificates = Certificate::with(['course', 'issuer'])
-                ->where('user_id', $user->id)
-                ->latest('issued_at')
-                ->paginate(20);
+        $query = Certificate::with(['user', 'course', 'issuer']);
+
+        if (!$user->isAdmin()) {
+            $query->where('user_id', $user->id);
         }
 
-        return view('lms.certificates.index', compact('certificates'));
+        if ($search !== '') {
+            $escaped = SecurityHelper::escapeLike($search);
+            $query->where(function ($q) use ($escaped) {
+                $q->where('certificate_no', 'like', "%{$escaped}%")
+                    ->orWhereHas('course', fn ($cq) => $cq->where('title', 'like', "%{$escaped}%"));
+            });
+        }
+
+        if ($sort === 'oldest') {
+            $query->oldest('issued_at');
+        } else {
+            $query->latest('issued_at');
+        }
+
+        $certificates = $query->paginate(18)->withQueryString();
+
+        return view('lms.certificates.index', compact('certificates', 'search', 'sort'));
     }
 
     public function show(Certificate $certificate): View
@@ -61,4 +75,3 @@ class CertificateController extends Controller
         return back()->with('success', "Status sertifikat #{$certificate->certificate_no} berhasil {$statusText}.");
     }
 }
-

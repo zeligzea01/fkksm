@@ -59,6 +59,7 @@ class SettingController extends Controller
         Setting::set('contact_phone', $validated['contact_phone'], $userId);
         Setting::set('address', $validated['address'], $userId);
 
+        \App\Models\LandingSection::clearCache();
         ActivityLog::record($userId, 'settings_saved', 'Pengaturan sistem diperbarui oleh administrator.');
 
         return back()->with('success', 'Pengaturan sistem berhasil disimpan.');

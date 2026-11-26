@@ -1,6 +1,6 @@
 <!-- 4 Pilar Layanan Utama FKKSM -->
 <section class="py-16 bg-[#F8FAFC] border-b border-slate-200" id="program">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="fkksm-container">
         <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
             <div>
                 <span class="text-[10px] font-mono font-medium text-[#10A9BC] uppercase tracking-widest block mb-1">

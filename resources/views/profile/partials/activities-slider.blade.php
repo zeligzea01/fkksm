@@ -1,6 +1,6 @@
 <!-- Rangkaian Kegiatan FKKSM 2026: Activity Band with 6 Interactive Thumbnails -->
 <section class="py-16 bg-[#082236] text-white border-b border-[#176D91]/30" id="activities">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="fkksm-container">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
             
             <!-- Left Controls & Title -->

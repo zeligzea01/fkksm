@@ -1,6 +1,6 @@
 <!-- Course Section: Paginated Courses Catalog with Component Cards -->
 <section class="py-14 bg-white border-b border-slate-200" id="katalog-kursus">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="fkksm-container">
         <x-section-header
             badge="KURIKULUM RESMI INDUSTRI"
             title="Katalog Kursus &amp; Program Sertifikasi"
@@ -10,7 +10,7 @@
         />
 
         <!-- Course Cards Grid -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 min-[2000px]:grid-cols-5 gap-6">
             @forelse ($courses as $course)
                 <x-course-card :course="$course" />
             @empty

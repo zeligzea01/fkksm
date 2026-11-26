@@ -1,16 +1,20 @@
 <?php
 
+use App\Http\Controllers\Auth\SsoController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\Lms\AccountController;
 use App\Http\Controllers\Lms\AssessmentController;
 use App\Http\Controllers\Lms\AuditController;
 use App\Http\Controllers\Lms\CertificateController;
 use App\Http\Controllers\Lms\ClassroomController;
 use App\Http\Controllers\Lms\CourseController;
 use App\Http\Controllers\Lms\DashboardController;
+use App\Http\Controllers\Lms\LandingCmsController;
 use App\Http\Controllers\Lms\LeadController;
 use App\Http\Controllers\Lms\MaterialController;
 use App\Http\Controllers\Lms\SettingController;
+use App\Http\Controllers\Lms\SubscriptionController;
 use App\Http\Controllers\Lms\UserController;
 use App\Http\Controllers\Lms\VoucherController;
 use Illuminate\Support\Facades\Route;
@@ -27,19 +31,22 @@ Route::get('/profile', fn () => redirect()->route('profile.fkksm'));
 Route::get('/berita', [FrontendController::class, 'berita'])->name('berita');
 Route::get('/members', [FrontendController::class, 'members'])->name('members');
 Route::get('/hubungi', [FrontendController::class, 'hubungi'])->name('hubungi');
-Route::post('/hubungi/submit', [FrontendController::class, 'submitLead'])->name('leads.submit');
+Route::post('/hubungi/submit', [FrontendController::class, 'submitLead'])->middleware('throttle:lead-submit')->name('leads.submit');
 Route::get('/verifikasi-sertifikat/{code?}', [FrontendController::class, 'verifyCertificate'])->name('certificates.verify');
 
 /*
 |--------------------------------------------------------------------------
-| Authentication Routes
+| Authentication & Hardened SSO Routes
 |--------------------------------------------------------------------------
 */
 Route::middleware('guest')->group(function () {
     Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
-    Route::post('/login', [AuthController::class, 'login'])->name('login.post');
+    Route::post('/login', [AuthController::class, 'login'])->middleware('throttle:login')->name('login.post');
     Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
-    Route::post('/register', [AuthController::class, 'register'])->name('register.post');
+    Route::post('/register', [AuthController::class, 'register'])->middleware('throttle:register')->name('register.post');
+
+    Route::get('/auth/google/redirect', [SsoController::class, 'redirectToGoogle'])->middleware('throttle:sso')->name('sso.google.redirect');
+    Route::get('/auth/google/callback', [SsoController::class, 'handleGoogleCallback'])->middleware('throttle:sso')->name('sso.google.callback');
 });
 
 Route::middleware('auth')->group(function () {
@@ -55,6 +62,12 @@ Route::middleware('auth')->group(function () {
         // Dashboard
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
+        // Account & Notifications
+        Route::get('/account', [AccountController::class, 'index'])->name('account.index');
+        Route::post('/account/profile', [AccountController::class, 'updateProfile'])->name('account.profile');
+        Route::post('/account/password', [AccountController::class, 'updatePassword'])->name('account.password');
+        Route::post('/notifications/read-all', [AccountController::class, 'markNotificationsRead'])->name('notifications.read-all');
+
         // Course Catalog & Details
         Route::get('/courses', [CourseController::class, 'index'])->name('courses.index');
         Route::get('/courses/{course:slug}', [CourseController::class, 'show'])->name('courses.show');
@@ -63,10 +76,12 @@ Route::middleware('auth')->group(function () {
         // Virtual Classroom & Learning Player
         Route::get('/classroom/{course}', [ClassroomController::class, 'show'])->name('classroom.show');
         Route::post('/classroom/{course}/materials/{material}/complete', [ClassroomController::class, 'completeMaterial'])->name('classroom.material.complete');
+        Route::post('/classroom/{course}/final-assessment/{assessment}', [ClassroomController::class, 'submitFinalAssessment'])->name('classroom.final-assessment.submit');
+        Route::get('/media/video/{filename}', [ClassroomController::class, 'streamVideo'])->name('media.video');
 
         // Materials & Modules (Instructor & Admin)
-        Route::get('/materials', [MaterialController::class, 'index'])->name('materials.index');
         Route::middleware('instructor')->group(function () {
+            Route::get('/materials', [MaterialController::class, 'index'])->name('materials.index');
             Route::get('/courses-create', [CourseController::class, 'create'])->name('courses.create');
             Route::post('/courses', [CourseController::class, 'store'])->name('courses.store');
             Route::get('/courses/{course}/edit', [CourseController::class, 'edit'])->name('courses.edit');
@@ -91,9 +106,15 @@ Route::middleware('auth')->group(function () {
         Route::get('/certificates', [CertificateController::class, 'index'])->name('certificates.index');
         Route::get('/certificates/{certificate}', [CertificateController::class, 'show'])->name('certificates.show');
 
-        // Vouchers
+        // Vouchers (Check + Redeem)
         Route::get('/vouchers', [VoucherController::class, 'index'])->name('vouchers.index');
-        Route::post('/vouchers/redeem', [VoucherController::class, 'redeem'])->name('vouchers.redeem');
+        Route::post('/vouchers/check', [VoucherController::class, 'check'])->middleware('throttle:voucher-ops')->name('vouchers.check');
+        Route::post('/vouchers/redeem', [VoucherController::class, 'redeem'])->middleware('throttle:voucher-ops')->name('vouchers.redeem');
+
+        // Subscriptions (Commercial Readiness)
+        Route::get('/subscriptions', [SubscriptionController::class, 'index'])->name('subscriptions.index');
+        Route::post('/subscriptions/subscribe', [SubscriptionController::class, 'subscribe'])->name('subscriptions.subscribe');
+        Route::post('/subscriptions/{subscription}/cancel', [SubscriptionController::class, 'cancel'])->name('subscriptions.cancel');
 
         /*
         |--------------------------------------------------------------------------
@@ -101,11 +122,22 @@ Route::middleware('auth')->group(function () {
         |--------------------------------------------------------------------------
         */
         Route::middleware('admin')->group(function () {
+            // Landing Page ('/') Dynamic CMS Manager
+            Route::get('/landing-cms', [LandingCmsController::class, 'index'])->name('landing-cms.index');
+            Route::post('/landing-cms/{sectionKey}', [LandingCmsController::class, 'update'])->name('landing-cms.update');
+            Route::post('/landing-cms/{sectionKey}/reset', [LandingCmsController::class, 'reset'])->name('landing-cms.reset');
+
             // Certificates Management
             Route::post('/certificates/{certificate}/toggle-revoke', [CertificateController::class, 'toggleRevoke'])->name('certificates.toggle-revoke');
 
-            // Voucher Creation
+            // Voucher Creation & Status
             Route::post('/vouchers', [VoucherController::class, 'store'])->name('vouchers.store');
+            Route::post('/vouchers/{voucher}/toggle', [VoucherController::class, 'toggleStatus'])->name('vouchers.toggle');
+
+            // Subscription Plans & Admin Overrides
+            Route::post('/subscriptions/plans', [SubscriptionController::class, 'storePlan'])->name('subscriptions.plans.store');
+            Route::post('/subscriptions/plans/{plan}/toggle', [SubscriptionController::class, 'togglePlan'])->name('subscriptions.plans.toggle');
+            Route::post('/subscriptions/{subscription}/extend', [SubscriptionController::class, 'extendSubscription'])->name('subscriptions.extend');
 
             // Leads Management (Website Prospects)
             Route::get('/leads', [LeadController::class, 'index'])->name('leads.index');
@@ -138,4 +170,3 @@ Route::get('/fkksm/members.html', fn () => redirect()->route('members'));
 Route::get('/fkksm/hubungi.html', fn () => redirect()->route('hubungi'));
 Route::get('/fkksm/lms', fn () => redirect()->route('lms.dashboard'));
 Route::get('/fkksm/lms/index.php', fn () => redirect()->route('lms.dashboard'));
-

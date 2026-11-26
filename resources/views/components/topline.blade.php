@@ -1,6 +1,6 @@
 <!-- FKKSM Clean Utility Topline Bar -->
 <div class="bg-[#0A2540] text-slate-300 text-xs border-b border-slate-800/80 select-none">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-10 flex items-center justify-between gap-4">
+    <div class="fkksm-container h-10 flex items-center justify-between gap-4">
         
         <!-- Left: Association Identity & Tagline -->
         <div class="flex items-center gap-3 min-w-0">

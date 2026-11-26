@@ -26,7 +26,7 @@
     </x-slot:actions>
 </x-page-header>
 
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+<div class="fkksm-container py-16">
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         <div class="p-8 rounded-xl bg-white border border-slate-200">
             <div class="w-12 h-12 rounded-lg bg-blue-50 text-blue-700 flex items-center justify-center mb-4">

@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Facades\Cache;
 
 class Setting extends Model
 {
@@ -27,8 +28,11 @@ class Setting extends Model
 
     public static function get(string $key, $default = null)
     {
-        $setting = static::find($key);
-        return $setting ? $setting->setting_value : $default;
+        $value = Cache::remember('fkksm_setting_' . $key, 3600, function () use ($key) {
+            return static::where('setting_key', $key)->value('setting_value');
+        });
+
+        return $value !== null ? $value : $default;
     }
 
     public static function set(string $key, $value, ?int $userId = null): void
@@ -37,6 +41,7 @@ class Setting extends Model
             ['setting_key' => $key],
             ['setting_value' => $value, 'updated_by' => $userId]
         );
+        Cache::forget('fkksm_setting_' . $key);
     }
 }
 

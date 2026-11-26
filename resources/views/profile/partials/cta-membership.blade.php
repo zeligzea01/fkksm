@@ -1,6 +1,6 @@
 <!-- CTA — Perkuat Jaringan HR & Ekosistem Industri -->
 <section class="py-16 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="fkksm-container">
         <div class="rounded-xl p-8 sm:p-12 bg-[#0C3553] text-white border border-[#176D91]/30">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
                 <div class="lg:col-span-8 space-y-3">

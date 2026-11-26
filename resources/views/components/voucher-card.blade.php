@@ -23,7 +23,7 @@
             <span class="font-mono text-xs font-bold bg-slate-100 px-2.5 py-1 rounded text-[#132B45] border border-slate-200">
                 {{ $voucher->code }}
             </span>
-            <button type="button" onclick="navigator.clipboard.writeText('{{ $voucher->code }}'); alert('Kode {{ $voucher->code }} disalin!')" class="text-xs text-[#10A9BC] hover:underline font-bold" title="Salin kode">
+            <button type="button" onclick="navigator.clipboard.writeText('{{ $voucher->code }}'); window.fkksmModal({ icon: 'success', title: 'Kode Voucher Disalin', text: 'Kode {{ $voucher->code }} berhasil disalin ke clipboard.', confirmButtonText: 'Siap' })" class="text-xs text-[#10A9BC] hover:underline font-bold" title="Salin kode">
                 Salin
             </button>
         </div>

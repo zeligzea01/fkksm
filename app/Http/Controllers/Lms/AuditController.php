@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Lms;
 use App\Http\Controllers\Controller;
 use App\Models\ActivityLog;
 use App\Models\User;
+use App\Support\SecurityHelper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
@@ -15,20 +16,28 @@ class AuditController extends Controller
     {
         abort_unless(Auth::user()->isAdmin(), 403);
 
-        $search = $request->query('search');
+        $search = trim((string) $request->query('search', ''));
         $action = $request->query('action');
         $userId = $request->query('user_id');
         $dateFrom = $request->query('date_from');
         $dateTo = $request->query('date_to');
 
+        if ($dateFrom && !preg_match('/^\d{4}-\d{2}-\d{2}$/', (string) $dateFrom)) {
+            $dateFrom = null;
+        }
+        if ($dateTo && !preg_match('/^\d{4}-\d{2}-\d{2}$/', (string) $dateTo)) {
+            $dateTo = null;
+        }
+
         $query = ActivityLog::with('user')->latest();
 
-        if ($search) {
-            $query->where(function ($q) use ($search) {
-                $q->where('details', 'like', "%{$search}%")
-                  ->orWhere('ip_address', 'like', "%{$search}%")
-                  ->orWhere('action', 'like', "%{$search}%")
-                  ->orWhereHas('user', fn ($uq) => $uq->where('name', 'like', "%{$search}%")->orWhere('email', 'like', "%{$search}%"));
+        if ($search !== '') {
+            $escaped = SecurityHelper::escapeLike($search);
+            $query->where(function ($q) use ($escaped) {
+                $q->where('details', 'like', "%{$escaped}%")
+                  ->orWhere('ip_address', 'like', "%{$escaped}%")
+                  ->orWhere('action', 'like', "%{$escaped}%")
+                  ->orWhereHas('user', fn ($uq) => $uq->where('name', 'like', "%{$escaped}%")->orWhere('email', 'like', "%{$escaped}%"));
             });
         }
 

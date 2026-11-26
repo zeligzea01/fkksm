@@ -212,4 +212,99 @@ class FkksmLmsTest extends TestCase
             'course_id' => $course->id,
         ]);
     }
+
+    public function test_student_can_access_all_redesigned_lms_pages_and_subscriptions(): void
+    {
+        $student = User::create([
+            'username' => 'student_ui_test',
+            'name' => 'Student UI Tester',
+            'email' => 'student.ui@fkksm.local',
+            'password' => Hash::make('Secret123!'),
+            'role' => 'student',
+            'status' => 'active',
+        ]);
+
+        $plan = \App\Models\Plan::create([
+            'name' => 'Paket Uji Pro',
+            'description' => 'Paket uji coba pro',
+            'price' => 100000,
+            'duration_days' => 30,
+            'status' => 'active',
+        ]);
+
+        $this->actingAs($student)->get('/lms/dashboard')->assertStatus(200)->assertSee('Perjalanan belajarmu');
+        $this->actingAs($student)->get('/lms/courses')->assertStatus(200)->assertSee('Tukarkan kode belajarmu di sini.');
+        $this->actingAs($student)->get('/lms/assessments')->assertStatus(200)->assertSee('Daftar Kuis');
+        $this->actingAs($student)->get('/lms/certificates')->assertStatus(200)->assertSee('Sertifikat Anda');
+        $this->actingAs($student)->get('/lms/vouchers')->assertStatus(200)->assertSee('Tukarkan kode voucher');
+        $this->actingAs($student)->get('/lms/subscriptions')->assertStatus(200)->assertSee('Subscription');
+        $this->actingAs($student)->get('/lms/account')->assertStatus(200)->assertSee('Informasi Profil');
+
+        // Test Voucher live check JSON endpoint
+        \App\Models\Voucher::create([
+            'code' => 'LIVECHECK2026',
+            'title' => 'Promo Cek Langsung',
+            'benefit_type' => 'free_access',
+            'status' => 'active',
+        ]);
+
+        $checkRes = $this->actingAs($student)->postJson('/lms/vouchers/check', ['code' => 'LIVECHECK2026']);
+        $checkRes->assertStatus(200)->assertJson(['status' => 'available']);
+
+        // Test Subscription activation
+        $subRes = $this->actingAs($student)->post('/lms/subscriptions/subscribe', ['plan_id' => $plan->id]);
+        $subRes->assertSessionHas('success');
+        $this->assertDatabaseHas('subscriptions', [
+            'user_id' => $student->id,
+            'plan_id' => $plan->id,
+            'status' => 'active',
+        ]);
+    }
+
+    public function test_admin_can_update_home_landing_page_via_cms(): void
+    {
+        $admin = User::create([
+            'username' => 'admin_cms_test',
+            'name' => 'Admin CMS Tester',
+            'email' => 'admin.cms@fkksm.local',
+            'password' => Hash::make('Secret123!'),
+            'role' => 'super_admin',
+            'status' => 'active',
+        ]);
+
+        $this->actingAs($admin)->get('/lms/landing-cms')->assertStatus(200)->assertSee('Editor Dinamis Halaman Utama');
+
+        $res = $this->actingAs($admin)->post('/lms/landing-cms/onboarding_banner', [
+            'section_title' => 'Banner Onboarding Peserta',
+            'is_active' => '1',
+            'headline' => 'JUDUL BARU DARI ADMIN CMS 2026',
+            'subtitle' => 'Subjudul terintegrasi langsung ke Home',
+            'cta_guest' => 'Daftar Gratis Sekarang',
+            'cta_auth' => 'Mulai Kelas',
+            'image' => 'assets/fkksm/blue-rocket.webp',
+        ]);
+
+        $res->assertRedirect('/lms/landing-cms?section=onboarding_banner');
+        $res->assertSessionHas('success');
+
+        // Confirm Home ('/') renders the Admin-updated text, zero Cakap identity, and exposes SweetAlert2 flash hook!
+        $homeRes = $this->get('/');
+        $homeRes->assertStatus(200)
+                ->assertSee('JUDUL BARU DARI ADMIN CMS 2026')
+                ->assertSee('window.__FKKSM_FLASH__', false)
+                ->assertDontSee('Cakap', false)
+                ->assertDontSee('cakap_files', false);
+    }
+
+    public function test_database_seeder_is_idempotent_and_populates_fkksm_data(): void
+    {
+        $this->seed(\Database\Seeders\DatabaseSeeder::class);
+        $this->seed(\Database\Seeders\DatabaseSeeder::class);
+
+        $this->assertDatabaseHas('users', ['email' => 'admin@fkksm.local']);
+        $this->assertDatabaseHas('users', ['email' => 'peserta@fkksm.local']);
+        $this->assertDatabaseHas('vouchers', ['code' => 'FKKSM2026']);
+        $this->assertDatabaseHas('certificates', ['certificate_no' => 'CERT-MM2100-2026-FKKSM01']);
+        $this->assertDatabaseHas('landing_sections', ['section_key' => 'hero_slides']);
+    }
 }

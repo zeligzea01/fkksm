@@ -13,7 +13,7 @@
     ]"
 />
 
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+<div class="fkksm-container py-14">
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         <!-- News Card 1 -->
         <article class="bg-white rounded-xl border border-[#DCE6EE] overflow-hidden shadow-sm hover:shadow-md hover:border-[#10A9BC] transition flex flex-col justify-between group">

@@ -9,7 +9,7 @@
 <section class="bg-[#0C3553] text-white border-b border-[#176D91]/30 relative overflow-hidden py-12 lg:py-16">
     <div class="absolute inset-0 bg-industrial-grid-dark opacity-10 pointer-events-none"></div>
 
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <div class="fkksm-container relative z-10">
         <!-- Breadcrumb Navigation -->
         <nav class="flex items-center gap-2 text-xs text-slate-400 mb-4 font-medium" aria-label="Breadcrumb">
             <a href="{{ route('home') }}" class="hover:text-[#54D6D0] transition flex items-center gap-1.5">

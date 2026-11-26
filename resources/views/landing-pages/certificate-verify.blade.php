@@ -13,7 +13,7 @@
     ]"
 />
 
-<div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+<div class="max-w-3xl 2xl:max-w-4xl min-[2200px]:max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
     <div class="bg-white rounded-xl p-8 border border-[#DCE6EE] shadow-sm mb-8">
         <form action="{{ route('certificates.verify') }}" method="GET" class="space-y-4">
             <div>

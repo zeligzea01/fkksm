@@ -2,7 +2,7 @@
 <section class="relative bg-[#0C3553] text-white py-16 lg:py-24 border-b border-[#176D91]/30 overflow-hidden" id="home">
     <div class="absolute inset-0 bg-industrial-grid-dark opacity-10 pointer-events-none"></div>
 
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <div class="fkksm-container relative z-10">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
             <!-- Left Hero Copy -->

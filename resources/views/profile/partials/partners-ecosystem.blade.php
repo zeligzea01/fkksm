@@ -1,6 +1,6 @@
 <!-- Kemitraan & Ekosistem Industri MM2100 -->
 <section class="py-16 bg-[#F8FAFC] border-b border-slate-200">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="fkksm-container">
         <div class="text-center max-w-2xl mx-auto mb-10">
             <span class="text-[10px] font-mono font-medium text-[#10A9BC] uppercase tracking-widest block mb-1">
                 KEMITRAAN &amp; KOLABORASI STRATEGIS

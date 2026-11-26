@@ -5,7 +5,7 @@
 @section('meta_description', 'Tingkatkan keterampilan kerja industri bersama praktisi ahli. Kursus bersertifikasi K3, hubungan industrial, otomatisasi manufaktur, dan vokasi terakreditasi.')
 
 @section('content')
-    <!-- 1. Hero Promo & Cakap Upskill Carousel Slider -->
+    <!-- 1. Hero Promo & FKKSM Upskill Carousel Slider -->
     @include('landing-pages.partials.hero-carousel')
 
     <!-- 2. Rocket Onboarding Banner -->
@@ -17,7 +17,7 @@
     <!-- 4. Kategori Kursus (7 Categories with Round Icons) -->
     @include('landing-pages.partials.category-grid')
 
-    <!-- 5. Program Bahasa untuk Anak & Remaja (Cakap Next & Cakap Kids Academy) -->
+    <!-- 5. Program Spesialisasi Industri & Vokasi (FKKSM Next & FKKSM Learning Center) -->
     @include('landing-pages.partials.lang-prog-kids-teens')
 
     <!-- 6. Voucher Promo Banner & Coupon Redemption Modal -->
@@ -26,7 +26,7 @@
     <!-- 7. Kursus Terlaris with Skill Badges -->
     @include('landing-pages.partials.bestseller-courses')
 
-    <!-- 8. Lowongan Pekerjaan Terbaru di Cakap Karier -->
+    <!-- 8. Lowongan Pekerjaan Terbaru di Bursa Karier FKKSM -->
     @include('landing-pages.partials.job-vacancies')
 
     <!-- 9. Pelatihan Prakerja with Skill Badges & Co-Branding -->
@@ -38,10 +38,7 @@
     <!-- 11. B2B Corporate In-Company Training Banner -->
     @include('landing-pages.partials.b2b-corporate')
 
-    <!-- 12. Government & Institutional Accreditation Badges -->
-    @include('landing-pages.partials.partner-accreditation')
-
-    <!-- 13. Verified Industrial Alumni Testimonials -->
+    <!-- 12. Verified Industrial Alumni Testimonials -->
     @include('landing-pages.partials.testimonials')
 
     <!-- 14. Frequently Asked Questions Accordion -->
@@ -54,13 +51,13 @@
 @push('scripts')
 <script>
     // Hero Carousel Script
-    let activeCakapSlide = 0;
-    const cakapSlides = document.querySelectorAll('.cakap-slide');
-    const cakapDots = document.querySelectorAll('#cakapCarouselDots button');
+    let activeFkksmSlide = 0;
+    const fkksmSlides = document.querySelectorAll('.fkksm-slide');
+    const fkksmDots = document.querySelectorAll('#fkksmCarouselDots button');
 
-    function updateCakapSlider() {
-        cakapSlides.forEach((s, idx) => {
-            if (idx === activeCakapSlide) {
+    function updateFkksmSlider() {
+        fkksmSlides.forEach((s, idx) => {
+            if (idx === activeFkksmSlide) {
                 s.classList.remove('opacity-0', 'pointer-events-none');
                 s.classList.add('opacity-100');
             } else {
@@ -69,8 +66,8 @@
             }
         });
 
-        cakapDots.forEach((dot, idx) => {
-            if (idx === activeCakapSlide) {
+        fkksmDots.forEach((dot, idx) => {
+            if (idx === activeFkksmSlide) {
                 dot.classList.remove('bg-white/60');
                 dot.classList.add('bg-[#10A9BC]');
             } else {
@@ -80,21 +77,21 @@
         });
     }
 
-    function changeCakapSlide(delta) {
-        if (!cakapSlides.length) return;
-        activeCakapSlide = (activeCakapSlide + delta + cakapSlides.length) % cakapSlides.length;
-        updateCakapSlider();
+    function changeFkksmSlide(delta) {
+        if (!fkksmSlides.length) return;
+        activeFkksmSlide = (activeFkksmSlide + delta + fkksmSlides.length) % fkksmSlides.length;
+        updateFkksmSlider();
     }
 
-    function goToCakapSlide(index) {
-        if (!cakapSlides.length) return;
-        activeCakapSlide = index;
-        updateCakapSlider();
+    function goToFkksmSlide(index) {
+        if (!fkksmSlides.length) return;
+        activeFkksmSlide = index;
+        updateFkksmSlider();
     }
 
     // Auto-advance carousel every 6 seconds
     setInterval(() => {
-        changeCakapSlide(1);
+        changeFkksmSlide(1);
     }, 6000);
 </script>
 @endpush

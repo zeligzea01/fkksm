@@ -1,0 +1,1996 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Dokumentasi Sistem Pembelajaran Digital FKKSM Learning Management System (FKKSM-LMS)</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 20mm 18mm 20mm 18mm;
+        }
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
+            color: #1E293B;
+            line-height: 1.58;
+            font-size: 10.5pt;
+            margin: 0;
+            padding: 0;
+            background: #FFFFFF;
+        }
+        .page-container {
+            max-width: 210mm;
+            margin: 0 auto;
+            padding: 10px 24px;
+        }
+        .header-banner {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            padding-bottom: 18px;
+            border-bottom: 2.5px solid #0C3553;
+            margin-bottom: 22px;
+        }
+        .header-logo-circle {
+            width: 96px;
+            height: 96px;
+            border-radius: 50%;
+            border: 3px solid #10A9BC;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px;
+            flex-shrink: 0;
+            background: #F8FAFC;
+        }
+        .header-logo-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        .header-title-block h1 {
+            font-size: 18pt;
+            font-weight: 800;
+            color: #0F172A;
+            margin: 0 0 8px 0;
+            line-height: 1.22;
+            letter-spacing: -0.01em;
+        }
+        .header-title-block p {
+            font-size: 10pt;
+            color: #475569;
+            margin: 0;
+            line-height: 1.45;
+        }
+        h2 {
+            font-size: 13.5pt;
+            font-weight: 800;
+            color: #0F172A;
+            text-transform: uppercase;
+            border-bottom: 1.5px solid #CBD5E1;
+            padding-bottom: 6px;
+            margin-top: 28px;
+            margin-bottom: 14px;
+            page-break-after: avoid;
+        }
+        h3 {
+            font-size: 11.5pt;
+            font-weight: 700;
+            color: #0C3553;
+            margin-top: 20px;
+            margin-bottom: 8px;
+            page-break-after: avoid;
+        }
+        p {
+            margin: 0 0 10px 0;
+            text-align: justify;
+        }
+        ul.spec-list {
+            margin: 0 0 14px 0;
+            padding-left: 20px;
+        }
+        ul.spec-list li {
+            margin-bottom: 6px;
+            text-align: justify;
+        }
+        .toc-box {
+            background: #F8FAFC;
+            border: 1px solid #E2E8F0;
+            border-radius: 8px;
+            padding: 16px 20px;
+            margin: 14px 0 24px 0;
+        }
+        .toc-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 3.5px 0;
+            font-size: 9.8pt;
+            border-bottom: 1px dotted #CBD5E1;
+        }
+        .toc-item.section-head {
+            font-weight: 800;
+            color: #0C3553;
+            margin-top: 8px;
+            border-bottom: 1px solid #CBD5E1;
+        }
+        .toc-item.sub-item {
+            padding-left: 18px;
+            color: #334155;
+        }
+        table.doc-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 14px 0 20px 0;
+            font-size: 9.2pt;
+        }
+        table.doc-table th, table.doc-table td {
+            border: 1px solid #CBD5E1;
+            padding: 8px 10px;
+            text-align: left;
+            vertical-align: top;
+        }
+        table.doc-table th {
+            background: #F1F5F9;
+            color: #0F172A;
+            font-weight: 700;
+        }
+        table.doc-table tr:nth-child(even) td {
+            background: #FAFBFD;
+        }
+        .badge-pass {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            background: #DCFCE7;
+            color: #166534;
+            font-weight: 700;
+            font-size: 8.5pt;
+        }
+        .badge-fixed {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            background: #E0F2FE;
+            color: #075985;
+            font-weight: 700;
+            font-size: 8.5pt;
+        }
+        .figure-container {
+            margin: 14px 0 22px 0;
+            text-align: center;
+            page-break-inside: avoid;
+        }
+        .screenshot-img {
+            max-width: 100%;
+            height: auto;
+            max-height: 360px;
+            border: 1px solid #CBD5E1;
+            border-radius: 6px;
+            box-shadow: 0 2px 8px rgba(15, 23, 42, 0.08);
+        }
+        .figure-caption {
+            font-size: 9pt;
+            font-style: italic;
+            color: #475569;
+            margin-top: 6px;
+            text-align: center;
+        }
+        .page-break {
+            page-break-before: always;
+        }
+        .flowchart-box {
+            border: 1px solid #E2E8F0;
+            border-radius: 8px;
+            padding: 16px;
+            background: #FFFFFF;
+            text-align: center;
+            page-break-inside: avoid;
+        }
+        .fc-title {
+            font-size: 11pt;
+            font-weight: 800;
+            color: #0F172A;
+            margin-bottom: 2px;
+        }
+        .fc-subtitle {
+            font-size: 8.5pt;
+            color: #64748B;
+            margin-bottom: 10px;
+        }
+        .flowchart-page {
+            margin: 18px 0 28px 0;
+            page-break-inside: avoid;
+        }
+    </style>
+</head>
+<body>
+<div class="page-container">
+
+    <!-- COVER / TITLE HEADER MATCHING REFERENCE PDF -->
+    <div class="header-banner">
+        <div class="header-logo-circle">
+            <img src="file:///c:/Users/Dimas Erlansyah/Documents/PROJEK SAYA/fkksm/public/fkksm/logo-transparent.png" alt="FKKSM MM2100 Logo"/>
+        </div>
+        <div class="header-title-block">
+            <h1>DOKUMENTASI SISTEM PEMBELAJARAN DIGITAL FKKSM LEARNING MANAGEMENT SYSTEM (FKKSM-LMS)</h1>
+            <p>Dokumentasi Lengkap Fitur Berdasarkan Role (Administrator, Instruktur, Peserta Pelatihan, dan Portal Publik), Matriks Hak Akses Sistem (RBAC), Alur Belajar 4 Tahap Berurutan (Video Storage → Materi → Latihan Soal → Latihan Akhir), Diagram Alur Proses (Flowchart), Arsitektur &amp; ERD, serta Hasil Pengujian dan Audit Keamanan Aplikasi</p>
+        </div>
+    </div>
+
+    <h2>KATA PENGANTAR</h2>
+    <p>Dokumen ini disusun sebagai makalah dan panduan dokumentasi resmi untuk sistem <strong>FKKSM Learning Management System &amp; Portal Industri Kawasan MM2100 (FKKSM-LMS)</strong>. Seluruh pembahasan di dalam dokumen ini didasarkan langsung pada implementasi kode program Laravel 12, struktur basis data MySQL, pengaturan hak akses (RBAC), penyimpanan media ringan di Local Storage, integrasi modal SweetAlert2, serta tampilan antarmuka aplikasi yang berjalan secara nyata.</p>
+    <p>Pembahasan mencakup penjelasan sistem secara umum, pembagian hak akses untuk seluruh peran pengguna (Super Admin/Administrator, Instruktur/Pengajar, Peserta Pelatihan/Student, serta Pengunjung Publik), rincian setiap halaman beserta komponen tabel, filter, formulir, dan tombol aksinya lengkap dengan <strong>48 tangkapan layar (screenshot) asli dari browser tanpa terkecuali</strong>, diagram alur (flowchart) standar untuk setiap proses bisnis, diagram Use Case, Arsitektur Komponen 3-Tier, Entity-Relationship Diagram (ERD), hingga hasil pengujian otomatis dan evaluasi keamanan sistem.</p>
+
+    <h2>DAFTAR ISI</h2>
+    <div class="toc-box">
+        <div class="toc-item section-head"><span>KATA PENGANTAR &amp; DAFTAR ISI</span><span>1</span></div>
+        <div class="toc-item section-head"><span>BAGIAN A — PENDAHULUAN SISTEM</span><span>2</span></div>
+        <div class="toc-item sub-item"><span>A.1 Gambaran Umum Sistem FKKSM-LMS Kawasan Industri MM2100</span><span>2</span></div>
+        <div class="toc-item sub-item"><span>A.2 Tujuan Pengembangan Sistem</span><span>2</span></div>
+        <div class="toc-item sub-item"><span>A.3 Ruang Lingkup Aplikasi</span><span>2</span></div>
+        <div class="toc-item sub-item"><span>A.4 Peran Pengguna (User Roles) dan Fungsi Utama</span><span>3</span></div>
+
+        <div class="toc-item section-head"><span>BAGIAN B — HAK AKSES DAN MATRIKS IZIN (RBAC)</span><span>4</span></div>
+        <div class="toc-item sub-item"><span>B.1 Mekanisme Pengendalian Hak Akses &amp; Proteksi Kepemilikan Kursus</span><span>4</span></div>
+        <div class="toc-item sub-item"><span>B.2 Matriks Lengkap 32 Izin Fungsional Berdasarkan Role</span><span>4</span></div>
+
+        <div class="toc-item section-head"><span>BAGIAN C — DOKUMENTASI FITUR ROLE ADMIN (ADMINISTRATOR)</span><span>6</span></div>
+        <div class="toc-item sub-item"><span>C.1 Halaman Login, Registrasi Member, dan SSO Google OAuth 2.0 + PKCE</span><span>6</span></div>
+        <div class="toc-item sub-item"><span>C.2 Halaman Dashboard Operasional Administrator &amp; Notifikasi SweetAlert2</span><span>7</span></div>
+        <div class="toc-item sub-item"><span>C.3 Halaman Dynamic Landing Page CMS (Pengelolaan Konten Route /)</span><span>8</span></div>
+        <div class="toc-item sub-item"><span>C.4 Halaman Kelola Katalog Kursus, Buat Kursus Baru, dan Edit Kursus</span><span>9</span></div>
+        <div class="toc-item sub-item"><span>C.5 Halaman Manajemen Silabus Modul &amp; Materi 4 Tahap (Video Storage, Materi, Latihan Soal)</span><span>11</span></div>
+        <div class="toc-item sub-item"><span>C.6 Halaman Manajemen Evaluasi Akhir (Assessments) dan Penilaian</span><span>12</span></div>
+        <div class="toc-item sub-item"><span>C.7 Halaman Manajemen Sertifikat Kompetensi &amp; Pencabutan (Revocation)</span><span>12</span></div>
+        <div class="toc-item sub-item"><span>C.8 Halaman Manajemen Voucher Pelatihan &amp; Pemeriksaan Status Kode</span><span>13</span></div>
+        <div class="toc-item sub-item"><span>C.9 Halaman Manajemen Paket Langganan (Subscription Plans &amp; Member Overrides)</span><span>14</span></div>
+        <div class="toc-item sub-item"><span>C.10 Halaman Manajemen Prospek &amp; Permintaan Industri (Leads Management)</span><span>14</span></div>
+        <div class="toc-item sub-item"><span>C.11 Halaman Manajemen Pengguna &amp; Role (RBAC), Audit Trail, dan Pengaturan Portal</span><span>15</span></div>
+
+        <div class="toc-item section-head"><span>BAGIAN D — DOKUMENTASI FITUR ROLE INSTRUCTOR (PENGAJAR INDUSTRI)</span><span>17</span></div>
+        <div class="toc-item sub-item"><span>D.1 Halaman Dashboard Instruktur (Pengajar Industri MM2100)</span><span>17</span></div>
+        <div class="toc-item sub-item"><span>D.2 Halaman Pengelolaan Silabus &amp; Modal Tambah Tahap Materi 4-Stage</span><span>18</span></div>
+        <div class="toc-item sub-item"><span>D.3 Halaman Evaluasi &amp; Penilaian Tugas Peserta pada Akun Instruktur</span><span>19</span></div>
+
+        <div class="toc-item section-head"><span>BAGIAN E — DOKUMENTASI FITUR ROLE STUDENT (PESERTA PELATIHAN)</span><span>20</span></div>
+        <div class="toc-item sub-item"><span>E.1 Halaman Beranda Peserta (Student Dashboard) &amp; Modal Detail Notifikasi SweetAlert2</span><span>20</span></div>
+        <div class="toc-item sub-item"><span>E.2 Halaman Katalog Modul &amp; Detail Modul Kursus 4 Tahap Berurutan</span><span>21</span></div>
+        <div class="toc-item sub-item"><span>E.3 Halaman Ruang Belajar (Classroom Player) 4 Tahap Berurutan &amp; Streaming Video Storage</span><span>22</span></div>
+        <div class="toc-item sub-item"><span>E.4 Halaman Daftar Kuis, Sertifikat, Penukaran Voucher, Subscription, dan Pengaturan Akun</span><span>26</span></div>
+
+        <div class="toc-item section-head"><span>BAGIAN F — DOKUMENTASI PORTAL PUBLIK &amp; VERIFIKASI SERTIFIKAT RESMI</span><span>29</span></div>
+        <div class="toc-item sub-item"><span>F.1 Halaman Utama Upskill Portal (/) dengan Header Clean UX &amp; Data Terintegrasi Admin CMS</span><span>29</span></div>
+        <div class="toc-item sub-item"><span>F.2 Halaman Profile FKKSM, Direktori Industri, Berita, Hubungi Kami, dan Verifikasi Sertifikat</span><span>31</span></div>
+
+        <div class="toc-item section-head"><span>BAGIAN G — FLOWCHART SISTEM, DIAGRAM USE CASE, ARSITEKTUR &amp; ERD</span><span>34</span></div>
+        <div class="toc-item sub-item"><span>G.1 Daftar Lengkap Alur Proses Bisnis &amp; Flowchart Berdasarkan Role</span><span>34</span></div>
+        <div class="toc-item sub-item"><span>G.2 Visualisasi Flowchart Utama Role Admin, Instruktur, Peserta, dan Publik</span><span>35</span></div>
+        <div class="toc-item sub-item"><span>G.3 Diagram Use Case, Arsitektur Komponen 3-Tier, dan Entity-Relationship Diagram (ERD)</span><span>40</span></div>
+
+        <div class="toc-item section-head"><span>BAGIAN H — PENGUJIAN FUNGSIONAL, AUDIT DEFECT, KEAMANAN, DAN KESIMPULAN</span><span>42</span></div>
+        <div class="toc-item sub-item"><span>H.1 Hasil Pengujian Otomatis PHPUnit (23 Test Suite / 168 Assertions) &amp; Playwright E2E</span><span>42</span></div>
+        <div class="toc-item sub-item"><span>H.2 Register Skenario Pengujian Fungsional End-to-End (TEST CASE REGISTER)</span><span>42</span></div>
+        <div class="toc-item sub-item"><span>H.3 Log Audit Temuan Bug &amp; Kerentanan yang Telah Diperbaiki (RESOLVED DEFECT LOG)</span><span>45</span></div>
+        <div class="toc-item sub-item"><span>H.4 Matriks Ketertelusuran Cakupan Pengujian (Traceability Matrix)</span><span>46</span></div>
+        <div class="toc-item sub-item"><span>H.5 Evaluasi Pengamanan Aplikasi, SSO PKCE, dan Basis Data</span><span>47</span></div>
+        <div class="toc-item sub-item"><span>H.6 Kesimpulan Akhir</span><span>48</span></div>
+    </div>
+
+    <!-- =================================================================== -->
+    <!-- BAGIAN A — PENDAHULUAN SISTEM -->
+    <!-- =================================================================== -->
+    <div class="page-break"></div>
+    <h2>BAGIAN A — PENDAHULUAN SISTEM</h2>
+
+    <h3>A.1 Gambaran Umum Sistem FKKSM-LMS Kawasan Industri MM2100</h3>
+    <p><strong>FKKSM Learning Management System (FKKSM-LMS)</strong> adalah platform pembelajaran vokasi digital, sertifikasi kompetensi kerja, dan portal kolaborasi resmi untuk <strong>Forum Komunikasi Komite Sekolah Menengah &amp; Human Resources (HRD) Kawasan Industri MM2100 Cikarang Barat, Bekasi</strong>. Aplikasi ini dirancang untuk menyelenggarakan pelatihan keselamatan kerja (K3), hubungan industrial &amp; bipartit, transformasi Smart Factory Industri 4.0, kepemimpinan lini produksi (5R/Kaizen), serta bahasa asing industri secara terstruktur dan terukur.</p>
+    <p>Aplikasi dibangun menggunakan arsitektur modern berbasis <strong>Laravel 12 (PHP 8.2+)</strong>, basis data relasional <strong>MySQL 8+ (<code>fkksm_lms</code>)</strong>, <strong>Tailwind CSS v4 + Vite</strong>, serta integrasi <strong>SweetAlert2</strong> secara menyeluruh untuk seluruh dialog notifikasi dan konfirmasi. Sistem menggabungkan tiga ekosistem utama dalam satu aplikasi terpadu: (1) <strong>Portal Publik &amp; Upskill Landing Page (<code>/</code>)</strong> yang dikendalikan secara dinamis melalui Admin CMS; (2) <strong>Ruang Belajar Virtual 4 Tahap Berurutan (<code>/lms/classroom/{course}</code>)</strong> dengan <em>streaming</em> video ringan dari Laravel Local Storage (<code>Accept-Ranges: bytes</code>); serta (3) <strong>Control Center Administrator &amp; Instruktur</strong> untuk pengelolaan kurikulum, penilaian, voucher subsidi, langganan, prospek industri, dan audit keamanan.</p>
+
+    <h3>A.2 Tujuan Pengembangan Sistem</h3>
+    <ul class="spec-list">
+        <li>Menyediakan sarana peningkatan keterampilan kerja (*upskilling* &amp; *reskilling*) terpusat bagi karyawan, teknisi, supervisor pabrik, dan pelajar vokasi SMK mitra di Kawasan Industri MM2100.</li>
+        <li>Menegakkan metode pembelajaran berurutan 4 tahap (<strong>1. Video Pembelajaran → 2. Materi &amp; E-Book → 3. Latihan Soal Modul → 4. Latihan Akhir</strong>) di mana peserta wajib menyelesaikan tahapan satu per satu sebelum tahap berikutnya terbuka.</li>
+        <li>Menyimpan dan mengalirkan (<em>streaming</em>) video pembelajaran langsung dari <strong>Laravel Local Storage (<code>storage/app/public/videos/</code>)</strong> dengan dukungan HTTP Range (<code>206 Partial Content</code>) dan HTML5 <code>&lt;video preload="metadata"&gt;</code> sehingga ringan, cepat, dan hemat bandwidth.</li>
+        <li>Mengintegrasikan halaman depan publik (`/`) secara langsung dengan <strong>Admin Landing Page CMS (`/lms/landing-cms`)</strong> agar Administrator dapat mengubah banner, webinar, kategori, kursus terlaris beserta *Skill Badges*, lowongan kerja, dan FAQ secara waktu nyata.</li>
+        <li>Menjamin keamanan dan keabsahan sertifikasi kompetensi melalui penerbitan nomor seri unik (`CERT-MM2100-YYYY-XXXXXX`) yang dapat diaudit publik kapan saja beserta pencatatan jejak audit (*Audit Trail*).</li>
+    </ul>
+
+    <h3>A.3 Ruang Lingkup Aplikasi</h3>
+    <ul class="spec-list">
+        <li><strong>Autentikasi Terpadu &amp; Google OAuth 2.0 + PKCE SSO:</strong> Login menggunakan email/username dan kata sandi dengan proteksi *rate limiting*, registrasi member baru, serta Single Sign-On (SSO) Google OIDC dengan validasi kriptografis PKCE (`S256`), `state`, dan `nonce`.</li>
+        <li><strong>Dynamic Landing Page CMS &amp; Portal Publik FKKSM:</strong> Pengelolaan 11 section halaman utama (`/`), halaman Profile FKKSM (`/profile/fkksm`), Direktori Industri (`/members`), Berita &amp; Forum (`/berita`), Hubungi Sekretariat (`/hubungi`), dan Verifikasi Sertifikat Publik (`/verifikasi-sertifikat`).</li>
+        <li><strong>Manajemen Katalog Kursus &amp; Skill Badges:</strong> Pembuatan dan pengubahan kursus (Gratis/Subsidi maupun Berbayar), pengunggahan gambar sampul tervalidasi biner, penugasan instruktur, dan pemasangan lencana kompetensi (*Skill Badges*).</li>
+        <li><strong>Ruang Belajar (Classroom Player) 4 Tahap Berurutan:</strong> Antarmuka *split-pane* dengan sidebar silabus 280px yang dapat dibuka/tutup (`Konten Kursus`), cincin progres SVG, ikon gembok (`icon-brown-lock`) pada tahap terkunci, pemutar video lokal ringan, bacaan E-Book/SOP, kuis latihan soal per modul (ambang lulus ≥70%), serta evaluasi Latihan Akhir.</li>
+        <li><strong>Manajemen Voucher Subsidi &amp; Paket Subscription:</strong> Pemeriksaan status kode voucher (`Tersedia`, `Digunakan`, `Kedaluwarsa`, `Tidak valid`), penukaran kupon subsidi dengan penguncian transaksi (`lockForUpdate`), serta pengelolaan paket langganan belajar.</li>
+        <li><strong>Manajemen Sertifikat, Leads, RBAC Pengguna, dan Audit Trail:</strong> Penerbitan sertifikat otomatis saat lulus Latihan Akhir, fitur pencabutan/pemulihan sertifikat oleh Admin, pengelolaan prospek industri (`leads`), pengaturan peran pengguna (`student`, `instructor`, `admin`, `super_admin`), serta pencatatan aktivitas sistem di `activity_logs`.</li>
+    </ul>
+
+    <h3>A.4 Peran Pengguna (User Roles) dan Fungsi Utama</h3>
+    <table class="doc-table">
+        <thead>
+            <tr>
+                <th style="width: 18%;">Role Pengguna</th>
+                <th style="width: 20%;">Portal Akses Utama</th>
+                <th style="width: 18%;">Tabel Akun &amp; Identitas</th>
+                <th style="width: 44%;">Tanggung Jawab dan Fungsi Utama di Dalam Sistem</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Administrator / Super Admin</strong><br/>(<code>admin</code>, <code>super_admin</code>)</td>
+                <td>Control Center Admin LMS &amp; Landing CMS</td>
+                <td>MySQL 8+<br/>(<code>users.role IN ('admin','super_admin')</code>)</td>
+                <td>Memiliki wewenang penuh atas seluruh 32 izin fungsional sistem: mengelola konten dinamis halaman utama (<code>/lms/landing-cms</code>), mengelola seluruh kursus, modul, materi 4 tahap, dan evaluasi, menerbitkan atau mencabut sertifikat, membuat kode voucher &amp; paket subscription, menindaklanjuti leads industri, mengelola akun &amp; role pengguna (RBAC), memantau log audit keamanan, serta mengatur konfigurasi portal.</td>
+            </tr>
+            <tr>
+                <td><strong>Instruktur / Pengajar</strong><br/>(<code>instructor</code>)</td>
+                <td>Portal Instruktur LMS &amp; Pratinjau Ruang Belajar</td>
+                <td>MySQL 8+<br/>(<code>users.role = 'instructor'</code>)</td>
+                <td>Mengelola kegiatan pembelajaran khusus pada kursus yang diampunya (<code>course.instructor_id</code>): membuat kursus baru beserta <em>Skill Badges</em>, menyusun modul silabus, mengunggah video pembelajaran ke Local Storage, menyusun materi E-Book dan Latihan Soal pilihan ganda, membuat evaluasi akhir, menilai jawaban peserta, serta melakukan pratinjau penuh di Ruang Belajar.</td>
+            </tr>
+            <tr>
+                <td><strong>Peserta Pelatihan</strong><br/>(<code>student</code>)</td>
+                <td>Portal Pembelajaran Peserta (Student LMS)</td>
+                <td>MySQL 8+<br/>(<code>users.role = 'student'</code>)</td>
+                <td>Mengikuti program pelatihan vokasi dan sertifikasi: memantau grafik cincin <em>Perjalanan belajarmu</em> di Beranda, menjelajahi katalog modul, menukarkan kode voucher subsidi atau berlangganan paket, mempelajari setiap modul secara berurutan (<strong>Video → Materi → Latihan Soal → Latihan Akhir</strong>), mengunduh Sertifikat Kompetensi resmi, membaca notifikasi modal SweetAlert2, dan mengelola profil akun.</td>
+            </tr>
+            <tr>
+                <td><strong>Pengunjung Publik &amp; Mitra HRD</strong><br/>(<code>guest</code>)</td>
+                <td>Portal Publik FKKSM MM2100 (<code>/</code>, <code>/profile/fkksm</code>, dll.)</td>
+                <td>Akses Publik &amp; Tabel <code>leads</code> / <code>certificates</code></td>
+                <td>Menjelajahi katalog kursus dan webinar di halaman utama, membaca profil kelembagaan FKKSM, direktori perusahaan kawasan MM2100, dan berita ketenagakerjaan, mengirimkan permohonan <em>in-house training</em> melalui formulir Hubungi Kami, serta memverifikasi keabsahan nomor sertifikat kompetensi secara daring.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- =================================================================== -->
+    <!-- BAGIAN B — HAK AKSES DAN MATRIKS IZIN (RBAC) -->
+    <!-- =================================================================== -->
+    <div class="page-break"></div>
+    <h2>BAGIAN B — HAK AKSES DAN MATRIKS IZIN (RBAC)</h2>
+
+    <h3>B.1 Mekanisme Pengendalian Hak Akses &amp; Proteksi Kepemilikan Kursus</h3>
+    <p>Sistem menerapkan pengendalian akses berbasis peran (<strong>Role-Based Access Control / RBAC</strong>) berlapis melalui middleware autentikasi (`auth`), middleware khusus peran (`instructor` pada `EnsureUserIsInstructor` dan `admin` pada `EnsureUserIsAdmin`), serta pemeriksaan otorisasi kepemilikan sumber daya (*resource ownership check*) di setiap controller.</p>
+    <p>Khusus untuk peran <strong>Instruktur (`instructor`)</strong>, sistem menegakkan isolasi kepemilikan kursus (`$course->instructor_id === $user->id`): seorang Instruktur hanya diizinkan mengubah informasi kursus, menambah/menghapus modul dan tahap materi, membuat kuis, serta menilai pengumpulan tugas pada kursus yang diampunya sendiri. Untuk peran <strong>Peserta (`student`)</strong>, sistem menegakkan validasi pendaftaran aktif (`Enrollment` berstatus `active` atau `completed`) serta penguncian tahap berurutan (*sequential stage locking*) sebelum membuka tahap materi atau Latihan Akhir.</p>
+
+    <h3>B.2 Matriks Lengkap 32 Izin Fungsional Berdasarkan Role</h3>
+    <table class="doc-table">
+        <thead>
+            <tr>
+                <th style="width: 22%;">Modul Fungsional</th>
+                <th style="width: 28%;">Kunci Izin &amp; Rute (Permission / Route Key)</th>
+                <th style="width: 13%;">Admin</th>
+                <th style="width: 13%;">Instructor</th>
+                <th style="width: 12%;">Student</th>
+                <th style="width: 12%;">Publik (Guest)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>1. Portal Publik &amp; Katalog Beranda</strong></td>
+                <td><code>home.view</code>, <code>profile.view</code>, <code>members.view</code>, <code>berita.view</code></td>
+                <td>Aktif Penuh</td>
+                <td>Aktif Penuh</td>
+                <td>Aktif Penuh</td>
+                <td>Aktif Penuh</td>
+            </tr>
+            <tr>
+                <td><strong>2. Verifikasi Sertifikat &amp; Kirim Prospek</strong></td>
+                <td><code>certificates.verify</code>, <code>leads.submit</code> (Throttle 8/mnt)</td>
+                <td>Aktif Penuh</td>
+                <td>Aktif Penuh</td>
+                <td>Aktif Penuh</td>
+                <td>Aktif Penuh</td>
+            </tr>
+            <tr>
+                <td><strong>3. Autentikasi &amp; Google SSO PKCE</strong></td>
+                <td><code>auth.login</code>, <code>auth.register</code>, <code>sso.google.redirect</code>, <code>sso.google.callback</code></td>
+                <td>Aktif Penuh</td>
+                <td>Aktif Penuh</td>
+                <td>Aktif Penuh</td>
+                <td>Login &amp; Daftar</td>
+            </tr>
+            <tr>
+                <td><strong>4. Dashboard &amp; Notifikasi SweetAlert2</strong></td>
+                <td><code>lms.dashboard</code>, <code>lms.notifications.read-all</code></td>
+                <td>Control Center Global</td>
+                <td>Dashboard Kursus Ampuan</td>
+                <td>Beranda Progres Belajar</td>
+                <td>Nonaktif (Wajib Login)</td>
+            </tr>
+            <tr>
+                <td><strong>5. Dynamic Landing Page CMS (Route /)</strong></td>
+                <td><code>lms.landing-cms.index</code>, <code>lms.landing-cms.update</code>, <code>lms.landing-cms.reset</code></td>
+                <td>Aktif Penuh (Eksklusif)</td>
+                <td>Nonaktif</td>
+                <td>Nonaktif</td>
+                <td>Nonaktif</td>
+            </tr>
+            <tr>
+                <td><strong>6. Manajemen Katalog Kursus &amp; Skill Badges</strong></td>
+                <td><code>lms.courses.index</code>, <code>lms.courses.create</code>, <code>lms.courses.store</code>, <code>lms.courses.edit</code>, <code>lms.courses.update</code></td>
+                <td>CRUD Seluruh Kursus</td>
+                <td>Buat &amp; Edit Kursus Ampuan</td>
+                <td>Jelajahi &amp; Filter Katalog</td>
+                <td>Pratinjau di Beranda</td>
+            </tr>
+            <tr>
+                <td><strong>7. Pendaftaran Kursus (Enrollment)</strong></td>
+                <td><code>lms.courses.show</code>, <code>lms.courses.enroll</code></td>
+                <td>Akses Pratinjau Langsung</td>
+                <td>Akses Kursus Ampuan</td>
+                <td>Daftar Gratis / via Voucher &amp; Sub</td>
+                <td>Redirect ke Login</td>
+            </tr>
+            <tr>
+                <td><strong>8. Silabus Modul &amp; Materi 4 Tahap</strong></td>
+                <td><code>lms.materials.index</code>, <code>lms.modules.store</code>, <code>lms.materials.store</code>, <code>lms.materials.destroy</code></td>
+                <td>Kelola Semua Modul &amp; Materi</td>
+                <td>Kelola Modul &amp; Video Kursus Ampuan</td>
+                <td>Nonaktif</td>
+                <td>Nonaktif</td>
+            </tr>
+            <tr>
+                <td><strong>9. Ruang Belajar 4 Tahap &amp; Streaming Video</strong></td>
+                <td><code>lms.classroom.show</code>, <code>lms.classroom.material.complete</code>, <code>lms.media.video</code></td>
+                <td>Pratinjau Semua Tahap</td>
+                <td>Pratinjau Kursus Ampuan</td>
+                <td>Belajar Berurutan (Terkunci 1-per-1)</td>
+                <td>Nonaktif</td>
+            </tr>
+            <tr>
+                <td><strong>10. Evaluasi Latihan Akhir &amp; Grading</strong></td>
+                <td><code>lms.assessments.index</code>, <code>lms.assessments.store</code>, <code>lms.classroom.final-assessment.submit</code>, <code>lms.submissions.grade</code></td>
+                <td>Buat &amp; Nilai Semua Evaluasi</td>
+                <td>Buat &amp; Nilai Kursus Ampuan</td>
+                <td>Kerjakan Setelah Modul 100%</td>
+                <td>Nonaktif</td>
+            </tr>
+            <tr>
+                <td><strong>11. Sertifikat Kompetensi &amp; Revocation</strong></td>
+                <td><code>lms.certificates.index</code>, <code>lms.certificates.show</code>, <code>lms.certificates.toggle-revoke</code></td>
+                <td>Lihat Semua &amp; Cabut/Pulihkan</td>
+                <td>Lihat Sertifikat Kursus Ampuan</td>
+                <td>Lihat &amp; Cetak Sertifikat Miliknya</td>
+                <td>Verifikasi Kode Publik</td>
+            </tr>
+            <tr>
+                <td><strong>12. Voucher Subsidi &amp; Redemption</strong></td>
+                <td><code>lms.vouchers.index</code>, <code>lms.vouchers.check</code>, <code>lms.vouchers.redeem</code>, <code>lms.vouchers.store</code>, <code>lms.vouchers.toggle</code></td>
+                <td>Buat, Toggle &amp; Kelola Voucher</td>
+                <td>Periksa &amp; Tukar Voucher</td>
+                <td>Periksa &amp; Tukar Kode Voucher</td>
+                <td>Modal Prompt Login</td>
+            </tr>
+            <tr>
+                <td><strong>13. Paket Subscription &amp; Perpanjangan</strong></td>
+                <td><code>lms.subscriptions.index</code>, <code>lms.subscriptions.subscribe</code>, <code>lms.subscriptions.plans.store</code>, <code>lms.subscriptions.extend</code></td>
+                <td>Kelola Paket &amp; Perpanjang User</td>
+                <td>Langganan Pribadi</td>
+                <td>Pilih &amp; Kelola Paket Belajar</td>
+                <td>Nonaktif</td>
+            </tr>
+            <tr>
+                <td><strong>14. Manajemen Prospek (Leads), Users RBAC, Audit &amp; Settings</strong></td>
+                <td><code>lms.leads.*</code>, <code>lms.users.*</code>, <code>lms.audit.index</code>, <code>lms.settings.*</code></td>
+                <td>Aktif Penuh (Eksklusif)</td>
+                <td>Nonaktif</td>
+                <td>Profil Pribadi (<code>lms.account.*</code>)</td>
+                <td>Nonaktif</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- =================================================================== -->
+    <!-- BAGIAN C — DOKUMENTASI FITUR ROLE ADMIN (ADMINISTRATOR) -->
+    <!-- =================================================================== -->
+    <div class="page-break"></div>
+    <h2>BAGIAN C — DOKUMENTASI FITUR ROLE ADMIN (ADMINISTRATOR)</h2>
+    <p>Bagian ini menjelaskan seluruh halaman, menu, kartu ringkasan data, kolom tabel, tombol aksi, pencarian, filter, formulir input, aturan validasi, serta dialog modal SweetAlert2 yang tersedia pada akun <strong>Administrator (`admin@fkksm.local`)</strong>.</p>
+    
+    <div class="feature-section">
+        <h3>C.1 Halaman Login, Registrasi Member, dan SSO Google OAuth 2.0 + PKCE</h3>
+        <ul class="spec-list">
+            <li><strong>Tujuan Halaman:</strong> Menyediakan gerbang autentikasi terpusat bagi Administrator, Instruktur, dan Peserta Pelatihan untuk masuk atau mendaftarkan akun baru di ekosistem FKKSM MM2100.</li>
+            <li><strong>Informasi yang Ditampilkan:</strong> Menampilkan panel identitas visual FKKSM Kawasan Industri MM2100, formulir login email/username dan kata sandi, tombol Masuk dengan Google (SSO OIDC + PKCE), serta halaman pendaftaran member baru.</li>
+            <li><strong>Komponen Input, Navigasi &amp; Tombol:</strong> (1) Input Email atau Username (`login`); (2) Input Kata Sandi (`password`); (3) Checkbox Ingat Saya (`remember`); (4) Tombol Masuk ke Ruang Belajar; (5) Tombol Masuk dengan Google (`/auth/google/redirect`); (6) Formulir Daftar Member (`/register`).</li>
+            <li><strong>Aturan Validasi &amp; Keamanan:</strong> Wajib mengisi kredensial valid. Dilengkapi proteksi Rate Limiter (`throttle:login` maksimal 5 percobaan gagal per menit per IP+akun), regenerasi Session ID anti-Session Fixation, serta validasi `state`, `nonce`, dan `code_challenge_method=S256` (PKCE) pada Google SSO.</li>
+            <li><strong>Hasil Aksi &amp; Umpan Balik (SweetAlert2):</strong> Jika kredensial salah atau melebihi batas percobaan, pesan kesalahan ditampilkan dan modal SweetAlert2 muncul. Jika valid, pengguna diarahkan ke `/lms/dashboard` dengan modal sambutan SweetAlert2.</li>
+        </ul>
+        
+        <div class="figure-container">
+            <img src="file:///c:/Users/Dimas Erlansyah/Documents/PROJEK SAYA/fkksm/docs/screenshots/10_auth_login.png" alt="Halaman Login Terpadu Portal FKKSM MM2100 beserta tombol Google SSO PKCE." class="screenshot-img"/>
+            <div class="figure-caption">Gambar C.1a. Halaman Login Terpadu Portal FKKSM MM2100 beserta tombol Google SSO PKCE.</div>
+        </div>
+        
+        <div class="figure-container">
+            <img src="file:///c:/Users/Dimas Erlansyah/Documents/PROJEK SAYA/fkksm/docs/screenshots/11_auth_register.png" alt="Halaman Pendaftaran Member Baru FKKSM MM2100." class="screenshot-img"/>
+            <div class="figure-caption">Gambar C.1b. Halaman Pendaftaran Member Baru FKKSM MM2100.</div>
+        </div>
+        
+    </div>
+    
+    <div class="feature-section">
+        <h3>C.2 Halaman Dashboard Operasional Administrator & Notifikasi SweetAlert2</h3>
+        <ul class="spec-list">
+            <li><strong>Tujuan Halaman:</strong> Menampilkan pusat kendali operasional Administrator yang merangkum metrik pengguna, kursus aktif, langganan (subscription), sertifikat sah, pintasan CMS halaman utama, leads masuk, dan jejak audit sistem.</li>
+            <li><strong>Informasi yang Ditampilkan:</strong> Menampilkan Banner Admin & CMS Control Center, 4 Kartu Statistik Utama (Total Pengguna, Program Kursus, Subscription Aktif, Sertifikat Sah), matriks pintasan 6 section CMS Halaman Home (`/`), daftar Aktivitas & Audit Trail Terkini, serta daftar Leads/Permintaan Masuk.</li>
+            <li><strong>Komponen Input, Navigasi &amp; Tombol:</strong> Sidebar navigasi LMS di sisi kiri, bilah atas dengan pencarian, tombol `Portal Utama`, lonceng notifikasi interaktif, tombol `Kelola Halaman Home (/)`, tombol `Pratinjau Web`, serta kartu-kartu aksi cepat manajemen.</li>
+            <li><strong>Aturan Validasi &amp; Keamanan:</strong> Dilindungi oleh middleware `auth` dan pemeriksaan peran `User::isAdmin()`. Seluruh metrik dihitung langsung dari basis data MySQL dengan eager loading teroptimasi.</li>
+            <li><strong>Hasil Aksi &amp; Umpan Balik (SweetAlert2):</strong> Saat login berhasil, modal SweetAlert2 menampilkan pesan sambutan. Setiap klik tombol pintasan membuka modul manajemen terkait secara instan.</li>
+        </ul>
+        
+        <div class="figure-container">
+            <img src="file:///c:/Users/Dimas Erlansyah/Documents/PROJEK SAYA/fkksm/docs/screenshots/12_admin_dashboard_swal.png" alt="Modal Sambutan SweetAlert2 saat Administrator berhasil masuk ke Dashboard." class="screenshot-img"/>
+            <div class="figure-caption">Gambar C.2a. Modal Sambutan SweetAlert2 saat Administrator berhasil masuk ke Dashboard.</div>
+        </div>
+        
+        <div class="figure-container">
+            <img src="file:///c:/Users/Dimas Erlansyah/Documents/PROJEK SAYA/fkksm/docs/screenshots/13_admin_dashboard.png" alt="Halaman Dashboard Operasional Administrator FKKSM LMS." class="screenshot-img"/>
+            <div class="figure-caption">Gambar C.2b. Halaman Dashboard Operasional Administrator FKKSM LMS.</div>
+        </div>
+        
+    </div>
+    
+    <div class="feature-section">
+        <h3>C.3 Halaman Dynamic Landing Page CMS (Pengelolaan Konten Route `/`)</h3>
+        <ul class="spec-list">
+            <li><strong>Tujuan Halaman:</strong> Memungkinkan Administrator mengubah seluruh data, banner, gambar, jadwal webinar, kategori, kursus terlaris beserta skill badges, lowongan kerja, FAQ, dan teks SEO pada halaman utama (`/`) secara langsung tanpa mengubah kode.</li>
+            <li><strong>Informasi yang Ditampilkan:</strong> Menampilkan daftar 11 Section Halaman Home di panel kiri (`Hero Banner Carousel`, `Banner Onboarding`, `Kursus Apa yang Ingin Kamu Pelajari`, `Kategori Kursus`, `Program Vokasi & Bahasa`, `Banner Tukar Kode`, `Kursus Terlaris`, `Lowongan Pekerjaan`, `Pelatihan Vokasi & Subsidi`, `Solusi Korporasi B2B`, `Testimoni`, `FAQ`, dan `Konten SEO`) serta editor formulir dinamis di panel kanan.</li>
+            <li><strong>Komponen Input, Navigasi &amp; Tombol:</strong> Sakelar `Tampilkan Section di Halaman Home (/)`, tombol `Reset Default` dengan konfirmasi SweetAlert2, input teks/URL/gambar per item, pemilih *Skill Badges* interaktif, serta tombol `Simpan & Terbitkan ke Halaman Home (/)`.</li>
+            <li><strong>Aturan Validasi &amp; Keamanan:</strong> Hanya dapat diakses oleh role `admin` / `super_admin` (`middleware('admin')`). Unggahan gambar divalidasi dengan `SecurityHelper::storeSafeImage` (memeriksa MIME & header biner gambar `getimagesize()` untuk mencegah XSS SVG/PHP) dan seluruh URL disanitasi dari skema `javascript:` / `data:`.</li>
+            <li><strong>Hasil Aksi &amp; Umpan Balik (SweetAlert2):</strong> Saat disimpan, sistem memperbarui tabel `landing_sections`, membersihkan cache `LandingSection::clearCache()`, mencatat log audit `landing_cms_updated`, dan menampilkan modal sukses SweetAlert2.</li>
+        </ul>
+        
+        <div class="figure-container">
+            <img src="file:///c:/Users/Dimas Erlansyah/Documents/PROJEK SAYA/fkksm/docs/screenshots/14_admin_landing_cms_hero.png" alt="Halaman Admin Landing Page CMS untuk mengelola Hero Carousel Banners pada halaman utama (`/`)." class="screenshot-img"/>
+            <div class="figure-caption">Gambar C.3a. Halaman Admin Landing Page CMS untuk mengelola Hero Carousel Banners pada halaman utama (`/`).</div>
+        </div>
+        
+        <div class="figure-container">
+            <img src="file:///c:/Users/Dimas Erlansyah/Documents/PROJEK SAYA/fkksm/docs/screenshots/15_admin_landing_cms_bestseller.png" alt="Halaman Admin Landing Page CMS untuk mengelola Kursus Terlaris beserta Skill Badges." class="screenshot-img"/>
+            <div class="figure-caption">Gambar C.3b. Halaman Admin Landing Page CMS untuk mengelola Kursus Terlaris beserta Skill Badges.</div>
+        </div>
+        
+    </div>
+    
+    <div class="feature-section">
+        <h3>C.4 Halaman Kelola Katalog Kursus, Buat Kursus Baru, dan Edit Kursus</h3>
+        <ul class="spec-list">
+            <li><strong>Tujuan Halaman:</strong> Mengelola seluruh daftar kursus pelatihan, menetapkan instruktur pengampu, mengatur harga/akses (Gratis atau Berbayar), mengunggah gambar sampul, dan memilih lencana kompetensi (*Skill Badges*).</li>
+            <li><strong>Informasi yang Ditampilkan:</strong> Menampilkan strip penukaran kode, bilah pencarian dan filter kategori/akses, daftar kartu kursus horizontal beserta durasi, harga, skill badges, persentase progres, serta formulir Buat/Edit Kursus.</li>
+            <li><strong>Komponen Input, Navigasi &amp; Tombol:</strong> Kolom pencarian kata kunci, dropdown Kategori dan Tipe Akses, tombol `+ Tambah Kursus`, tombol `Edit`, formulir input Judul, Kategori, Penempatan Section Home, Ringkasan, Deskripsi, Persyaratan, Durasi, Biaya, Status Publikasi, Thumbnail, dan pemilih `+ Tambah Skill Badge`.</li>
+            <li><strong>Aturan Validasi &amp; Keamanan:</strong> Validasi kepemilikan kursus (Admin dapat mengedit semua kursus; Instruktur hanya dapat mengedit kursus miliknya sendiri — mencegah celah IDOR). Unggahan sampul dibatasi pada JPG/PNG/WEBP maksimal 4 MB.</li>
+            <li><strong>Hasil Aksi &amp; Umpan Balik (SweetAlert2):</strong> Kursus baru atau perubahan informasi kursus tersimpan ke tabel `courses`, membersihkan cache katalog beranda, mencatat `course_created` / `course_updated` di log audit, dan menampilkan notifikasi modal SweetAlert2.</li>
+        </ul>
+        
+        <div class="figure-container">
+            <img src="file:///c:/Users/Dimas Erlansyah/Documents/PROJEK SAYA/fkksm/docs/screenshots/16_admin_courses_catalog.png" alt="Halaman Kelola Katalog Modul dan Kursus Pelatihan pada akun Administrator." class="screenshot-img"/>
+            <div class="figure-caption">Gambar C.4a. Halaman Kelola Katalog Modul dan Kursus Pelatihan pada akun Administrator.</div>
+        </div>
+        
+        <div class="figure-container">
+            <img src="file:///c:/Users/Dimas Erlansyah/Documents/PROJEK SAYA/fkksm/docs/screenshots/17_admin_courses_create.png" alt="Halaman Buat Kursus Pelatihan Baru beserta pemilih Lencana Kompetensi (Skill Badges)." class="screenshot-img"/>
+            <div class="figure-caption">Gambar C.4b. Halaman Buat Kursus Pelatihan Baru beserta pemilih Lencana Kompetensi (Skill Badges).</div>
+        </div>
+        
+        <div class="figure-container">
+            <img src="file:///c:/Users/Dimas Erlansyah/Documents/PROJEK SAYA/fkksm/docs/screenshots/18_admin_courses_edit.png" alt="Halaman Edit Informasi Kursus dan konfigurasi Skill Badges." class="screenshot-img"/>
+            <div class="figure-caption">Gambar C.4c. Halaman Edit Informasi Kursus dan konfigurasi Skill Badges.</div>
+        </div>
+        
+    </div>
+    
+    <div class="feature-section">
+        <h3>C.5 Halaman Manajemen Silabus Modul & Materi 4 Tahap (Video Storage, Materi, Latihan Soal)</h3>
+        <ul class="spec-list">
+            <li><strong>Tujuan Halaman:</strong> Mengelola struktur silabus modul pembelajaran dan tahapan materi berurutan (`1. Video Pembelajaran (Storage) → 2. Materi/E-Book → 3. Latihan Soal → 4. Latihan Akhir`) untuk setiap kursus.</li>
+            <li><strong>Informasi yang Ditampilkan:</strong> Menampilkan daftar kursus beserta akordeon modul (`course_modules`) dan daftar tahapan materi (`materials`) lengkap dengan badge tipe tahap (`VIDEO`, `MATERI & E-BOOK`, `LATIHAN SOAL`) serta lokasi penyimpanan berkas video (`storage/videos/...`).</li>
+            <li><strong>Komponen Input, Navigasi &amp; Tombol:</strong> Tombol `Pratinjau Player`, tombol `+ Tambah Modul`, tombol `+ Tambah Tahap Materi`, tombol `Hapus Modul` & `Hapus` materi dengan dialog konfirmasi SweetAlert2, serta modal pengisian tahap materi (unggah berkas MP4/WEBM ke storage dan editor soal pilihan ganda).</li>
+            <li><strong>Aturan Validasi &amp; Keamanan:</strong> Validasi `Rule::exists('course_modules', 'id')->where('course_id', $course->id)` mencegah lintas-kursus IDOR. Berkas video divalidasi `mimes:mp4,webm|max:20480` (20 MB) dan disimpan secara aman di `storage/app/public/videos/` melalui `SecurityHelper::storeSafeVideo`.</li>
+            <li><strong>Hasil Aksi &amp; Umpan Balik (SweetAlert2):</strong> Penambahan atau penghapusan modul dan materi langsung memperbarui urutan pembelajaran 4 tahap di Ruang Belajar dan menampilkan modal konfirmasi SweetAlert2.</li>
+        </ul>
+        
+        <div class="figure-container">
+            <img src="file:///c:/Users/Dimas Erlansyah/Documents/PROJEK SAYA/fkksm/docs/screenshots/19_admin_materials_4stage.png" alt="Halaman Manajemen Silabus Modul dan Materi 4 Tahap beserta indikator penyimpanan video di local storage." class="screenshot-img"/>
+            <div class="figure-caption">Gambar C.5. Halaman Manajemen Silabus Modul dan Materi 4 Tahap beserta indikator penyimpanan video di local storage.</div>
+        </div>
+        
+    </div>
+    
+    <div class="feature-section">
+        <h3>C.6 Halaman Manajemen Evaluasi Akhir (Assessments) dan Penilaian</h3>
+        <ul class="spec-list">
+            <li><strong>Tujuan Halaman:</strong> Mengelola pembuatan kuis/ujian akhir kursus (`Latihan Akhir`) serta memeriksa dan menilai jawaban evaluasi peserta.</li>
+            <li><strong>Informasi yang Ditampilkan:</strong> Menampilkan formulir pembuatan evaluasi baru, daftar pengumpulan tugas/kuis peserta yang menunggu penilaian (`pendingSubmissions`), serta daftar seluruh evaluasi terdaftar per kursus.</li>
+            <li><strong>Komponen Input, Navigasi &amp; Tombol:</strong> Formulir Buat Evaluasi (Pilih Kursus, Judul Evaluasi, Tipe `Quiz`/`Assignment`/`Evaluation`, Batas Waktu, Instruksi), formulir penilaian (`score` 0–100, `feedback`, status `Reviewed`/`Returned`), dan tabel riwayat pengumpulan peserta.</li>
+            <li><strong>Aturan Validasi &amp; Keamanan:</strong> Hanya Admin dan Instruktur pemilik kursus yang dapat membuat evaluasi atau memberi nilai pada pengumpulan siswa (proteksi IDOR di `AssessmentController::store` dan `grade`).</li>
+            <li><strong>Hasil Aksi &amp; Umpan Balik (SweetAlert2):</strong> Saat nilai disimpan, status pengumpulan diperbarui, dicatat pada `activity_logs` (`assessment_graded`), dan umpan balik ditampilkan ke peserta.</li>
+        </ul>
+        
+        <div class="figure-container">
+            <img src="file:///c:/Users/Dimas Erlansyah/Documents/PROJEK SAYA/fkksm/docs/screenshots/20_admin_assessments.png" alt="Halaman Manajemen Kuis dan Evaluasi Akhir pada akun Administrator." class="screenshot-img"/>
+            <div class="figure-caption">Gambar C.6. Halaman Manajemen Kuis dan Evaluasi Akhir pada akun Administrator.</div>
+        </div>
+        
+    </div>
+    
+    <div class="feature-section">
+        <h3>C.7 Halaman Manajemen Sertifikat Kompetensi & Pencabutan (Revocation)</h3>
+        <ul class="spec-list">
+            <li><strong>Tujuan Halaman:</strong> Memantau seluruh sertifikat kompetensi resmi yang telah diterbitkan sistem, memeriksa detail sertifikat, serta mencabut atau memulihkan status keabsahan sertifikat (`toggleRevoke`).</li>
+            <li><strong>Informasi yang Ditampilkan:</strong> Menampilkan daftar sertifikat peserta lengkap dengan Nomor Registrasi (`CERT-MM2100-2026-...`), nama penerima, nama kursus, tanggal terbit, status keabsahan (`Valid` / `Dicabut`), serta tombol aksi.</li>
+            <li><strong>Komponen Input, Navigasi &amp; Tombol:</strong> Tombol `Lihat Sertifikat`, tombol `Verifikasi Publik`, serta tombol `Cabut Sertifikat` / `Pulihkan` dengan dialog konfirmasi SweetAlert2.</li>
+            <li><strong>Aturan Validasi &amp; Keamanan:</strong> Eksklusif untuk Administrator (`middleware('admin')`). Setiap perubahan status keabsahan sertifikat langsung tercermin pada halaman Verifikasi Sertifikat Publik (`/verifikasi-sertifikat`).</li>
+            <li><strong>Hasil Aksi &amp; Umpan Balik (SweetAlert2):</strong> Status sertifikat diperbarui secara atomik, dicatat pada log audit (`certificate_revoked` / `certificate_restored`), dan dikonfirmasi melalui modal SweetAlert2.</li>
+        </ul>
+        
+        <div class="figure-container">
+            <img src="file:///c:/Users/Dimas Erlansyah/Documents/PROJEK SAYA/fkksm/docs/screenshots/21_admin_certificates.png" alt="Halaman Manajemen Sertifikat Kompetensi Resmi FKKSM MM2100." class="screenshot-img"/>
+            <div class="figure-caption">Gambar C.7. Halaman Manajemen Sertifikat Kompetensi Resmi FKKSM MM2100.</div>
+        </div>
+        
+    </div>
+    
+    <div class="feature-section">
+        <h3>C.8 Halaman Manajemen Voucher Pelatihan & Pemeriksaan Status Kode</h3>
+        <ul class="spec-list">
+            <li><strong>Tujuan Halaman:</strong> Mengelola pembuatan kode voucher subsidi pelatihan baru, mengatur kuota dan masa berlaku, mengaktifkan/menonaktifkan voucher, serta menguji status kelayakan kode voucher.</li>
+            <li><strong>Informasi yang Ditampilkan:</strong> Menampilkan banner Redemption, kartu pemeriksa kode voucher interaktif (`Periksa kode` & `Tukarkan kode`), indikator 4 status voucher (`Tersedia`, `Digunakan`, `Kedaluwarsa`, `Tidak valid`), formulir `+ Buat Kode Voucher Baru (Admin)`, dan tabel Daftar Voucher Terdaftar.</li>
+            <li><strong>Komponen Input, Navigasi &amp; Tombol:</strong> Input Kode Voucher, tombol `Periksa kode` (AJAX fetch ke `/lms/vouchers/check` dengan modal SweetAlert2), tombol `Tukarkan kode`, formulir pembuatan voucher (Kode, Judul, Tipe Benefit, Kursus Tujuan, Kuota Maksimal, Tanggal Kedaluwarsa), dan tombol `Nonaktifkan`/`Aktifkan`.</li>
+            <li><strong>Aturan Validasi &amp; Keamanan:</strong> Endpoint pemeriksaan dan penukaran dilindungi pembatas laju `throttle:voucher-ops` (15 request/menit) serta penguncian transaksi database `lockForUpdate()` di `VoucherController::redeem` untuk mencegah *race condition* penukaran ganda.</li>
+            <li><strong>Hasil Aksi &amp; Umpan Balik (SweetAlert2):</strong> Hasil pemeriksaan maupun penukaran voucher selalu ditampilkan melalui pop-up modal SweetAlert2 beserta rincian manfaat, nama program, dan masa berlaku.</li>
+        </ul>
+        
+        <div class="figure-container">
+            <img src="file:///c:/Users/Dimas Erlansyah/Documents/PROJEK SAYA/fkksm/docs/screenshots/22_admin_vouchers.png" alt="Halaman Manajemen Voucher Pelatihan, pemeriksa kode, dan pembuatan voucher baru." class="screenshot-img"/>
+            <div class="figure-caption">Gambar C.8. Halaman Manajemen Voucher Pelatihan, pemeriksa kode, dan pembuatan voucher baru.</div>
+        </div>
+        
+    </div>
+    
+    <div class="feature-section">
+        <h3>C.9 Halaman Manajemen Paket Langganan (Subscription Plans & Member Overrides)</h3>
+        <ul class="spec-list">
+            <li><strong>Tujuan Halaman:</strong> Mengelola paket langganan komersial FKKSM LMS (`Plan`), mengaktifkan/menonaktifkan paket, serta memperpanjang masa aktif langganan peserta.</li>
+            <li><strong>Informasi yang Ditampilkan:</strong> Menampilkan kartu paket langganan aktif (Akses Standar, Pro Industrial Learner, Corporate Fleet MM2100), formulir pembuatan paket baru, dan tabel daftar langganan pengguna beserta tombol perpanjangan durasi.</li>
+            <li><strong>Komponen Input, Navigasi &amp; Tombol:</strong> Tombol pilih paket, formulir `+ Tambah Paket Subscription` (Nama Paket, Kode, Siklus Tagihan, Harga, Kuota Kursus, Fitur), tombol `Toggle Status Paket`, dan tombol `Perpanjang (+30 Hari)`.</li>
+            <li><strong>Aturan Validasi &amp; Keamanan:</strong> Pendaftaran paket berbayar divalidasi di `SubscriptionController::subscribe` (hanya paket aktif yang dapat dipilih, dan pendaftaran kursus berbayar memverifikasi langganan berbayar yang belum kedaluwarsa `ends_at > now()`).</li>
+            <li><strong>Hasil Aksi &amp; Umpan Balik (SweetAlert2):</strong> Setiap perubahan paket atau perpanjangan masa aktif tercatat di log audit dan menampilkan modal konfirmasi SweetAlert2.</li>
+        </ul>
+        
+        <div class="figure-container">
+            <img src="file:///c:/Users/Dimas Erlansyah/Documents/PROJEK SAYA/fkksm/docs/screenshots/23_admin_subscriptions.png" alt="Halaman Manajemen Paket Subscription dan daftar langganan peserta." class="screenshot-img"/>
+            <div class="figure-caption">Gambar C.9. Halaman Manajemen Paket Subscription dan daftar langganan peserta.</div>
+        </div>
+        
+    </div>
+    
+    <div class="feature-section">
+        <h3>C.10 Halaman Manajemen Prospek & Permintaan Industri (Leads Management)</h3>
+        <ul class="spec-list">
+            <li><strong>Tujuan Halaman:</strong> Mengelola seluruh pesan, permohonan *in-house training* perusahaan, dan konsultasi hubungan industrial yang dikirim melalui formulir publik `/hubungi`.</li>
+            <li><strong>Informasi yang Ditampilkan:</strong> Menampilkan daftar prospek/leads masuk beserta nama pengirim, perusahaan, email, nomor telepon/WhatsApp, kategori kepentingan, catatan pesan, waktu pengiriman, dan status tindak lanjut (`Baru`, `Dihubungi`, `Selesai`).</li>
+            <li><strong>Komponen Input, Navigasi &amp; Tombol:</strong> Kolom pencarian prospek, filter status, dropdown pengubah status tindak lanjut (`New`, `Contacted`, `Converted`, `Archived`), dan tombol simpan status.</li>
+            <li><strong>Aturan Validasi &amp; Keamanan:</strong> Pengiriman lead publik dilindungi `throttle:lead-submit` (8 pengiriman/menit per IP), sedangkan halaman pengelolaan leads dikunci khusus untuk Administrator (`middleware('admin')`).</li>
+            <li><strong>Hasil Aksi &amp; Umpan Balik (SweetAlert2):</strong> Perubahan status tindak lanjut prospek langsung disimpan, dicatat ke tabel `activity_logs`, dan dikonfirmasi dengan modal SweetAlert2.</li>
+        </ul>
+        
+        <div class="figure-container">
+            <img src="file:///c:/Users/Dimas Erlansyah/Documents/PROJEK SAYA/fkksm/docs/screenshots/24_admin_leads.png" alt="Halaman Manajemen Prospek dan Permintaan Pelatihan Industri (Leads)." class="screenshot-img"/>
+            <div class="figure-caption">Gambar C.10. Halaman Manajemen Prospek dan Permintaan Pelatihan Industri (Leads).</div>
+        </div>
+        
+    </div>
+    
+    <div class="feature-section">
+        <h3>C.11 Halaman Manajemen Pengguna & Pengaturan Role (RBAC), Audit Trail, dan Pengaturan Portal</h3>
+        <ul class="spec-list">
+            <li><strong>Tujuan Halaman:</strong> Mengelola seluruh akun pengguna lintas peran (`Student`, `Instructor`, `Admin`, `Super Admin`), mengubah status aktif/suspend akun, memantau catatan jejak audit keamanan (`Audit Trail`), dan mengatur konfigurasi global portal.</li>
+            <li><strong>Informasi yang Ditampilkan:</strong> (1) Halaman Pengguna (`/lms/users`) menampilkan tabel direktori akun beserta dropdown pengubah Role dan tombol Aktifkan/Nonaktifkan; (2) Halaman Audit (`/lms/audit`) menampilkan log aktivitas sistem secara kronologis; (3) Halaman Pengaturan (`/lms/settings`) menampilkan formulir informasi sekretariat, kontak, dan pengumuman portal.</li>
+            <li><strong>Komponen Input, Navigasi &amp; Tombol:</strong> Kolom pencarian pengguna, filter role, dropdown `Role` (`student`, `instructor`, `admin`), tombol toggle status akun dengan konfirmasi SweetAlert2, filter log audit, serta tombol `Simpan Pengaturan`.</li>
+            <li><strong>Aturan Validasi &amp; Keamanan:</strong> Menerapkan proteksi anti-eskalasi hak akses di `UserController`: akun `admin` biasa tidak dapat mengubah status/role akun `super_admin` atau mempromosikan pengguna menjadi `super_admin`, serta tidak dapat menonaktifkan dirinya sendiri.</li>
+            <li><strong>Hasil Aksi &amp; Umpan Balik (SweetAlert2):</strong> Setiap perubahan peran pengguna, status akun, maupun pengaturan portal dicatat di `activity_logs` dan menampilkan modal SweetAlert2.</li>
+        </ul>
+        
+        <div class="figure-container">
+            <img src="file:///c:/Users/Dimas Erlansyah/Documents/PROJEK SAYA/fkksm/docs/screenshots/25_admin_users_rbac.png" alt="Halaman Manajemen Pengguna dan pengaturan Role-Based Access Control (RBAC)." class="screenshot-img"/>
+            <div class="figure-caption">Gambar C.11a. Halaman Manajemen Pengguna dan pengaturan Role-Based Access Control (RBAC).</div>
+        </div>
+        
+        <div class="figure-container">
+            <img src="file:///c:/Users/Dimas Erlansyah/Documents/PROJEK SAYA/fkksm/docs/screenshots/26_admin_audit_logs.png" alt="Halaman Jejak Audit Keamanan dan Aktivitas Sistem (Audit Trail)." class="screenshot-img"/>
+            <div class="figure-caption">Gambar C.11b. Halaman Jejak Audit Keamanan dan Aktivitas Sistem (Audit Trail).</div>
+        </div>
+        
+        <div class="figure-container">
+            <img src="file:///c:/Users/Dimas Erlansyah/Documents/PROJEK SAYA/fkksm/docs/screenshots/27_admin_settings.png" alt="Halaman Pengaturan Global Portal dan Sekretariat FKKSM MM2100." class="screenshot-img"/>
+            <div class="figure-caption">Gambar C.11c. Halaman Pengaturan Global Portal dan Sekretariat FKKSM MM2100.</div>
+        </div>
+        
+    </div>
+    
+
+    <!-- =================================================================== -->
+    <!-- BAGIAN D — DOKUMENTASI FITUR ROLE INSTRUCTOR (PENGAJAR) -->
+    <!-- =================================================================== -->
+    <div class="page-break"></div>
+    <h2>BAGIAN D — DOKUMENTASI FITUR ROLE INSTRUCTOR (PENGAJAR INDUSTRI)</h2>
+    <p>Peran <strong>Instruktur / Pengajar Industri (`hendra@fkksm.local`, `siti.hr@fkksm.local`, `rudi.otomasi@fkksm.local`)</strong> mengakses Portal LMS dengan cakupan data yang secara otomatis dibatasi hanya pada kursus yang diampunya. Instruktur bertanggung jawab menyusun silabus 4 tahap (mengunggah video ke storage, menulis E-Book SOP, membuat latihan soal pilihan ganda, serta menyusun Latihan Akhir).</p>
+    
+    <div class="feature-section">
+        <h3>D.1 Halaman Dashboard Instruktur (Pengajar Industri MM2100)</h3>
+        <ul class="spec-list">
+            <li><strong>Tujuan Halaman:</strong> Menampilkan ringkasan kinerja pengajaran khusus untuk kursus-kursus yang diampu oleh Instruktur yang sedang login.</li>
+            <li><strong>Informasi yang Ditampilkan:</strong> Menampilkan 3 Kartu Statistik Pengajar (`Kursus Diampu`, `Peserta Terdaftar`, dan `Menunggu Penilaian`), daftar kartu kursus yang dikelola beserta jumlah peserta dan jumlah tahapan materi, serta pintasan `Edit Info & Skills` dan `Kelola Modul`.</li>
+            <li><strong>Komponen Input, Navigasi &amp; Tombol:</strong> Tombol `+ Tambah Kursus Baru`, tautan `Edit Info & Skills`, tautan `Kelola Modul`, serta menu sidebar khusus Instruktur (`Dashboard`, `Modul`, `Silabus & Materi`, `Kuis`, `Sertifikat`, `Voucher`, `Subscription`, `Pengaturan`).</li>
+            <li><strong>Aturan Validasi &amp; Keamanan:</strong> Cakupan data difilter secara ketat berdasarkan `instructor_id === Auth::id()` sehingga seorang Instruktur hanya melihat statistik dan daftar kursus binaannya sendiri.</li>
+            <li><strong>Hasil Aksi &amp; Umpan Balik (SweetAlert2):</strong> Instruktur dapat langsung membuka editor kursus atau manajemen modul 4 tahap dari kartu kursus di Dashboard.</li>
+        </ul>
+        
+        <div class="figure-container">
+            <img src="file:///c:/Users/Dimas Erlansyah/Documents/PROJEK SAYA/fkksm/docs/screenshots/28_instructor_dashboard.png" alt="Halaman Dashboard Instruktur (Ir. Hendra Wijaya, M.T.) yang menampilkan metrik kursus ampuan." class="screenshot-img"/>
+            <div class="figure-caption">Gambar D.1. Halaman Dashboard Instruktur (Ir. Hendra Wijaya, M.T.) yang menampilkan metrik kursus ampuan.</div>
+        </div>
+        
+    </div>
+    
+    <div class="feature-section">
+        <h3>D.2 Halaman Pengelolaan Silabus & Modal Tambah Tahap Materi 4-Stage (Video Storage & Kuis)</h3>
+        <ul class="spec-list">
+            <li><strong>Tujuan Halaman:</strong> Memungkinkan Instruktur menyusun modul pembelajaran dan menambahkan tahapan materi berurutan (`1. Video Pembelajaran (Storage)`, `2. Materi / E-Book`, `3. Latihan Soal`, dan `Tautan Materi`) pada kursus ampuannya.</li>
+            <li><strong>Informasi yang Ditampilkan:</strong> Menampilkan daftar kursus milik instruktur, daftar modul per kursus, daftar tahap materi beserta path file video di storage (`storage/videos/fkksm-sample.mp4`), serta modal interaktif `+ Tambah Tahap Materi`.</li>
+            <li><strong>Komponen Input, Navigasi &amp; Tombol:</strong> Tombol `Pratinjau Player`, `+ Tambah Modul`, `+ Tambah Tahap Materi`, pilihan Modul, dropdown Tahap Pembelajaran (`video`, `ebook`, `text`, `practice`, `link`), input Judul & Durasi, input file `Unggah Video ke Local Storage (MP4/WEBM maks 20MB)`, textarea Isi Materi, serta input Pertanyaan & Kunci Jawaban Latihan Soal.</li>
+            <li><strong>Aturan Validasi &amp; Keamanan:</strong> Memeriksa kepemilikan kursus (`$course->instructor_id === $user->id`) dan memvalidasi berkas video melalui `SecurityHelper::storeSafeVideo`. Jika tidak ada file video yang diunggah pada tipe Video, sistem otomatis menyediakan berkas video sampel ringan `storage/app/public/videos/fkksm-sample.mp4`.</li>
+            <li><strong>Hasil Aksi &amp; Umpan Balik (SweetAlert2):</strong> Tahap materi baru langsung ditambahkan ke urutan silabus dan siap dipelajari secara berurutan oleh peserta.</li>
+        </ul>
+        
+        <div class="figure-container">
+            <img src="file:///c:/Users/Dimas Erlansyah/Documents/PROJEK SAYA/fkksm/docs/screenshots/29_instructor_materials_syllabus.png" alt="Halaman Silabus Modul & Materi 4 Tahap pada akun Instruktur." class="screenshot-img"/>
+            <div class="figure-caption">Gambar D.2a. Halaman Silabus Modul & Materi 4 Tahap pada akun Instruktur.</div>
+        </div>
+        
+        <div class="figure-container">
+            <img src="file:///c:/Users/Dimas Erlansyah/Documents/PROJEK SAYA/fkksm/docs/screenshots/30_instructor_add_material_modal.png" alt="Modal Tambah Tahap Pembelajaran dengan fitur unggah video ke Local Storage dan pembuat Latihan Soal." class="screenshot-img"/>
+            <div class="figure-caption">Gambar D.2b. Modal Tambah Tahap Pembelajaran dengan fitur unggah video ke Local Storage dan pembuat Latihan Soal.</div>
+        </div>
+        
+    </div>
+    
+    <div class="feature-section">
+        <h3>D.3 Halaman Evaluasi & Penilaian Tugas Peserta pada Akun Instruktur</h3>
+        <ul class="spec-list">
+            <li><strong>Tujuan Halaman:</strong> Memungkinkan Instruktur membuat soal evaluasi akhir kursus dan memeriksa atau memberi nilai pada jawaban evaluasi peserta di kelas ampuannya.</li>
+            <li><strong>Informasi yang Ditampilkan:</strong> Menampilkan antrean jawaban evaluasi peserta pada kursus ampuan beserta formulir pemberian skor (0–100) dan catatan umpan balik instruktur.</li>
+            <li><strong>Komponen Input, Navigasi &amp; Tombol:</strong> Formulir pembuatan evaluasi akhir, input nilai numerik (`score`), kolom `feedback`, pilihan status (`Reviewed` / `Returned`), dan tombol simpan penilaian.</li>
+            <li><strong>Aturan Validasi &amp; Keamanan:</strong> Sistem menolak upaya penilaian lintas-instruktur dengan kode `403 Forbidden` apabila `course->instructor_id` tidak cocok dengan ID instruktur yang login.</li>
+            <li><strong>Hasil Aksi &amp; Umpan Balik (SweetAlert2):</strong> Penilaian tersimpan ke tabel `assessment_submissions`, tercatat di log audit, dan memicu pemberitahuan SweetAlert2.</li>
+        </ul>
+        
+        <div class="figure-container">
+            <img src="file:///c:/Users/Dimas Erlansyah/Documents/PROJEK SAYA/fkksm/docs/screenshots/31_instructor_assessments_grading.png" alt="Halaman Evaluasi dan Penilaian Peserta pada akun Instruktur." class="screenshot-img"/>
+            <div class="figure-caption">Gambar D.3. Halaman Evaluasi dan Penilaian Peserta pada akun Instruktur.</div>
+        </div>
+        
+    </div>
+    
+
+    <!-- =================================================================== -->
+    <!-- BAGIAN E — DOKUMENTASI FITUR ROLE STUDENT (PESERTA) -->
+    <!-- =================================================================== -->
+    <div class="page-break"></div>
+    <h2>BAGIAN E — DOKUMENTASI FITUR ROLE STUDENT (PESERTA PELATIHAN)</h2>
+    <p>Peran <strong>Peserta Pelatihan (`peserta@fkksm.local` — Budi Santoso)</strong> menggunakan Portal Pembelajaran FKKSM LMS untuk memantau progres belajar, menukarkan kode voucher pelatihan perusahaan, mengikuti pembelajaran 4 tahap berurutan (<strong>Video → Materi → Latihan Soal → Latihan Akhir</strong>), serta mengunduh Sertifikat Kompetensi resmi.</p>
+    
+    <div class="feature-section">
+        <h3>E.1 Halaman Beranda Peserta (Student Dashboard) & Modal Detail Notifikasi SweetAlert2</h3>
+        <ul class="spec-list">
+            <li><strong>Tujuan Halaman:</strong> Menampilkan ringkasan progres belajar peserta, grafik cincin ketuntasan (*Perjalanan belajarmu*), daftar kursus aktif, rekapan materi terakhir yang diselesaikan, rekomendasi materi, serta daftar kuis evaluasi.</li>
+            <li><strong>Informasi yang Ditampilkan:</strong> Menampilkan Hero Banner `Ide hebat dimulai dari kompetensi yang terus diasah` dengan tombol `Lanjutkan belajar`, kartu `Perjalanan belajarmu` (Donut Chart SVG persentase selesai, jumlah materi selesai, modul tuntas, kuis dikerjakan), kartu `Progres Pembelajaran`, kartu `Rekapan Terakhir Pembelajaran`, panel `Materi untukmu`, dan panel `Uji pemahamanmu`.</li>
+            <li><strong>Komponen Input, Navigasi &amp; Tombol:</strong> Tombol `Lanjutkan belajar`, ikon lonceng notifikasi di bilah atas yang membuka popover daftar notifikasi, item notifikasi yang saat diklik memunculkan modal detail SweetAlert2, serta tombol `Tandai semua dibaca`.</li>
+            <li><strong>Aturan Validasi &amp; Keamanan:</strong> Seluruh perhitungan progres dioptimasi menggunakan koleksi yang sudah di-*eager-load* tanpa kueri N+1.</li>
+            <li><strong>Hasil Aksi &amp; Umpan Balik (SweetAlert2):</strong> Mengklik salah satu item pada lonceng notifikasi langsung menampilkan isi lengkap pengumuman/voucher di dalam modal SweetAlert2.</li>
+        </ul>
+        
+        <div class="figure-container">
+            <img src="file:///c:/Users/Dimas Erlansyah/Documents/PROJEK SAYA/fkksm/docs/screenshots/32_student_dashboard.png" alt="Halaman Beranda Peserta (Budi Santoso) yang menampilkan grafik cincin Perjalanan Belajarmu dan progres kursus." class="screenshot-img"/>
+            <div class="figure-caption">Gambar E.1a. Halaman Beranda Peserta (Budi Santoso) yang menampilkan grafik cincin Perjalanan Belajarmu dan progres kursus.</div>
+        </div>
+        
+        <div class="figure-container">
+            <img src="file:///c:/Users/Dimas Erlansyah/Documents/PROJEK SAYA/fkksm/docs/screenshots/33_student_notifications_popover.png" alt="Popover Lonceng Notifikasi pada bilah atas Portal Peserta." class="screenshot-img"/>
+            <div class="figure-caption">Gambar E.1b. Popover Lonceng Notifikasi pada bilah atas Portal Peserta.</div>
+        </div>
+        
+        <div class="figure-container">
+            <img src="file:///c:/Users/Dimas Erlansyah/Documents/PROJEK SAYA/fkksm/docs/screenshots/34_student_notification_swal_modal.png" alt="Modal Detail Notifikasi menggunakan SweetAlert2 saat item pemberitahuan diklik." class="screenshot-img"/>
+            <div class="figure-caption">Gambar E.1c. Modal Detail Notifikasi menggunakan SweetAlert2 saat item pemberitahuan diklik.</div>
+        </div>
+        
+    </div>
+    
+    <div class="feature-section">
+        <h3>E.2 Halaman Katalog Modul & Detail Modul Kursus 4 Tahap Berurutan</h3>
+        <ul class="spec-list">
+            <li><strong>Tujuan Halaman:</strong> Memungkinkan peserta menjelajahi katalog kursus pelatihan, memfilter kategori/akses, menukarkan kode voucher belajar, serta melihat silabus lengkap 4 tahap sebelum atau sesudah mendaftar.</li>
+            <li><strong>Informasi yang Ditampilkan:</strong> Pada halaman Detail Modul (`/lms/courses/{slug}`), ditampilkan banner sampul kursus, bagan **Metode Belajar Berurutan (1. Video Storage Stream → 2. Materi E-Book & SOP → 3. Latihan Soal Kuis Modul ≥70% → 4. Latihan Akhir Ujian & Sertifikat)**, deskripsi program, *Skill Badges*, akordeon silabus modul beserta status tiap tahap (`Selesai`, `Buka Tahap`, atau `Terkunci`), serta kartu aksi pendaftaran/progres di sisi kanan.</li>
+            <li><strong>Komponen Input, Navigasi &amp; Tombol:</strong> Kolom pencarian & filter katalog, tombol `Tukar` kode belajar, tombol `Daftar & Mulai Tahap 1 (Video)` atau `Lanjutkan Belajar Berurutan`, serta tombol `Buka Tahap` pada setiap item silabus yang sudah terbuka.</li>
+            <li><strong>Aturan Validasi &amp; Keamanan:</strong> Pada kursus berbayar, sistem memeriksa apakah peserta memiliki langganan berbayar aktif atau voucher kursus yang telah ditukarkan sebelum mengizinkan pendaftaran.</li>
+            <li><strong>Hasil Aksi &amp; Umpan Balik (SweetAlert2):</strong> Saat peserta menekan tombol daftar atau lanjutkan, sistem membuka Ruang Belajar pada tahap pertama yang belum diselesaikan.</li>
+        </ul>
+        
+        <div class="figure-container">
+            <img src="file:///c:/Users/Dimas Erlansyah/Documents/PROJEK SAYA/fkksm/docs/screenshots/35_student_courses_catalog.png" alt="Halaman Katalog Modul dan Kursus Pelatihan pada Portal Peserta." class="screenshot-img"/>
+            <div class="figure-caption">Gambar E.2a. Halaman Katalog Modul dan Kursus Pelatihan pada Portal Peserta.</div>
+        </div>
+        
+        <div class="figure-container">
+            <img src="file:///c:/Users/Dimas Erlansyah/Documents/PROJEK SAYA/fkksm/docs/screenshots/36_student_course_detail_4stage.png" alt="Halaman Detail Modul Kursus yang menampilkan bagan alur 4 tahap berurutan dan status silabus." class="screenshot-img"/>
+            <div class="figure-caption">Gambar E.2b. Halaman Detail Modul Kursus yang menampilkan bagan alur 4 tahap berurutan dan status silabus.</div>
+        </div>
+        
+    </div>
+    
+    <div class="feature-section">
+        <h3>E.3 Halaman Ruang Belajar (Classroom Player) 4 Tahap Berurutan & Streaming Video Storage Ringan</h3>
+        <ul class="spec-list">
+            <li><strong>Tujuan Halaman:</strong> Menyediakan antarmuka pembelajaran terfokus (*split-pane player*) dengan urutan wajib satu per satu: **Tahap 1: Video (Local Storage) → Tahap 2: Materi & E-Book → Tahap 3: Latihan Soal → Tahap 4: Latihan Akhir → Sertifikat Kompetensi**.</li>
+            <li><strong>Informasi yang Ditampilkan:</strong> (1) **Header Player**: Tombol `← Detail Modul`, logo tengah `FKKSM MM2100 UPSKILL`, dan indikator `X/Y Tahap` beserta badge `Sertifikat Terbit`; (2) **Sidebar Silabus Kiri (280px)**: Judul kursus, *linear progress bar* (`0%`–`100%`) dengan *badge check* SVG, grup **Materi Pembelajaran** dengan cincin progres SVG (`lms-circle-bar`), sub-header `PEMBELAJARAN X`, item `Video`, `Materi & E-book`, `Latihan Soal`, grup `Latihan Akhir`, dan `Sertifikat Kompetensi` lengkap dengan ikon gembok SVG (`icon-brown-lock`) pada tahap yang masih terkunci; (3) **Area Utama**: Pemutar video HTML5 ringan dari local storage, tampilan bacaan E-Book/SOP, formulir kuis pilihan ganda, dan kartu sertifikat; (4) **Footer Bawah**: Tombol toggle sidebar `Konten Kursus` (ikon buku SVG) di kiri, serta tombol `< Sebelumnya` dan `Selanjutnya >` di kanan.</li>
+            <li><strong>Komponen Input, Navigasi &amp; Tombol:</strong> Pemutar HTML5 <code>&lt;video controls preload="metadata" playsinline&gt;</code> yang di-<em>stream</em> dari route <code>/lms/media/video/{{filename}}</code> (<code>Accept-Ranges: bytes</code>), checkbox konfirmasi simak video/bacaan, radio button pilihan ganda Latihan Soal &amp; Latihan Akhir, tombol <code>Konten Kursus</code>, <code>&lt; Sebelumnya</code>, dan <code>Selanjutnya &gt;</code>.</li>
+            <li><strong>Aturan Validasi &amp; Keamanan:</strong> <strong>Penguncian Berurutan Ketat (UI + Backend)</strong>: Peserta tidak dapat melompat ke tahap berikutnya sebelum menyelesaikan tahap saat ini. Mengklik tahap terkunci di sidebar memunculkan modal peringatan SweetAlert2 (<code>Tahap Masih Terkunci</code>). Pada sisi server (<code>ClassroomController</code>), akses langsung via URL ke tahap terkunci ditolak dan diarahkan kembali ke tahap aktif. Latihan Soal dan Latihan Akhir mewajibkan seluruh soal dijawab dengan skor kelulusan minimal <strong>70%</strong>.</li>
+            <li><strong>Hasil Aksi &amp; Umpan Balik (SweetAlert2):</strong> Setelah peserta menyelesaikan Video → Materi → Latihan Soal pada seluruh modul dan lulus Latihan Akhir (≥70%), sistem otomatis menandai pendaftaran <code>completed</code> dan menerbitkan <strong>Sertifikat Kompetensi Resmi FKKSM MM2100</strong>.</li>
+        </ul>
+        
+        <div class="figure-container">
+            <img src="file:///c:/Users/Dimas Erlansyah/Documents/PROJEK SAYA/fkksm/docs/screenshots/37_student_classroom_stage1_video.png" alt="Ruang Belajar Tahap 1 (Video Pembelajaran dari Local Storage) dengan tahapan berikutnya terkunci di sidebar." class="screenshot-img"/>
+            <div class="figure-caption">Gambar E.3a. Ruang Belajar Tahap 1 (Video Pembelajaran dari Local Storage) dengan tahapan berikutnya terkunci di sidebar.</div>
+        </div>
+        
+        <div class="figure-container">
+            <img src="file:///c:/Users/Dimas Erlansyah/Documents/PROJEK SAYA/fkksm/docs/screenshots/38_student_classroom_locked_swal.png" alt="Validasi Modal SweetAlert2 saat peserta mengklik tahap yang masih terkunci di sidebar Ruang Belajar." class="screenshot-img"/>
+            <div class="figure-caption">Gambar E.3b. Validasi Modal SweetAlert2 saat peserta mengklik tahap yang masih terkunci di sidebar Ruang Belajar.</div>
+        </div>
+        
+        <div class="figure-container">
+            <img src="file:///c:/Users/Dimas Erlansyah/Documents/PROJEK SAYA/fkksm/docs/screenshots/39_student_classroom_stage2_materi.png" alt="Ruang Belajar Tahap 2 (Materi & E-Book SOP) setelah Tahap 1 Video diselesaikan." class="screenshot-img"/>
+            <div class="figure-caption">Gambar E.3c. Ruang Belajar Tahap 2 (Materi & E-Book SOP) setelah Tahap 1 Video diselesaikan.</div>
+        </div>
+        
+        <div class="figure-container">
+            <img src="file:///c:/Users/Dimas Erlansyah/Documents/PROJEK SAYA/fkksm/docs/screenshots/40_student_classroom_stage3_latihan_soal.png" alt="Ruang Belajar Tahap 3 (Latihan Soal Pilihan Ganda per Modul dengan validasi skor minimal 70%)." class="screenshot-img"/>
+            <div class="figure-caption">Gambar E.3d. Ruang Belajar Tahap 3 (Latihan Soal Pilihan Ganda per Modul dengan validasi skor minimal 70%).</div>
+        </div>
+        
+        <div class="figure-container">
+            <img src="file:///c:/Users/Dimas Erlansyah/Documents/PROJEK SAYA/fkksm/docs/screenshots/41_student_classroom_stage4_latihan_akhir.png" alt="Ruang Belajar Tahap 4 (Latihan Akhir / Penilaian Akhir Komprehensif) untuk penerbitan sertifikat." class="screenshot-img"/>
+            <div class="figure-caption">Gambar E.3e. Ruang Belajar Tahap 4 (Latihan Akhir / Penilaian Akhir Komprehensif) untuk penerbitan sertifikat.</div>
+        </div>
+        
+        <div class="figure-container">
+            <img src="file:///c:/Users/Dimas Erlansyah/Documents/PROJEK SAYA/fkksm/docs/screenshots/42_student_classroom_certificate_complete.png" alt="Tampilan Sertifikat Kompetensi Resmi yang terbuka setelah peserta menuntaskan seluruh 4 tahapan (100%)." class="screenshot-img"/>
+            <div class="figure-caption">Gambar E.3f. Tampilan Sertifikat Kompetensi Resmi yang terbuka setelah peserta menuntaskan seluruh 4 tahapan (100%).</div>
+        </div>
+        
+    </div>
+    
+    <div class="feature-section">
+        <h3>E.4 Halaman Daftar Kuis, Sertifikat Kompetensi, Penukaran Voucher, Subscription, dan Pengaturan Akun</h3>
+        <ul class="spec-list">
+            <li><strong>Tujuan Halaman:</strong> Memungkinkan peserta memantau daftar evaluasi kuis, mengunduh dan mencetak sertifikat kelulusan resmi, memeriksa serta menukarkan kode voucher pelatihan, mengelola paket langganan belajar, serta memperbarui profil dan kata sandi akun.</li>
+            <li><strong>Informasi yang Ditampilkan:</strong> (1) Halaman Kuis (`/lms/assessments`) menampilkan status evaluasi per kursus; (2) Halaman Sertifikat (`/lms/certificates` & `/lms/certificates/{id}`) menampilkan daftar sertifikat yang diraih beserta tampilan piagam sertifikat digital siap cetak; (3) Halaman Voucher (`/lms/vouchers`) menampilkan form pemeriksaan/penukaran kode dan riwayat voucher; (4) Halaman Subscription (`/lms/subscriptions`) menampilkan paket aktif dan pilihan upgrade; (5) Halaman Pengaturan Akun (`/lms/account`) menampilkan form biodata, perusahaan, nomor telepon, dan ganti kata sandi.</li>
+            <li><strong>Komponen Input, Navigasi &amp; Tombol:</strong> Tombol `Lihat & Cetak Sertifikat`, tombol `Periksa kode` & `Tukarkan kode` voucher, tombol `Aktifkan Paket` / `Batalkan Langganan` dengan konfirmasi SweetAlert2, serta tombol `Simpan Perubahan Profil` & `Perbarui Kata Sandi`.</li>
+            <li><strong>Aturan Validasi &amp; Keamanan:</strong> Penggantian kata sandi memverifikasi `current_password`, mewajibkan minimal 8 karakter terkonfirmasi, serta melakukan rotasi `remember_token` secara otomatis untuk mengamankan sesi.</li>
+            <li><strong>Hasil Aksi &amp; Umpan Balik (SweetAlert2):</strong> Seluruh aksi pembaruan profil, kata sandi, penukaran voucher, dan perubahan langganan memberikan umpan balik langsung melalui modal SweetAlert2.</li>
+        </ul>
+        
+        <div class="figure-container">
+            <img src="file:///c:/Users/Dimas Erlansyah/Documents/PROJEK SAYA/fkksm/docs/screenshots/43_student_assessments_list.png" alt="Halaman Daftar Kuis dan Evaluasi Kompetensi pada Portal Peserta." class="screenshot-img"/>
+            <div class="figure-caption">Gambar E.4a. Halaman Daftar Kuis dan Evaluasi Kompetensi pada Portal Peserta.</div>
+        </div>
+        
+        <div class="figure-container">
+            <img src="file:///c:/Users/Dimas Erlansyah/Documents/PROJEK SAYA/fkksm/docs/screenshots/44_student_certificates_list.png" alt="Halaman Daftar Sertifikat Kompetensi yang telah diraih peserta." class="screenshot-img"/>
+            <div class="figure-caption">Gambar E.4b. Halaman Daftar Sertifikat Kompetensi yang telah diraih peserta.</div>
+        </div>
+        
+        <div class="figure-container">
+            <img src="file:///c:/Users/Dimas Erlansyah/Documents/PROJEK SAYA/fkksm/docs/screenshots/45_student_certificate_detail.png" alt="Tampilan Detail Piagam Sertifikat Kompetensi Resmi FKKSM MM2100 siap cetak." class="screenshot-img"/>
+            <div class="figure-caption">Gambar E.4c. Tampilan Detail Piagam Sertifikat Kompetensi Resmi FKKSM MM2100 siap cetak.</div>
+        </div>
+        
+        <div class="figure-container">
+            <img src="file:///c:/Users/Dimas Erlansyah/Documents/PROJEK SAYA/fkksm/docs/screenshots/46_student_vouchers_redemption.png" alt="Halaman Penukaran Kode Voucher dan Riwayat Voucher Peserta." class="screenshot-img"/>
+            <div class="figure-caption">Gambar E.4d. Halaman Penukaran Kode Voucher dan Riwayat Voucher Peserta.</div>
+        </div>
+        
+        <div class="figure-container">
+            <img src="file:///c:/Users/Dimas Erlansyah/Documents/PROJEK SAYA/fkksm/docs/screenshots/47_student_subscriptions.png" alt="Halaman Paket Langganan Belajar (Subscription) pada Portal Peserta." class="screenshot-img"/>
+            <div class="figure-caption">Gambar E.4e. Halaman Paket Langganan Belajar (Subscription) pada Portal Peserta.</div>
+        </div>
+        
+        <div class="figure-container">
+            <img src="file:///c:/Users/Dimas Erlansyah/Documents/PROJEK SAYA/fkksm/docs/screenshots/48_student_account_profile.png" alt="Halaman Pengaturan Profil, Instansi Perusahaan, dan Keamanan Kata Sandi Peserta." class="screenshot-img"/>
+            <div class="figure-caption">Gambar E.4f. Halaman Pengaturan Profil, Instansi Perusahaan, dan Keamanan Kata Sandi Peserta.</div>
+        </div>
+        
+    </div>
+    
+
+    <!-- =================================================================== -->
+    <!-- BAGIAN F — DOKUMENTASI PORTAL PUBLIK & VERIFIKASI SERTIFIKAT -->
+    <!-- =================================================================== -->
+    <div class="page-break"></div>
+    <h2>BAGIAN F — DOKUMENTASI PORTAL PUBLIK &amp; VERIFIKASI SERTIFIKAT RESMI</h2>
+    <p>Portal Publik FKKSM MM2100 menyajikan wajah resmi komunitas HRD, praktisi K3, dan pusat pelatihan vokasi Kawasan Industri MM2100 Cikarang Barat yang terhubung langsung dengan basis data kursus, CMS Admin, prospek industri, dan verifikasi sertifikat digital.</p>
+    
+    <div class="feature-section">
+        <h3>F.1 Halaman Utama Upskill Portal (`/`) dengan Header Clean UX & Data Terintegrasi Admin CMS</h3>
+        <ul class="spec-list">
+            <li><strong>Tujuan Halaman:</strong> Menampilkan portal utama FKKSM Upskill MM2100 yang terintegrasi penuh dengan Admin Landing CMS, menggunakan fotografi industri/pelatihan beresolusi tinggi, header navigasi *segmented pill* yang rapi dan konsisten baik saat *guest* maupun *login*, serta footer bersih sesuai identitas FKKSM MM2100.</li>
+            <li><strong>Informasi yang Ditampilkan:</strong> Memuat: (1) Header Navigasi Modern (`Beranda`, `Program Pelatihan`, `Profile`, `Direktori Industri`, `Berita & Forum`, `Hubungi Kami`, pintasan `Cek Sertifikat`, dan tombol `Masuk`/`Daftar Member` atau `Ruang Belajar`/`Keluar`); (2) Hero Banner Carousel; (3) Banner Onboarding; (4) Tab Live Webinar & Kursus Mandiri; (5) 7 Kategori Kursus; (6) Program Vokasi & Bahasa; (7) Banner & Modal Tukar Kode Belajar; (8) Kursus Terlaris dengan Skill Badges; (9) Lowongan Pekerjaan Bursa Karier MM2100; (10) Program Sertifikasi Vokasi & Subsidi Kompetensi; (11) Katalog Kursus Terpaginasi; (12) Solusi Pelatihan Korporasi B2B; (13) Testimoni Praktisi HR & K3; (14) Accordion FAQ; dan (15) Artikel Edukasi & Footer Resmi FKKSM MM2100.</li>
+            <li><strong>Komponen Input, Navigasi &amp; Tombol:</strong> Tombol navigasi *pill*, kontrol slider Hero Carousel, tab switcher `Live Webinar` / `Kursus Mandiri`, tombol modal `Tukar Kode`, kartu kursus interaktif, dan accordion FAQ.</li>
+            <li><strong>Aturan Validasi &amp; Keamanan:</strong> Seluruh data di-*cache* selama 1 jam (`Cache::remember`) untuk performa tinggi dan otomatis di-*flush* saat Admin memperbarui konten melalui CMS.</li>
+            <li><strong>Hasil Aksi &amp; Umpan Balik (SweetAlert2):</strong> Tampilan halaman utama (`/`) terjaga konsisten 100% (tinggi header 81px dan lebar kontainer 1216px identik) baik ketika diakses oleh pengunjung tamu maupun pengguna yang sedang login.</li>
+        </ul>
+        
+        <div class="figure-container">
+            <img src="file:///c:/Users/Dimas Erlansyah/Documents/PROJEK SAYA/fkksm/docs/screenshots/01_public_home_hero.png" alt="Halaman Utama FKKSM Upskill (`/`) dengan Header Navigasi Clean UX, Hero Carousel, dan Banner Onboarding." class="screenshot-img"/>
+            <div class="figure-caption">Gambar F.1a. Halaman Utama FKKSM Upskill (`/`) dengan Header Navigasi Clean UX, Hero Carousel, dan Banner Onboarding.</div>
+        </div>
+        
+        <div class="figure-container">
+            <img src="file:///c:/Users/Dimas Erlansyah/Documents/PROJEK SAYA/fkksm/docs/screenshots/02_public_home_webinars_categories.png" alt="Section Live Webinar Industri dan 7 Kategori Kursus pada Halaman Utama (`/`)." class="screenshot-img"/>
+            <div class="figure-caption">Gambar F.1b. Section Live Webinar Industri dan 7 Kategori Kursus pada Halaman Utama (`/`).</div>
+        </div>
+        
+        <div class="figure-container">
+            <img src="file:///c:/Users/Dimas Erlansyah/Documents/PROJEK SAYA/fkksm/docs/screenshots/03_public_home_bestseller_jobs.png" alt="Section Kursus Terlaris dengan Skill Badges dan Bursa Karier Lowongan Kerja MM2100." class="screenshot-img"/>
+            <div class="figure-caption">Gambar F.1c. Section Kursus Terlaris dengan Skill Badges dan Bursa Karier Lowongan Kerja MM2100.</div>
+        </div>
+        
+        <div class="figure-container">
+            <img src="file:///c:/Users/Dimas Erlansyah/Documents/PROJEK SAYA/fkksm/docs/screenshots/04_public_home_catalog_b2b.png" alt="Section Katalog Kursus Terpaginasi dan Banner Solusi Pelatihan Korporasi B2B Pabrik MM2100." class="screenshot-img"/>
+            <div class="figure-caption">Gambar F.1d. Section Katalog Kursus Terpaginasi dan Banner Solusi Pelatihan Korporasi B2B Pabrik MM2100.</div>
+        </div>
+        
+    </div>
+    
+    <div class="feature-section">
+        <h3>F.2 Halaman Profile Resmi FKKSM (`/profile/fkksm`), Direktori Industri (`/members`), Berita (`/berita`), Hubungi Kami (`/hubungi`), dan Verifikasi Sertifikat (`/verifikasi-sertifikat`)</h3>
+        <ul class="spec-list">
+            <li><strong>Tujuan Halaman:</strong> Menyediakan informasi kelembagaan resmi Forum Komunikasi Komite Sekolah Menengah & HR Kawasan Industri MM2100, bagan struktur pengurus, direktori perusahaan anggota, buletin berita ketenagakerjaan, formulir permohonan program, serta layanan audit keabsahan sertifikat digital secara publik.</li>
+            <li><strong>Informasi yang Ditampilkan:</strong> (1) Halaman `Profile` menampilkan Hero Summit 2026, telemetri kawasan, galeri 6 kegiatan FKKSM, 4 pilar layanan, dan peta sekretariat; (2) Halaman `Direktori Industri` menampilkan bagan struktur organisasi FKKSM dan profil kawasan MM2100; (3) Halaman `Berita & Forum` menampilkan edaran regulasi dan pencapaian K3; (4) Halaman `Hubungi Kami` menampilkan formulir kontak terintegrasi tabel `leads` dan peta Google Maps; (5) Halaman `Verifikasi Sertifikat` menampilkan hasil validasi nomor sertifikat (`CERT-MM2100-2026-FKKSM01`) beserta nama penerima, program, tanggal terbit, dan status akreditasi SKKNI/BNSP.</li>
+            <li><strong>Komponen Input, Navigasi &amp; Tombol:</strong> Slider galeri kegiatan pada halaman Profile, formulir pengiriman prospek pada halaman Hubungi Kami, serta kolom pencarian nomor registrasi sertifikat pada halaman Verifikasi Sertifikat.</li>
+            <li><strong>Aturan Validasi &amp; Keamanan:</strong> Formulir Hubungi Kami mewajibkan nama lengkap serta minimal salah satu saluran kontak (`email` atau `phone`) dengan pembatas laju `throttle:lead-submit`. Pencarian sertifikat publik membatasi panjang parameter dan menggunakan indeks unik `certificate_no`.</li>
+            <li><strong>Hasil Aksi &amp; Umpan Balik (SweetAlert2):</strong> Pengiriman formulir Hubungi Kami langsung menampilkan modal sukses SweetAlert2 dan mencatat prospek ke Dashboard Admin.</li>
+        </ul>
+        
+        <div class="figure-container">
+            <img src="file:///c:/Users/Dimas Erlansyah/Documents/PROJEK SAYA/fkksm/docs/screenshots/05_public_profile_fkksm.png" alt="Halaman Profile Resmi FKKSM Kawasan Industri MM2100 (`/profile/fkksm`)." class="screenshot-img"/>
+            <div class="figure-caption">Gambar F.2a. Halaman Profile Resmi FKKSM Kawasan Industri MM2100 (`/profile/fkksm`).</div>
+        </div>
+        
+        <div class="figure-container">
+            <img src="file:///c:/Users/Dimas Erlansyah/Documents/PROJEK SAYA/fkksm/docs/screenshots/06_public_members_directory.png" alt="Halaman Struktur Komite dan Direktori Industri MM2100 (`/members`)." class="screenshot-img"/>
+            <div class="figure-caption">Gambar F.2b. Halaman Struktur Komite dan Direktori Industri MM2100 (`/members`).</div>
+        </div>
+        
+        <div class="figure-container">
+            <img src="file:///c:/Users/Dimas Erlansyah/Documents/PROJEK SAYA/fkksm/docs/screenshots/07_public_berita_forum.png" alt="Halaman Pemberitaan, Edaran Regulasi, dan Buletin K3 Kawasan MM2100 (`/berita`)." class="screenshot-img"/>
+            <div class="figure-caption">Gambar F.2c. Halaman Pemberitaan, Edaran Regulasi, dan Buletin K3 Kawasan MM2100 (`/berita`).</div>
+        </div>
+        
+        <div class="figure-container">
+            <img src="file:///c:/Users/Dimas Erlansyah/Documents/PROJEK SAYA/fkksm/docs/screenshots/08_public_hubungi_kami.png" alt="Halaman Hubungi Sekretariat FKKSM MM2100 beserta formulir permohonan program (`/hubungi`)." class="screenshot-img"/>
+            <div class="figure-caption">Gambar F.2d. Halaman Hubungi Sekretariat FKKSM MM2100 beserta formulir permohonan program (`/hubungi`).</div>
+        </div>
+        
+        <div class="figure-container">
+            <img src="file:///c:/Users/Dimas Erlansyah/Documents/PROJEK SAYA/fkksm/docs/screenshots/09_public_verifikasi_sertifikat.png" alt="Halaman Verifikasi Keaslian Sertifikat Digital FKKSM MM2100 (`/verifikasi-sertifikat`)." class="screenshot-img"/>
+            <div class="figure-caption">Gambar F.2e. Halaman Verifikasi Keaslian Sertifikat Digital FKKSM MM2100 (`/verifikasi-sertifikat`).</div>
+        </div>
+        
+    </div>
+    
+
+    <!-- =================================================================== -->
+    <!-- BAGIAN G — FLOWCHART SISTEM, USE CASE, ARSITEKTUR & ERD -->
+    <!-- =================================================================== -->
+    <div class="page-break"></div>
+    <h2>BAGIAN G — FLOWCHART SISTEM, DIAGRAM USE CASE, ARSITEKTUR &amp; ERD</h2>
+    <p>Setiap alur proses bisnis pada FKKSM-LMS telah disusun dalam bentuk diagram alur (<em>flowchart</em>) standar per proses berdasarkan peran pengguna menggunakan simbol standar (<em>Terminator</em> untuk Mulai/Selesai, <em>Process</em> untuk pengolahan, <em>Input/Output</em> untuk masukan/keluaran, <em>Decision</em> untuk percabangan kondisi Ya/Tidak, dan <em>Database</em> untuk penyimpanan MySQL / Local Storage).</p>
+
+    <h3>G.1 Daftar Lengkap Alur Proses Bisnis Berdasarkan Role</h3>
+    <table class="doc-table">
+        <thead>
+            <tr>
+                <th style="width: 14%;">Role</th>
+                <th style="width: 28%;">Kode &amp; Rute Proses</th>
+                <th style="width: 58%;">Nama Proses &amp; Penjelasan Alur</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td><strong>Admin</strong></td><td><code>FLOW-ADM-01</code> (<code>/login</code>)</td><td>Proses Login, Proteksi Rate-Limiter (5x/menit), Regenerasi Sesi, dan Otorisasi Role Admin</td></tr>
+            <tr><td><strong>Admin</strong></td><td><code>FLOW-ADM-02</code> (<code>/lms/landing-cms</code>)</td><td>Pengelolaan Konten Dinamis Halaman Utama (<code>/</code>) melalui Admin Landing Page CMS &amp; Invalidasi Cache</td></tr>
+            <tr><td><strong>Admin &amp; Instructor</strong></td><td><code>FLOW-CRS-03</code> (<code>/lms/courses</code>)</td><td>Pembuatan Kursus Baru, Validasi Header Biner Gambar Sampul, dan Konfigurasi Lencana Skill Badges</td></tr>
+            <tr><td><strong>Admin &amp; Instructor</strong></td><td><code>FLOW-MAT-04</code> (<code>/lms/materials</code>)</td><td>Penyusunan Modul Silabus &amp; Materi 4 Tahap (Unggah Video MP4 ke Storage, E-Book, dan Kuis Latihan Soal)</td></tr>
+            <tr><td><strong>Admin</strong></td><td><code>FLOW-VCH-05</code> (<code>/lms/vouchers</code> &amp; <code>/lms/leads</code>)</td><td>Pembuatan Kode Voucher Subsidi Pelatihan dan Pengelolaan Status Tindak Lanjut Prospek Industri (Leads)</td></tr>
+            <tr><td><strong>Admin</strong></td><td><code>FLOW-USR-06</code> (<code>/lms/users</code> &amp; <code>/lms/certificates</code>)</td><td>Manajemen Pengguna &amp; Pengaturan Role (RBAC Anti-Escalation) serta Pencabutan/Pemulihan Sertifikat</td></tr>
+            <tr><td><strong>Student</strong></td><td><code>FLOW-STU-07</code> (<code>/lms/classroom/{course}</code>)</td><td>Pembelajaran Berurutan 4 Tahap (Video Local Storage → Materi → Latihan Soal ≥70%) dengan Penguncian Sequential</td></tr>
+            <tr><td><strong>Student</strong></td><td><code>FLOW-STU-08</code> (<code>/lms/classroom/{course}?step=final</code>)</td><td>Pengerjaan Latihan Akhir (Penilaian Akhir ≥70%), Penyelesaian Kursus, dan Penerbitan Sertifikat Otomatis</td></tr>
+            <tr><td><strong>Student &amp; Publik</strong></td><td><code>FLOW-PUB-09</code> (<code>/lms/vouchers/redeem</code> &amp; <code>/verifikasi-sertifikat</code>)</td><td>Penukaran Kode Voucher dengan Transaksi <code>lockForUpdate()</code>, Login Google SSO PKCE, dan Validasi Sertifikat Publik</td></tr>
+        </tbody>
+    </table>
+
+    <h3>G.2 Visualisasi Flowchart Utama Role Admin, Instruktur, Peserta, dan Publik</h3>
+    
+        <div class="flowchart-page">
+            
+    <div class="flowchart-box">
+        <div class="fc-title">Flowchart Admin — Proses Login, Rate Limiter, dan Otorisasi Role</div>
+        <div class="fc-subtitle">Alur autentikasi akun Administrator beserta pembentukan sesi terproteksi dan pemuatan hak akses penuh</div>
+        <svg viewBox="0 0 740 540" width="100%" height="460" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Plus Jakarta Sans, Arial, sans-serif">
+            <defs>
+                <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                    <path d="M 0 1 L 10 5 L 0 9 z" fill="#1E293B"/>
+                </marker>
+            </defs>
+
+            <!-- Start Terminator -->
+            <rect x="295" y="12" width="150" height="36" rx="18" fill="#FFFFFF" stroke="#1E293B" stroke-width="1.6"/>
+            <text x="370" y="34" text-anchor="middle" font-size="10.5" font-weight="700" fill="#0F172A">Mulai</text>
+            <line x1="370" y1="48" x2="370" y2="76" stroke="#1E293B" stroke-width="1.4" marker-end="url(#arrow)"/>
+
+            <!-- Process 1 -->
+            <rect x="235" y="78" width="270" height="44" fill="#FFFFFF" stroke="#1E293B" stroke-width="1.5"/>
+            <text x="370" y="104" text-anchor="middle" font-size="9.5" fill="#1E293B">Buka Halaman Login (/login)</text>
+            <line x1="370" y1="122" x2="370" y2="150" stroke="#1E293B" stroke-width="1.4" marker-end="url(#arrow)"/>
+
+            <!-- Input / Output Parallelogram -->
+            <polygon points="240,152 515,152 500,196 225,196" fill="#FFFFFF" stroke="#1E293B" stroke-width="1.5"/>
+            <text x="370" y="178" text-anchor="middle" font-size="9.2" fill="#1E293B">Input Email/Username & Kata Sandi</text>
+            <line x1="370" y1="196" x2="370" y2="222" stroke="#1E293B" stroke-width="1.4" marker-end="url(#arrow)"/>
+
+            <!-- Decision Diamond -->
+            <polygon points="370,224 505,264 370,304 235,264" fill="#FFFFFF" stroke="#1E293B" stroke-width="1.6"/>
+            <text x="370" y="267" text-anchor="middle" font-size="8.8" font-weight="700" fill="#0F172A">Format Valid & Rate Limit (<=5/mnt) Aman?</text>
+
+            <!-- Decision No Branch (Left) -->
+            <line x1="235" y1="264" x2="202" y2="264" stroke="#1E293B" stroke-width="1.4" marker-end="url(#arrow)"/>
+            <text x="219" y="257" text-anchor="middle" font-size="8.8" font-weight="700" fill="#475569">Tidak</text>
+            <polygon points="18,244 200,244 190,284 8,284" fill="#FFFFFF" stroke="#1E293B" stroke-width="1.4"/>
+            <text x="104" y="267" text-anchor="middle" font-size="8.2" fill="#1E293B">Tampilkan Peringatan & Blokir Sementara</text>
+            <polyline points="104,244 104,174 231,174" fill="none" stroke="#1E293B" stroke-width="1.3" marker-end="url(#arrow)"/>
+
+            <!-- Decision Yes Branch (Down) -->
+            <line x1="370" y1="304" x2="370" y2="336" stroke="#1E293B" stroke-width="1.4" marker-end="url(#arrow)"/>
+            <text x="382" y="322" font-size="9" font-weight="700" fill="#475569">Ya</text>
+
+            <!-- Process 2 -->
+            <rect x="235" y="338" width="270" height="46" fill="#FFFFFF" stroke="#1E293B" stroke-width="1.5"/>
+            <text x="370" y="365" text-anchor="middle" font-size="9.2" fill="#1E293B">Verifikasi Hash Bcrypt & Regenerasi Sesi</text>
+
+            <!-- Database Cylinder (Right) -->
+            <line x1="505" y1="361" x2="538" y2="361" stroke="#1E293B" stroke-width="1.3" stroke-dasharray="4 3" marker-end="url(#arrow)"/>
+            <path d="M 540 342 C 540 335, 730 335, 730 342 L 730 380 C 730 387, 540 387, 540 380 Z" fill="#FFFFFF" stroke="#1E293B" stroke-width="1.5"/>
+            <ellipse cx="635" cy="342" rx="95" ry="6" fill="#FFFFFF" stroke="#1E293B" stroke-width="1.5"/>
+            <text x="635" y="366" text-anchor="middle" font-size="8.2" font-weight="600" fill="#1E293B">MySQL: users & sessions</text>
+
+            <!-- Process 3 / Output -->
+            <line x1="370" y1="384" x2="370" y2="416" stroke="#1E293B" stroke-width="1.4" marker-end="url(#arrow)"/>
+            <polygon points="240,418 515,418 500,460 225,460" fill="#FFFFFF" stroke="#1E293B" stroke-width="1.5"/>
+            <text x="370" y="443" text-anchor="middle" font-size="9.2" fill="#1E293B">Buka Dashboard Admin + Modal SweetAlert2</text>
+
+            <!-- End Terminator -->
+            <line x1="370" y1="460" x2="370" y2="488" stroke="#1E293B" stroke-width="1.4" marker-end="url(#arrow)"/>
+            <rect x="295" y="490" width="150" height="36" rx="18" fill="#FFFFFF" stroke="#1E293B" stroke-width="1.6"/>
+            <text x="370" y="512" text-anchor="middle" font-size="10.5" font-weight="700" fill="#0F172A">Selesai</text>
+        </svg>
+    </div>
+    
+            <div class="figure-caption">Gambar G.1. Flowchart Admin — Proses Login, Rate Limiter, dan Otorisasi Role.</div>
+        </div>
+        
+        <div class="flowchart-page">
+            
+    <div class="flowchart-box">
+        <div class="fc-title">Flowchart Admin — Pengelolaan Konten Dinamis Landing Page CMS (Route /)</div>
+        <div class="fc-subtitle">Alur pembaruan banner, webinar, kursus terlaris, skill badges, lowongan kerja, dan FAQ oleh Admin</div>
+        <svg viewBox="0 0 740 540" width="100%" height="460" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Plus Jakarta Sans, Arial, sans-serif">
+            <defs>
+                <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                    <path d="M 0 1 L 10 5 L 0 9 z" fill="#1E293B"/>
+                </marker>
+            </defs>
+
+            <!-- Start Terminator -->
+            <rect x="295" y="12" width="150" height="36" rx="18" fill="#FFFFFF" stroke="#1E293B" stroke-width="1.6"/>
+            <text x="370" y="34" text-anchor="middle" font-size="10.5" font-weight="700" fill="#0F172A">Mulai</text>
+            <line x1="370" y1="48" x2="370" y2="76" stroke="#1E293B" stroke-width="1.4" marker-end="url(#arrow)"/>
+
+            <!-- Process 1 -->
+            <rect x="235" y="78" width="270" height="44" fill="#FFFFFF" stroke="#1E293B" stroke-width="1.5"/>
+            <text x="370" y="104" text-anchor="middle" font-size="9.5" fill="#1E293B">Buka Menu Kelola Landing Page (/lms/landing-cms)</text>
+            <line x1="370" y1="122" x2="370" y2="150" stroke="#1E293B" stroke-width="1.4" marker-end="url(#arrow)"/>
+
+            <!-- Input / Output Parallelogram -->
+            <polygon points="240,152 515,152 500,196 225,196" fill="#FFFFFF" stroke="#1E293B" stroke-width="1.5"/>
+            <text x="370" y="178" text-anchor="middle" font-size="9.2" fill="#1E293B">Pilih Section, Ubah Konten / Unggah Gambar</text>
+            <line x1="370" y1="196" x2="370" y2="222" stroke="#1E293B" stroke-width="1.4" marker-end="url(#arrow)"/>
+
+            <!-- Decision Diamond -->
+            <polygon points="370,224 505,264 370,304 235,264" fill="#FFFFFF" stroke="#1E293B" stroke-width="1.6"/>
+            <text x="370" y="267" text-anchor="middle" font-size="8.8" font-weight="700" fill="#0F172A">MIME Gambar (JPG/PNG/WEBP) & URL Aman?</text>
+
+            <!-- Decision No Branch (Left) -->
+            <line x1="235" y1="264" x2="202" y2="264" stroke="#1E293B" stroke-width="1.4" marker-end="url(#arrow)"/>
+            <text x="219" y="257" text-anchor="middle" font-size="8.8" font-weight="700" fill="#475569">Tidak</text>
+            <polygon points="18,244 200,244 190,284 8,284" fill="#FFFFFF" stroke="#1E293B" stroke-width="1.4"/>
+            <text x="104" y="267" text-anchor="middle" font-size="8.2" fill="#1E293B">Tolak Input & Tampilkan Modal Error</text>
+            <polyline points="104,244 104,174 231,174" fill="none" stroke="#1E293B" stroke-width="1.3" marker-end="url(#arrow)"/>
+
+            <!-- Decision Yes Branch (Down) -->
+            <line x1="370" y1="304" x2="370" y2="336" stroke="#1E293B" stroke-width="1.4" marker-end="url(#arrow)"/>
+            <text x="382" y="322" font-size="9" font-weight="700" fill="#475569">Ya</text>
+
+            <!-- Process 2 -->
+            <rect x="235" y="338" width="270" height="46" fill="#FFFFFF" stroke="#1E293B" stroke-width="1.5"/>
+            <text x="370" y="365" text-anchor="middle" font-size="9.2" fill="#1E293B">Simpan JSON Section & Flush Cache Beranda</text>
+
+            <!-- Database Cylinder (Right) -->
+            <line x1="505" y1="361" x2="538" y2="361" stroke="#1E293B" stroke-width="1.3" stroke-dasharray="4 3" marker-end="url(#arrow)"/>
+            <path d="M 540 342 C 540 335, 730 335, 730 342 L 730 380 C 730 387, 540 387, 540 380 Z" fill="#FFFFFF" stroke="#1E293B" stroke-width="1.5"/>
+            <ellipse cx="635" cy="342" rx="95" ry="6" fill="#FFFFFF" stroke="#1E293B" stroke-width="1.5"/>
+            <text x="635" y="366" text-anchor="middle" font-size="8.2" font-weight="600" fill="#1E293B">MySQL: landing_sections & activity_logs</text>
+
+            <!-- Process 3 / Output -->
+            <line x1="370" y1="384" x2="370" y2="416" stroke="#1E293B" stroke-width="1.4" marker-end="url(#arrow)"/>
+            <polygon points="240,418 515,418 500,460 225,460" fill="#FFFFFF" stroke="#1E293B" stroke-width="1.5"/>
+            <text x="370" y="443" text-anchor="middle" font-size="9.2" fill="#1E293B">Terbitkan ke Halaman Home (/) & Modal Sukses</text>
+
+            <!-- End Terminator -->
+            <line x1="370" y1="460" x2="370" y2="488" stroke="#1E293B" stroke-width="1.4" marker-end="url(#arrow)"/>
+            <rect x="295" y="490" width="150" height="36" rx="18" fill="#FFFFFF" stroke="#1E293B" stroke-width="1.6"/>
+            <text x="370" y="512" text-anchor="middle" font-size="10.5" font-weight="700" fill="#0F172A">Selesai</text>
+        </svg>
+    </div>
+    
+            <div class="figure-caption">Gambar G.2. Flowchart Admin — Pengelolaan Konten Dinamis Landing Page CMS (Route /).</div>
+        </div>
+        
+        <div class="flowchart-page">
+            
+    <div class="flowchart-box">
+        <div class="fc-title">Flowchart Admin & Instruktur — Pembuatan Kursus & Konfigurasi Skill Badges</div>
+        <div class="fc-subtitle">Alur pendaftaran kursus baru, unggah gambar sampul, pengaturan akses/harga, dan pemilihan skill badges</div>
+        <svg viewBox="0 0 740 540" width="100%" height="460" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Plus Jakarta Sans, Arial, sans-serif">
+            <defs>
+                <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                    <path d="M 0 1 L 10 5 L 0 9 z" fill="#1E293B"/>
+                </marker>
+            </defs>
+
+            <!-- Start Terminator -->
+            <rect x="295" y="12" width="150" height="36" rx="18" fill="#FFFFFF" stroke="#1E293B" stroke-width="1.6"/>
+            <text x="370" y="34" text-anchor="middle" font-size="10.5" font-weight="700" fill="#0F172A">Mulai</text>
+            <line x1="370" y1="48" x2="370" y2="76" stroke="#1E293B" stroke-width="1.4" marker-end="url(#arrow)"/>
+
+            <!-- Process 1 -->
+            <rect x="235" y="78" width="270" height="44" fill="#FFFFFF" stroke="#1E293B" stroke-width="1.5"/>
+            <text x="370" y="104" text-anchor="middle" font-size="9.5" fill="#1E293B">Buka Menu Modul -> Klik + Buat Kursus Baru</text>
+            <line x1="370" y1="122" x2="370" y2="150" stroke="#1E293B" stroke-width="1.4" marker-end="url(#arrow)"/>
+
+            <!-- Input / Output Parallelogram -->
+            <polygon points="240,152 515,152 500,196 225,196" fill="#FFFFFF" stroke="#1E293B" stroke-width="1.5"/>
+            <text x="370" y="178" text-anchor="middle" font-size="9.2" fill="#1E293B">Input Judul, Kategori, Harga, Sampul & Skill Badges</text>
+            <line x1="370" y1="196" x2="370" y2="222" stroke="#1E293B" stroke-width="1.4" marker-end="url(#arrow)"/>
+
+            <!-- Decision Diamond -->
+            <polygon points="370,224 505,264 370,304 235,264" fill="#FFFFFF" stroke="#1E293B" stroke-width="1.6"/>
+            <text x="370" y="267" text-anchor="middle" font-size="8.8" font-weight="700" fill="#0F172A">Data Kursus & Berkas Sampul Valid?</text>
+
+            <!-- Decision No Branch (Left) -->
+            <line x1="235" y1="264" x2="202" y2="264" stroke="#1E293B" stroke-width="1.4" marker-end="url(#arrow)"/>
+            <text x="219" y="257" text-anchor="middle" font-size="8.8" font-weight="700" fill="#475569">Tidak</text>
+            <polygon points="18,244 200,244 190,284 8,284" fill="#FFFFFF" stroke="#1E293B" stroke-width="1.4"/>
+            <text x="104" y="267" text-anchor="middle" font-size="8.2" fill="#1E293B">Tampilkan Pesan Validasi Formulir</text>
+            <polyline points="104,244 104,174 231,174" fill="none" stroke="#1E293B" stroke-width="1.3" marker-end="url(#arrow)"/>
+
+            <!-- Decision Yes Branch (Down) -->
+            <line x1="370" y1="304" x2="370" y2="336" stroke="#1E293B" stroke-width="1.4" marker-end="url(#arrow)"/>
+            <text x="382" y="322" font-size="9" font-weight="700" fill="#475569">Ya</text>
+
+            <!-- Process 2 -->
+            <rect x="235" y="338" width="270" height="46" fill="#FFFFFF" stroke="#1E293B" stroke-width="1.5"/>
+            <text x="370" y="365" text-anchor="middle" font-size="9.2" fill="#1E293B">Simpan Rekaman Kursus & Bersihkan Cache</text>
+
+            <!-- Database Cylinder (Right) -->
+            <line x1="505" y1="361" x2="538" y2="361" stroke="#1E293B" stroke-width="1.3" stroke-dasharray="4 3" marker-end="url(#arrow)"/>
+            <path d="M 540 342 C 540 335, 730 335, 730 342 L 730 380 C 730 387, 540 387, 540 380 Z" fill="#FFFFFF" stroke="#1E293B" stroke-width="1.5"/>
+            <ellipse cx="635" cy="342" rx="95" ry="6" fill="#FFFFFF" stroke="#1E293B" stroke-width="1.5"/>
+            <text x="635" y="366" text-anchor="middle" font-size="8.2" font-weight="600" fill="#1E293B">MySQL: courses & activity_logs</text>
+
+            <!-- Process 3 / Output -->
+            <line x1="370" y1="384" x2="370" y2="416" stroke="#1E293B" stroke-width="1.4" marker-end="url(#arrow)"/>
+            <polygon points="240,418 515,418 500,460 225,460" fill="#FFFFFF" stroke="#1E293B" stroke-width="1.5"/>
+            <text x="370" y="443" text-anchor="middle" font-size="9.2" fill="#1E293B">Tampilkan Halaman Detail Kursus Baru</text>
+
+            <!-- End Terminator -->
+            <line x1="370" y1="460" x2="370" y2="488" stroke="#1E293B" stroke-width="1.4" marker-end="url(#arrow)"/>
+            <rect x="295" y="490" width="150" height="36" rx="18" fill="#FFFFFF" stroke="#1E293B" stroke-width="1.6"/>
+            <text x="370" y="512" text-anchor="middle" font-size="10.5" font-weight="700" fill="#0F172A">Selesai</text>
+        </svg>
+    </div>
+    
+            <div class="figure-caption">Gambar G.3. Flowchart Admin & Instruktur — Pembuatan Kursus & Konfigurasi Skill Badges.</div>
+        </div>
+        
+        <div class="flowchart-page">
+            
+    <div class="flowchart-box">
+        <div class="fc-title">Flowchart Admin & Instruktur — Penyusunan Modul & Materi 4 Tahap (Video Storage & Kuis)</div>
+        <div class="fc-subtitle">Alur penambahan modul silabus serta tahapan Video (Storage), Materi E-Book, dan Latihan Soal</div>
+        <svg viewBox="0 0 740 540" width="100%" height="460" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Plus Jakarta Sans, Arial, sans-serif">
+            <defs>
+                <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                    <path d="M 0 1 L 10 5 L 0 9 z" fill="#1E293B"/>
+                </marker>
+            </defs>
+
+            <!-- Start Terminator -->
+            <rect x="295" y="12" width="150" height="36" rx="18" fill="#FFFFFF" stroke="#1E293B" stroke-width="1.6"/>
+            <text x="370" y="34" text-anchor="middle" font-size="10.5" font-weight="700" fill="#0F172A">Mulai</text>
+            <line x1="370" y1="48" x2="370" y2="76" stroke="#1E293B" stroke-width="1.4" marker-end="url(#arrow)"/>
+
+            <!-- Process 1 -->
+            <rect x="235" y="78" width="270" height="44" fill="#FFFFFF" stroke="#1E293B" stroke-width="1.5"/>
+            <text x="370" y="104" text-anchor="middle" font-size="9.5" fill="#1E293B">Buka Halaman Silabus & Materi (/lms/materials)</text>
+            <line x1="370" y1="122" x2="370" y2="150" stroke="#1E293B" stroke-width="1.4" marker-end="url(#arrow)"/>
+
+            <!-- Input / Output Parallelogram -->
+            <polygon points="240,152 515,152 500,196 225,196" fill="#FFFFFF" stroke="#1E293B" stroke-width="1.5"/>
+            <text x="370" y="178" text-anchor="middle" font-size="9.2" fill="#1E293B">Pilih Modul, Tipe Tahap, Unggah Video MP4 / Soal</text>
+            <line x1="370" y1="196" x2="370" y2="222" stroke="#1E293B" stroke-width="1.4" marker-end="url(#arrow)"/>
+
+            <!-- Decision Diamond -->
+            <polygon points="370,224 505,264 370,304 235,264" fill="#FFFFFF" stroke="#1E293B" stroke-width="1.6"/>
+            <text x="370" y="267" text-anchor="middle" font-size="8.8" font-weight="700" fill="#0F172A">Modul Milik Kursus Ini & Video <= 20MB?</text>
+
+            <!-- Decision No Branch (Left) -->
+            <line x1="235" y1="264" x2="202" y2="264" stroke="#1E293B" stroke-width="1.4" marker-end="url(#arrow)"/>
+            <text x="219" y="257" text-anchor="middle" font-size="8.8" font-weight="700" fill="#475569">Tidak</text>
+            <polygon points="18,244 200,244 190,284 8,284" fill="#FFFFFF" stroke="#1E293B" stroke-width="1.4"/>
+            <text x="104" y="267" text-anchor="middle" font-size="8.2" fill="#1E293B">Tampilkan Peringatan Format / Ukuran Berkas</text>
+            <polyline points="104,244 104,174 231,174" fill="none" stroke="#1E293B" stroke-width="1.3" marker-end="url(#arrow)"/>
+
+            <!-- Decision Yes Branch (Down) -->
+            <line x1="370" y1="304" x2="370" y2="336" stroke="#1E293B" stroke-width="1.4" marker-end="url(#arrow)"/>
+            <text x="382" y="322" font-size="9" font-weight="700" fill="#475569">Ya</text>
+
+            <!-- Process 2 -->
+            <rect x="235" y="338" width="270" height="46" fill="#FFFFFF" stroke="#1E293B" stroke-width="1.5"/>
+            <text x="370" y="365" text-anchor="middle" font-size="9.2" fill="#1E293B">Simpan Video ke Storage & Catat Urutan Tahap</text>
+
+            <!-- Database Cylinder (Right) -->
+            <line x1="505" y1="361" x2="538" y2="361" stroke="#1E293B" stroke-width="1.3" stroke-dasharray="4 3" marker-end="url(#arrow)"/>
+            <path d="M 540 342 C 540 335, 730 335, 730 342 L 730 380 C 730 387, 540 387, 540 380 Z" fill="#FFFFFF" stroke="#1E293B" stroke-width="1.5"/>
+            <ellipse cx="635" cy="342" rx="95" ry="6" fill="#FFFFFF" stroke="#1E293B" stroke-width="1.5"/>
+            <text x="635" y="366" text-anchor="middle" font-size="8.2" font-weight="600" fill="#1E293B">Storage: public/videos & MySQL: materials</text>
+
+            <!-- Process 3 / Output -->
+            <line x1="370" y1="384" x2="370" y2="416" stroke="#1E293B" stroke-width="1.4" marker-end="url(#arrow)"/>
+            <polygon points="240,418 515,418 500,460 225,460" fill="#FFFFFF" stroke="#1E293B" stroke-width="1.5"/>
+            <text x="370" y="443" text-anchor="middle" font-size="9.2" fill="#1E293B">Tampilkan Tahap Baru pada Silabus Kursus</text>
+
+            <!-- End Terminator -->
+            <line x1="370" y1="460" x2="370" y2="488" stroke="#1E293B" stroke-width="1.4" marker-end="url(#arrow)"/>
+            <rect x="295" y="490" width="150" height="36" rx="18" fill="#FFFFFF" stroke="#1E293B" stroke-width="1.6"/>
+            <text x="370" y="512" text-anchor="middle" font-size="10.5" font-weight="700" fill="#0F172A">Selesai</text>
+        </svg>
+    </div>
+    
+            <div class="figure-caption">Gambar G.4. Flowchart Admin & Instruktur — Penyusunan Modul & Materi 4 Tahap (Video Storage & Kuis).</div>
+        </div>
+        
+        <div class="flowchart-page">
+            
+    <div class="flowchart-box">
+        <div class="fc-title">Flowchart Admin — Pembuatan Kode Voucher & Penanganan Prospek Industri (Leads)</div>
+        <div class="fc-subtitle">Alur penerbitan kupon subsidi pelatihan serta pembaruan status tindak lanjut permintaan perusahaan</div>
+        <svg viewBox="0 0 740 540" width="100%" height="460" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Plus Jakarta Sans, Arial, sans-serif">
+            <defs>
+                <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                    <path d="M 0 1 L 10 5 L 0 9 z" fill="#1E293B"/>
+                </marker>
+            </defs>
+
+            <!-- Start Terminator -->
+            <rect x="295" y="12" width="150" height="36" rx="18" fill="#FFFFFF" stroke="#1E293B" stroke-width="1.6"/>
+            <text x="370" y="34" text-anchor="middle" font-size="10.5" font-weight="700" fill="#0F172A">Mulai</text>
+            <line x1="370" y1="48" x2="370" y2="76" stroke="#1E293B" stroke-width="1.4" marker-end="url(#arrow)"/>
+
+            <!-- Process 1 -->
+            <rect x="235" y="78" width="270" height="44" fill="#FFFFFF" stroke="#1E293B" stroke-width="1.5"/>
+            <text x="370" y="104" text-anchor="middle" font-size="9.5" fill="#1E293B">Buka Menu Voucher (/lms/vouchers) atau Leads</text>
+            <line x1="370" y1="122" x2="370" y2="150" stroke="#1E293B" stroke-width="1.4" marker-end="url(#arrow)"/>
+
+            <!-- Input / Output Parallelogram -->
+            <polygon points="240,152 515,152 500,196 225,196" fill="#FFFFFF" stroke="#1E293B" stroke-width="1.5"/>
+            <text x="370" y="178" text-anchor="middle" font-size="9.2" fill="#1E293B">Input Kode Voucher Baru / Ubah Status Lead</text>
+            <line x1="370" y1="196" x2="370" y2="222" stroke="#1E293B" stroke-width="1.4" marker-end="url(#arrow)"/>
+
+            <!-- Decision Diamond -->
+            <polygon points="370,224 505,264 370,304 235,264" fill="#FFFFFF" stroke="#1E293B" stroke-width="1.6"/>
+            <text x="370" y="267" text-anchor="middle" font-size="8.8" font-weight="700" fill="#0F172A">Kode Unik & Parameter Kuota/Status Valid?</text>
+
+            <!-- Decision No Branch (Left) -->
+            <line x1="235" y1="264" x2="202" y2="264" stroke="#1E293B" stroke-width="1.4" marker-end="url(#arrow)"/>
+            <text x="219" y="257" text-anchor="middle" font-size="8.8" font-weight="700" fill="#475569">Tidak</text>
+            <polygon points="18,244 200,244 190,284 8,284" fill="#FFFFFF" stroke="#1E293B" stroke-width="1.4"/>
+            <text x="104" y="267" text-anchor="middle" font-size="8.2" fill="#1E293B">Tampilkan Modal Peringatan Validasi</text>
+            <polyline points="104,244 104,174 231,174" fill="none" stroke="#1E293B" stroke-width="1.3" marker-end="url(#arrow)"/>
+
+            <!-- Decision Yes Branch (Down) -->
+            <line x1="370" y1="304" x2="370" y2="336" stroke="#1E293B" stroke-width="1.4" marker-end="url(#arrow)"/>
+            <text x="382" y="322" font-size="9" font-weight="700" fill="#475569">Ya</text>
+
+            <!-- Process 2 -->
+            <rect x="235" y="338" width="270" height="46" fill="#FFFFFF" stroke="#1E293B" stroke-width="1.5"/>
+            <text x="370" y="365" text-anchor="middle" font-size="9.2" fill="#1E293B">Simpan Voucher / Status Lead & Catat Audit</text>
+
+            <!-- Database Cylinder (Right) -->
+            <line x1="505" y1="361" x2="538" y2="361" stroke="#1E293B" stroke-width="1.3" stroke-dasharray="4 3" marker-end="url(#arrow)"/>
+            <path d="M 540 342 C 540 335, 730 335, 730 342 L 730 380 C 730 387, 540 387, 540 380 Z" fill="#FFFFFF" stroke="#1E293B" stroke-width="1.5"/>
+            <ellipse cx="635" cy="342" rx="95" ry="6" fill="#FFFFFF" stroke="#1E293B" stroke-width="1.5"/>
+            <text x="635" y="366" text-anchor="middle" font-size="8.2" font-weight="600" fill="#1E293B">MySQL: vouchers, leads & activity_logs</text>
+
+            <!-- Process 3 / Output -->
+            <line x1="370" y1="384" x2="370" y2="416" stroke="#1E293B" stroke-width="1.4" marker-end="url(#arrow)"/>
+            <polygon points="240,418 515,418 500,460 225,460" fill="#FFFFFF" stroke="#1E293B" stroke-width="1.5"/>
+            <text x="370" y="443" text-anchor="middle" font-size="9.2" fill="#1E293B">Tampilkan Daftar Terbaru & Modal SweetAlert2</text>
+
+            <!-- End Terminator -->
+            <line x1="370" y1="460" x2="370" y2="488" stroke="#1E293B" stroke-width="1.4" marker-end="url(#arrow)"/>
+            <rect x="295" y="490" width="150" height="36" rx="18" fill="#FFFFFF" stroke="#1E293B" stroke-width="1.6"/>
+            <text x="370" y="512" text-anchor="middle" font-size="10.5" font-weight="700" fill="#0F172A">Selesai</text>
+        </svg>
+    </div>
+    
+            <div class="figure-caption">Gambar G.5. Flowchart Admin — Pembuatan Kode Voucher & Penanganan Prospek Industri (Leads).</div>
+        </div>
+        
+        <div class="flowchart-page">
+            
+    <div class="flowchart-box">
+        <div class="fc-title">Flowchart Admin — Manajemen Pengguna, Pengaturan Role (RBAC), dan Pencabutan Sertifikat</div>
+        <div class="fc-subtitle">Alur perubahan peran pengguna, penonaktifan akun, serta pencabutan/pemulihan keabsahan sertifikat</div>
+        <svg viewBox="0 0 740 540" width="100%" height="460" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Plus Jakarta Sans, Arial, sans-serif">
+            <defs>
+                <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                    <path d="M 0 1 L 10 5 L 0 9 z" fill="#1E293B"/>
+                </marker>
+            </defs>
+
+            <!-- Start Terminator -->
+            <rect x="295" y="12" width="150" height="36" rx="18" fill="#FFFFFF" stroke="#1E293B" stroke-width="1.6"/>
+            <text x="370" y="34" text-anchor="middle" font-size="10.5" font-weight="700" fill="#0F172A">Mulai</text>
+            <line x1="370" y1="48" x2="370" y2="76" stroke="#1E293B" stroke-width="1.4" marker-end="url(#arrow)"/>
+
+            <!-- Process 1 -->
+            <rect x="235" y="78" width="270" height="44" fill="#FFFFFF" stroke="#1E293B" stroke-width="1.5"/>
+            <text x="370" y="104" text-anchor="middle" font-size="9.5" fill="#1E293B">Buka Menu Users (/lms/users) atau Sertifikat</text>
+            <line x1="370" y1="122" x2="370" y2="150" stroke="#1E293B" stroke-width="1.4" marker-end="url(#arrow)"/>
+
+            <!-- Input / Output Parallelogram -->
+            <polygon points="240,152 515,152 500,196 225,196" fill="#FFFFFF" stroke="#1E293B" stroke-width="1.5"/>
+            <text x="370" y="178" text-anchor="middle" font-size="9.2" fill="#1E293B">Pilih Role Baru / Toggle Status Akun atau Sertifikat</text>
+            <line x1="370" y1="196" x2="370" y2="222" stroke="#1E293B" stroke-width="1.4" marker-end="url(#arrow)"/>
+
+            <!-- Decision Diamond -->
+            <polygon points="370,224 505,264 370,304 235,264" fill="#FFFFFF" stroke="#1E293B" stroke-width="1.6"/>
+            <text x="370" y="267" text-anchor="middle" font-size="8.8" font-weight="700" fill="#0F172A">Target Bukan Diri Sendiri / Super Admin?</text>
+
+            <!-- Decision No Branch (Left) -->
+            <line x1="235" y1="264" x2="202" y2="264" stroke="#1E293B" stroke-width="1.4" marker-end="url(#arrow)"/>
+            <text x="219" y="257" text-anchor="middle" font-size="8.8" font-weight="700" fill="#475569">Tidak</text>
+            <polygon points="18,244 200,244 190,284 8,284" fill="#FFFFFF" stroke="#1E293B" stroke-width="1.4"/>
+            <text x="104" y="267" text-anchor="middle" font-size="8.2" fill="#1E293B">Tolak Aksi (403 / Modal Peringatan Keamanan)</text>
+            <polyline points="104,244 104,174 231,174" fill="none" stroke="#1E293B" stroke-width="1.3" marker-end="url(#arrow)"/>
+
+            <!-- Decision Yes Branch (Down) -->
+            <line x1="370" y1="304" x2="370" y2="336" stroke="#1E293B" stroke-width="1.4" marker-end="url(#arrow)"/>
+            <text x="382" y="322" font-size="9" font-weight="700" fill="#475569">Ya</text>
+
+            <!-- Process 2 -->
+            <rect x="235" y="338" width="270" height="46" fill="#FFFFFF" stroke="#1E293B" stroke-width="1.5"/>
+            <text x="370" y="365" text-anchor="middle" font-size="9.2" fill="#1E293B">Perbarui Role/Status & Rekam Jejak Audit</text>
+
+            <!-- Database Cylinder (Right) -->
+            <line x1="505" y1="361" x2="538" y2="361" stroke="#1E293B" stroke-width="1.3" stroke-dasharray="4 3" marker-end="url(#arrow)"/>
+            <path d="M 540 342 C 540 335, 730 335, 730 342 L 730 380 C 730 387, 540 387, 540 380 Z" fill="#FFFFFF" stroke="#1E293B" stroke-width="1.5"/>
+            <ellipse cx="635" cy="342" rx="95" ry="6" fill="#FFFFFF" stroke="#1E293B" stroke-width="1.5"/>
+            <text x="635" y="366" text-anchor="middle" font-size="8.2" font-weight="600" fill="#1E293B">MySQL: users, certificates & activity_logs</text>
+
+            <!-- Process 3 / Output -->
+            <line x1="370" y1="384" x2="370" y2="416" stroke="#1E293B" stroke-width="1.4" marker-end="url(#arrow)"/>
+            <polygon points="240,418 515,418 500,460 225,460" fill="#FFFFFF" stroke="#1E293B" stroke-width="1.5"/>
+            <text x="370" y="443" text-anchor="middle" font-size="9.2" fill="#1E293B">Tampilkan Status Baru & Modal SweetAlert2</text>
+
+            <!-- End Terminator -->
+            <line x1="370" y1="460" x2="370" y2="488" stroke="#1E293B" stroke-width="1.4" marker-end="url(#arrow)"/>
+            <rect x="295" y="490" width="150" height="36" rx="18" fill="#FFFFFF" stroke="#1E293B" stroke-width="1.6"/>
+            <text x="370" y="512" text-anchor="middle" font-size="10.5" font-weight="700" fill="#0F172A">Selesai</text>
+        </svg>
+    </div>
+    
+            <div class="figure-caption">Gambar G.6. Flowchart Admin — Manajemen Pengguna, Pengaturan Role (RBAC), dan Pencabutan Sertifikat.</div>
+        </div>
+        
+        <div class="flowchart-page">
+            
+    <div class="flowchart-box">
+        <div class="fc-title">Flowchart Peserta (Student) — Pembelajaran Berurutan 4 Tahap (Video -> Materi -> Latihan Soal)</div>
+        <div class="fc-subtitle">Alur penguncian berurutan satu per satu, streaming video ringan dari storage, dan validasi kuis modul >=70%</div>
+        <svg viewBox="0 0 740 540" width="100%" height="460" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Plus Jakarta Sans, Arial, sans-serif">
+            <defs>
+                <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                    <path d="M 0 1 L 10 5 L 0 9 z" fill="#1E293B"/>
+                </marker>
+            </defs>
+
+            <!-- Start Terminator -->
+            <rect x="295" y="12" width="150" height="36" rx="18" fill="#FFFFFF" stroke="#1E293B" stroke-width="1.6"/>
+            <text x="370" y="34" text-anchor="middle" font-size="10.5" font-weight="700" fill="#0F172A">Mulai</text>
+            <line x1="370" y1="48" x2="370" y2="76" stroke="#1E293B" stroke-width="1.4" marker-end="url(#arrow)"/>
+
+            <!-- Process 1 -->
+            <rect x="235" y="78" width="270" height="44" fill="#FFFFFF" stroke="#1E293B" stroke-width="1.5"/>
+            <text x="370" y="104" text-anchor="middle" font-size="9.5" fill="#1E293B">Buka Ruang Belajar Kursus (/lms/classroom/{id})</text>
+            <line x1="370" y1="122" x2="370" y2="150" stroke="#1E293B" stroke-width="1.4" marker-end="url(#arrow)"/>
+
+            <!-- Input / Output Parallelogram -->
+            <polygon points="240,152 515,152 500,196 225,196" fill="#FFFFFF" stroke="#1E293B" stroke-width="1.5"/>
+            <text x="370" y="178" text-anchor="middle" font-size="9.2" fill="#1E293B">Tonton Video Storage / Baca Materi / Jawab Kuis</text>
+            <line x1="370" y1="196" x2="370" y2="222" stroke="#1E293B" stroke-width="1.4" marker-end="url(#arrow)"/>
+
+            <!-- Decision Diamond -->
+            <polygon points="370,224 505,264 370,304 235,264" fill="#FFFFFF" stroke="#1E293B" stroke-width="1.6"/>
+            <text x="370" y="267" text-anchor="middle" font-size="8.8" font-weight="700" fill="#0F172A">Tahap Sebelumnya Selesai & Skor Kuis >= 70%?</text>
+
+            <!-- Decision No Branch (Left) -->
+            <line x1="235" y1="264" x2="202" y2="264" stroke="#1E293B" stroke-width="1.4" marker-end="url(#arrow)"/>
+            <text x="219" y="257" text-anchor="middle" font-size="8.8" font-weight="700" fill="#475569">Tidak</text>
+            <polygon points="18,244 200,244 190,284 8,284" fill="#FFFFFF" stroke="#1E293B" stroke-width="1.4"/>
+            <text x="104" y="267" text-anchor="middle" font-size="8.2" fill="#1E293B">Kunci Tahap & Tampilkan Modal SweetAlert2</text>
+            <polyline points="104,244 104,174 231,174" fill="none" stroke="#1E293B" stroke-width="1.3" marker-end="url(#arrow)"/>
+
+            <!-- Decision Yes Branch (Down) -->
+            <line x1="370" y1="304" x2="370" y2="336" stroke="#1E293B" stroke-width="1.4" marker-end="url(#arrow)"/>
+            <text x="382" y="322" font-size="9" font-weight="700" fill="#475569">Ya</text>
+
+            <!-- Process 2 -->
+            <rect x="235" y="338" width="270" height="46" fill="#FFFFFF" stroke="#1E293B" stroke-width="1.5"/>
+            <text x="370" y="365" text-anchor="middle" font-size="9.2" fill="#1E293B">Simpan Progres Tahap & Buka Tahap Berikutnya</text>
+
+            <!-- Database Cylinder (Right) -->
+            <line x1="505" y1="361" x2="538" y2="361" stroke="#1E293B" stroke-width="1.3" stroke-dasharray="4 3" marker-end="url(#arrow)"/>
+            <path d="M 540 342 C 540 335, 730 335, 730 342 L 730 380 C 730 387, 540 387, 540 380 Z" fill="#FFFFFF" stroke="#1E293B" stroke-width="1.5"/>
+            <ellipse cx="635" cy="342" rx="95" ry="6" fill="#FFFFFF" stroke="#1E293B" stroke-width="1.5"/>
+            <text x="635" y="366" text-anchor="middle" font-size="8.2" font-weight="600" fill="#1E293B">MySQL: user_progress & activity_logs</text>
+
+            <!-- Process 3 / Output -->
+            <line x1="370" y1="384" x2="370" y2="416" stroke="#1E293B" stroke-width="1.4" marker-end="url(#arrow)"/>
+            <polygon points="240,418 515,418 500,460 225,460" fill="#FFFFFF" stroke="#1E293B" stroke-width="1.5"/>
+            <text x="370" y="443" text-anchor="middle" font-size="9.2" fill="#1E293B">Arahkan Otomatis ke Tahap Selanjutnya</text>
+
+            <!-- End Terminator -->
+            <line x1="370" y1="460" x2="370" y2="488" stroke="#1E293B" stroke-width="1.4" marker-end="url(#arrow)"/>
+            <rect x="295" y="490" width="150" height="36" rx="18" fill="#FFFFFF" stroke="#1E293B" stroke-width="1.6"/>
+            <text x="370" y="512" text-anchor="middle" font-size="10.5" font-weight="700" fill="#0F172A">Selesai</text>
+        </svg>
+    </div>
+    
+            <div class="figure-caption">Gambar G.7. Flowchart Peserta (Student) — Pembelajaran Berurutan 4 Tahap (Video -> Materi -> Latihan Soal).</div>
+        </div>
+        
+        <div class="flowchart-page">
+            
+    <div class="flowchart-box">
+        <div class="fc-title">Flowchart Peserta (Student) — Pengerjaan Latihan Akhir & Penerbitan Sertifikat Otomatis</div>
+        <div class="fc-subtitle">Alur pemeriksaan ketuntasan seluruh modul 100%, penilaian otomatis Latihan Akhir, dan penerbitan sertifikat</div>
+        <svg viewBox="0 0 740 540" width="100%" height="460" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Plus Jakarta Sans, Arial, sans-serif">
+            <defs>
+                <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                    <path d="M 0 1 L 10 5 L 0 9 z" fill="#1E293B"/>
+                </marker>
+            </defs>
+
+            <!-- Start Terminator -->
+            <rect x="295" y="12" width="150" height="36" rx="18" fill="#FFFFFF" stroke="#1E293B" stroke-width="1.6"/>
+            <text x="370" y="34" text-anchor="middle" font-size="10.5" font-weight="700" fill="#0F172A">Mulai</text>
+            <line x1="370" y1="48" x2="370" y2="76" stroke="#1E293B" stroke-width="1.4" marker-end="url(#arrow)"/>
+
+            <!-- Process 1 -->
+            <rect x="235" y="78" width="270" height="44" fill="#FFFFFF" stroke="#1E293B" stroke-width="1.5"/>
+            <text x="370" y="104" text-anchor="middle" font-size="9.5" fill="#1E293B">Buka Tahap 4: Latihan Akhir (?step=final)</text>
+            <line x1="370" y1="122" x2="370" y2="150" stroke="#1E293B" stroke-width="1.4" marker-end="url(#arrow)"/>
+
+            <!-- Input / Output Parallelogram -->
+            <polygon points="240,152 515,152 500,196 225,196" fill="#FFFFFF" stroke="#1E293B" stroke-width="1.5"/>
+            <text x="370" y="178" text-anchor="middle" font-size="9.2" fill="#1E293B">Jawab Seluruh Soal Evaluasi Akhir & Refleksi</text>
+            <line x1="370" y1="196" x2="370" y2="222" stroke="#1E293B" stroke-width="1.4" marker-end="url(#arrow)"/>
+
+            <!-- Decision Diamond -->
+            <polygon points="370,224 505,264 370,304 235,264" fill="#FFFFFF" stroke="#1E293B" stroke-width="1.6"/>
+            <text x="370" y="267" text-anchor="middle" font-size="8.8" font-weight="700" fill="#0F172A">Seluruh Modul Selesai & Nilai Akhir >= 70%?</text>
+
+            <!-- Decision No Branch (Left) -->
+            <line x1="235" y1="264" x2="202" y2="264" stroke="#1E293B" stroke-width="1.4" marker-end="url(#arrow)"/>
+            <text x="219" y="257" text-anchor="middle" font-size="8.8" font-weight="700" fill="#475569">Tidak</text>
+            <polygon points="18,244 200,244 190,284 8,284" fill="#FFFFFF" stroke="#1E293B" stroke-width="1.4"/>
+            <text x="104" y="267" text-anchor="middle" font-size="8.2" fill="#1E293B">Simpan Skor & Minta Peserta Mengulang Ujian</text>
+            <polyline points="104,244 104,174 231,174" fill="none" stroke="#1E293B" stroke-width="1.3" marker-end="url(#arrow)"/>
+
+            <!-- Decision Yes Branch (Down) -->
+            <line x1="370" y1="304" x2="370" y2="336" stroke="#1E293B" stroke-width="1.4" marker-end="url(#arrow)"/>
+            <text x="382" y="322" font-size="9" font-weight="700" fill="#475569">Ya</text>
+
+            <!-- Process 2 -->
+            <rect x="235" y="338" width="270" height="46" fill="#FFFFFF" stroke="#1E293B" stroke-width="1.5"/>
+            <text x="370" y="365" text-anchor="middle" font-size="9.2" fill="#1E293B">Tandai Kursus Selesai & Terbitkan Sertifikat Unik</text>
+
+            <!-- Database Cylinder (Right) -->
+            <line x1="505" y1="361" x2="538" y2="361" stroke="#1E293B" stroke-width="1.3" stroke-dasharray="4 3" marker-end="url(#arrow)"/>
+            <path d="M 540 342 C 540 335, 730 335, 730 342 L 730 380 C 730 387, 540 387, 540 380 Z" fill="#FFFFFF" stroke="#1E293B" stroke-width="1.5"/>
+            <ellipse cx="635" cy="342" rx="95" ry="6" fill="#FFFFFF" stroke="#1E293B" stroke-width="1.5"/>
+            <text x="635" y="366" text-anchor="middle" font-size="8.2" font-weight="600" fill="#1E293B">MySQL: assessment_submissions & certificates</text>
+
+            <!-- Process 3 / Output -->
+            <line x1="370" y1="384" x2="370" y2="416" stroke="#1E293B" stroke-width="1.4" marker-end="url(#arrow)"/>
+            <polygon points="240,418 515,418 500,460 225,460" fill="#FFFFFF" stroke="#1E293B" stroke-width="1.5"/>
+            <text x="370" y="443" text-anchor="middle" font-size="9.2" fill="#1E293B">Tampilkan Sertifikat Kompetensi Resmi FKKSM</text>
+
+            <!-- End Terminator -->
+            <line x1="370" y1="460" x2="370" y2="488" stroke="#1E293B" stroke-width="1.4" marker-end="url(#arrow)"/>
+            <rect x="295" y="490" width="150" height="36" rx="18" fill="#FFFFFF" stroke="#1E293B" stroke-width="1.6"/>
+            <text x="370" y="512" text-anchor="middle" font-size="10.5" font-weight="700" fill="#0F172A">Selesai</text>
+        </svg>
+    </div>
+    
+            <div class="figure-caption">Gambar G.8. Flowchart Peserta (Student) — Pengerjaan Latihan Akhir & Penerbitan Sertifikat Otomatis.</div>
+        </div>
+        
+        <div class="flowchart-page">
+            
+    <div class="flowchart-box">
+        <div class="fc-title">Flowchart Peserta & Publik — Penukaran Kode Voucher, Google SSO PKCE, dan Verifikasi Sertifikat</div>
+        <div class="fc-subtitle">Alur pemeriksaan/klaim voucher dengan penguncian transaksi serta validasi keabsahan sertifikat publik</div>
+        <svg viewBox="0 0 740 540" width="100%" height="460" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Plus Jakarta Sans, Arial, sans-serif">
+            <defs>
+                <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                    <path d="M 0 1 L 10 5 L 0 9 z" fill="#1E293B"/>
+                </marker>
+            </defs>
+
+            <!-- Start Terminator -->
+            <rect x="295" y="12" width="150" height="36" rx="18" fill="#FFFFFF" stroke="#1E293B" stroke-width="1.6"/>
+            <text x="370" y="34" text-anchor="middle" font-size="10.5" font-weight="700" fill="#0F172A">Mulai</text>
+            <line x1="370" y1="48" x2="370" y2="76" stroke="#1E293B" stroke-width="1.4" marker-end="url(#arrow)"/>
+
+            <!-- Process 1 -->
+            <rect x="235" y="78" width="270" height="44" fill="#FFFFFF" stroke="#1E293B" stroke-width="1.5"/>
+            <text x="370" y="104" text-anchor="middle" font-size="9.5" fill="#1E293B">Buka Menu Voucher atau Verifikasi Sertifikat</text>
+            <line x1="370" y1="122" x2="370" y2="150" stroke="#1E293B" stroke-width="1.4" marker-end="url(#arrow)"/>
+
+            <!-- Input / Output Parallelogram -->
+            <polygon points="240,152 515,152 500,196 225,196" fill="#FFFFFF" stroke="#1E293B" stroke-width="1.5"/>
+            <text x="370" y="178" text-anchor="middle" font-size="9.2" fill="#1E293B">Masukkan Kode Voucher / Nomor Registrasi Sertifikat</text>
+            <line x1="370" y1="196" x2="370" y2="222" stroke="#1E293B" stroke-width="1.4" marker-end="url(#arrow)"/>
+
+            <!-- Decision Diamond -->
+            <polygon points="370,224 505,264 370,304 235,264" fill="#FFFFFF" stroke="#1E293B" stroke-width="1.6"/>
+            <text x="370" y="267" text-anchor="middle" font-size="8.8" font-weight="700" fill="#0F172A">Kode Aktif, Kuota Tersedia & Belum Dipakai?</text>
+
+            <!-- Decision No Branch (Left) -->
+            <line x1="235" y1="264" x2="202" y2="264" stroke="#1E293B" stroke-width="1.4" marker-end="url(#arrow)"/>
+            <text x="219" y="257" text-anchor="middle" font-size="8.8" font-weight="700" fill="#475569">Tidak</text>
+            <polygon points="18,244 200,244 190,284 8,284" fill="#FFFFFF" stroke="#1E293B" stroke-width="1.4"/>
+            <text x="104" y="267" text-anchor="middle" font-size="8.2" fill="#1E293B">Tampilkan Status Tidak Valid / Kedaluwarsa</text>
+            <polyline points="104,244 104,174 231,174" fill="none" stroke="#1E293B" stroke-width="1.3" marker-end="url(#arrow)"/>
+
+            <!-- Decision Yes Branch (Down) -->
+            <line x1="370" y1="304" x2="370" y2="336" stroke="#1E293B" stroke-width="1.4" marker-end="url(#arrow)"/>
+            <text x="382" y="322" font-size="9" font-weight="700" fill="#475569">Ya</text>
+
+            <!-- Process 2 -->
+            <rect x="235" y="338" width="270" height="46" fill="#FFFFFF" stroke="#1E293B" stroke-width="1.5"/>
+            <text x="370" y="365" text-anchor="middle" font-size="9.2" fill="#1E293B">Kunci Baris (lockForUpdate) & Catat Penukaran</text>
+
+            <!-- Database Cylinder (Right) -->
+            <line x1="505" y1="361" x2="538" y2="361" stroke="#1E293B" stroke-width="1.3" stroke-dasharray="4 3" marker-end="url(#arrow)"/>
+            <path d="M 540 342 C 540 335, 730 335, 730 342 L 730 380 C 730 387, 540 387, 540 380 Z" fill="#FFFFFF" stroke="#1E293B" stroke-width="1.5"/>
+            <ellipse cx="635" cy="342" rx="95" ry="6" fill="#FFFFFF" stroke="#1E293B" stroke-width="1.5"/>
+            <text x="635" y="366" text-anchor="middle" font-size="8.2" font-weight="600" fill="#1E293B">MySQL: voucher_redemptions & certificates</text>
+
+            <!-- Process 3 / Output -->
+            <line x1="370" y1="384" x2="370" y2="416" stroke="#1E293B" stroke-width="1.4" marker-end="url(#arrow)"/>
+            <polygon points="240,418 515,418 500,460 225,460" fill="#FFFFFF" stroke="#1E293B" stroke-width="1.5"/>
+            <text x="370" y="443" text-anchor="middle" font-size="9.2" fill="#1E293B">Buka Akses Kursus / Tampilkan Piagam Valid</text>
+
+            <!-- End Terminator -->
+            <line x1="370" y1="460" x2="370" y2="488" stroke="#1E293B" stroke-width="1.4" marker-end="url(#arrow)"/>
+            <rect x="295" y="490" width="150" height="36" rx="18" fill="#FFFFFF" stroke="#1E293B" stroke-width="1.6"/>
+            <text x="370" y="512" text-anchor="middle" font-size="10.5" font-weight="700" fill="#0F172A">Selesai</text>
+        </svg>
+    </div>
+    
+            <div class="figure-caption">Gambar G.9. Flowchart Peserta & Publik — Penukaran Kode Voucher, Google SSO PKCE, dan Verifikasi Sertifikat.</div>
+        </div>
+        
+
+    <div class="page-break"></div>
+    <h3>G.3 Diagram Use Case, Arsitektur Komponen 3-Tier, dan Entity-Relationship Diagram (ERD)</h3>
+
+    <!-- Use Case & 3-Tier Architecture SVG -->
+    <div class="flowchart-page">
+        <div class="flowchart-box">
+            <div class="fc-title">Diagram Arsitektur Komponen Tiga Lapis (3-Tier) FKKSM-LMS</div>
+            <div class="fc-subtitle">Integrasi Presentation Layer (Blade + Tailwind CSS v4 + SweetAlert2), Application Layer (Laravel 12 Controllers &amp; Security Middleware), dan Data/Storage Layer (MySQL 8+ &amp; Local Storage Video Stream)</div>
+            <svg viewBox="0 0 760 430" width="100%" height="380" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif">
+                <!-- Tier 1 -->
+                <rect x="15" y="12" width="730" height="105" rx="8" fill="#F8FAFC" stroke="#0C3553" stroke-width="1.6"/>
+                <text x="30" y="32" font-size="10.5" font-weight="800" fill="#0C3553">TIER 1 — PRESENTATION &amp; CLIENT RUNTIME (BROWSER +VITE + TAILWIND V4 + SWEETALERT2)</text>
+                <rect x="30" y="44" width="220" height="58" rx="6" fill="#FFFFFF" stroke="#10A9BC" stroke-width="1.4"/>
+                <text x="140" y="66" text-anchor="middle" font-size="10" font-weight="700" fill="#0F172A">Portal Publik &amp; Upskill Home (/)</text>
+                <text x="140" y="84" text-anchor="middle" font-size="8.5" fill="#475569">Clean Pill Navbar, CMS Sections, Verify Cert</text>
+
+                <rect x="270" y="44" width="220" height="58" rx="6" fill="#FFFFFF" stroke="#10A9BC" stroke-width="1.4"/>
+                <text x="380" y="66" text-anchor="middle" font-size="10" font-weight="700" fill="#0F172A">Classroom Player 4-Stage</text>
+                <text x="380" y="84" text-anchor="middle" font-size="8.5" fill="#475569">280px Sidebar, HTML5 Video, MCQ Quiz, Swal2</text>
+
+                <rect x="510" y="44" width="220" height="58" rx="6" fill="#FFFFFF" stroke="#10A9BC" stroke-width="1.4"/>
+                <text x="620" y="66" text-anchor="middle" font-size="10" font-weight="700" fill="#0F172A">Admin &amp; Instructor Control Center</text>
+                <text x="620" y="84" text-anchor="middle" font-size="8.5" fill="#475569">Landing CMS, Course/Module, Voucher, RBAC</text>
+
+                <!-- Tier 2 -->
+                <rect x="15" y="142" width="730" height="135" rx="8" fill="#F8FAFC" stroke="#0C3553" stroke-width="1.6"/>
+                <text x="30" y="162" font-size="10.5" font-weight="800" fill="#0C3553">TIER 2 — APPLICATION &amp; SECURITY PERIMETER (LARAVEL 12 MVC + HARDENED MIDDLEWARE)</text>
+                <rect x="30" y="174" width="700" height="34" rx="5" fill="#E7F6F8" stroke="#10A9BC" stroke-width="1.2"/>
+                <text x="380" y="195" text-anchor="middle" font-size="9.5" font-weight="700" fill="#0C3553">SecurityHeaders (CSP, X-Frame-Options, nosniff) • RateLimiter (login, sso, voucher-ops, lead-submit) • RBAC Guards (auth, instructor, admin)</text>
+
+                <rect x="30" y="218" width="165" height="46" rx="5" fill="#FFFFFF" stroke="#64748B" stroke-width="1.2"/>
+                <text x="112" y="238" text-anchor="middle" font-size="9.5" font-weight="700" fill="#0F172A">Auth &amp; SsoController</text>
+                <text x="112" y="252" text-anchor="middle" font-size="8" fill="#475569">Google OAuth2 + PKCE S256</text>
+
+                <rect x="208" y="218" width="165" height="46" rx="5" fill="#FFFFFF" stroke="#64748B" stroke-width="1.2"/>
+                <text x="290" y="238" text-anchor="middle" font-size="9.5" font-weight="700" fill="#0F172A">ClassroomController</text>
+                <text x="290" y="252" text-anchor="middle" font-size="8" fill="#475569">4-Stage Lock &amp; Video Stream</text>
+
+                <rect x="386" y="218" width="165" height="46" rx="5" fill="#FFFFFF" stroke="#64748B" stroke-width="1.2"/>
+                <text x="468" y="238" text-anchor="middle" font-size="9.5" font-weight="700" fill="#0F172A">Course &amp; MaterialCtrl</text>
+                <text x="468" y="252" text-anchor="middle" font-size="8" fill="#475569">Syllabus, Skills, SafeUpload</text>
+
+                <rect x="564" y="218" width="166" height="46" rx="5" fill="#FFFFFF" stroke="#64748B" stroke-width="1.2"/>
+                <text x="647" y="238" text-anchor="middle" font-size="9.5" font-weight="700" fill="#0F172A">LandingCms &amp; AuditCtrl</text>
+                <text x="647" y="252" text-anchor="middle" font-size="8" fill="#475569">Dynamic Home, Vouchers, RBAC</text>
+
+                <!-- Tier 3 -->
+                <rect x="15" y="302" width="730" height="112" rx="8" fill="#F8FAFC" stroke="#0C3553" stroke-width="1.6"/>
+                <text x="30" y="322" font-size="10.5" font-weight="800" fill="#0C3553">TIER 3 — PERSISTENCE, CACHE &amp; LOCAL MEDIA STORAGE LAYER</text>
+
+                <rect x="30" y="334" width="450" height="66" rx="6" fill="#FFFFFF" stroke="#0C3553" stroke-width="1.4"/>
+                <text x="255" y="354" text-anchor="middle" font-size="10" font-weight="700" fill="#0F172A">MySQL 8+ Database (fkksm_lms — 14 Core Tables)</text>
+                <text x="255" y="370" text-anchor="middle" font-size="8.5" fill="#475569">users, courses, course_modules, materials, enrollments, user_progress, assessments,</text>
+                <text x="255" y="384" text-anchor="middle" font-size="8.5" fill="#475569">assessment_submissions, certificates, vouchers, voucher_redemptions, plans, subscriptions, landing_sections, leads, activity_logs</text>
+
+                <rect x="500" y="334" width="230" height="66" rx="6" fill="#FFFFFF" stroke="#0C3553" stroke-width="1.4"/>
+                <text x="615" y="354" text-anchor="middle" font-size="10" font-weight="700" fill="#0F172A">Laravel Local Storage Disk</text>
+                <text x="615" y="370" text-anchor="middle" font-size="8.5" fill="#475569">storage/app/public/videos/*.mp4</text>
+                <text x="615" y="384" text-anchor="middle" font-size="8.5" fill="#475569">HTTP 206 Partial Content Byte Stream</text>
+            </svg>
+        </div>
+        <div class="figure-caption">Gambar G.10. Diagram Arsitektur Komponen Tiga Lapis (3-Tier) FKKSM-LMS.</div>
+    </div>
+
+    <!-- ERD SVG -->
+    <div class="flowchart-page">
+        <div class="flowchart-box">
+            <div class="fc-title">Entity-Relationship Diagram (ERD) Basis Data FKKSM-LMS (MySQL 8+)</div>
+            <div class="fc-subtitle">Skema relasional terindeks untuk 16 tabel operasional pembelajaran, sertifikasi, voucher, langganan, dan CMS</div>
+            <svg viewBox="0 0 760 470" width="100%" height="420" xmlns="http://www.w3.org/2000/svg" font-family="Consolas, Monaco, monospace">
+                <!-- Row 1 -->
+                <rect x="15" y="15" width="170" height="125" rx="5" fill="#FFFFFF" stroke="#0C3553" stroke-width="1.5"/>
+                <rect x="15" y="15" width="170" height="22" rx="5" fill="#0C3553"/>
+                <text x="100" y="30" text-anchor="middle" font-size="10" font-weight="700" fill="#FFFFFF">users</text>
+                <text x="22" y="50" font-size="8.5" fill="#0F172A">PK id</text>
+                <text x="22" y="64" font-size="8.5" fill="#334155">UQ username, email</text>
+                <text x="22" y="78" font-size="8.5" fill="#334155">UQ google_sub</text>
+                <text x="22" y="92" font-size="8.5" fill="#334155">   role, status</text>
+                <text x="22" y="106" font-size="8.5" fill="#334155">   company, phone</text>
+                <text x="22" y="120" font-size="8.5" fill="#334155">   password, avatar</text>
+
+                <rect x="205" y="15" width="180" height="125" rx="5" fill="#FFFFFF" stroke="#0C3553" stroke-width="1.5"/>
+                <rect x="205" y="15" width="180" height="22" rx="5" fill="#0C3553"/>
+                <text x="295" y="30" text-anchor="middle" font-size="10" font-weight="700" fill="#FFFFFF">courses</text>
+                <text x="212" y="50" font-size="8.5" fill="#0F172A">PK id</text>
+                <text x="212" y="64" font-size="8.5" fill="#334155">FK instructor_id</text>
+                <text x="212" y="78" font-size="8.5" fill="#334155">UQ slug, title</text>
+                <text x="212" y="92" font-size="8.5" fill="#334155">   access_type, price</text>
+                <text x="212" y="106" font-size="8.5" fill="#334155">   status, thumbnail</text>
+                <text x="212" y="120" font-size="8.5" fill="#334155">   skill_badges (JSON)</text>
+
+                <rect x="405" y="15" width="165" height="125" rx="5" fill="#FFFFFF" stroke="#0C3553" stroke-width="1.5"/>
+                <rect x="405" y="15" width="165" height="22" rx="5" fill="#0C3553"/>
+                <text x="487" y="30" text-anchor="middle" font-size="10" font-weight="700" fill="#FFFFFF">course_modules</text>
+                <text x="412" y="50" font-size="8.5" fill="#0F172A">PK id</text>
+                <text x="412" y="64" font-size="8.5" fill="#334155">FK course_id</text>
+                <text x="412" y="78" font-size="8.5" fill="#334155">   title, summary</text>
+                <text x="412" y="92" font-size="8.5" fill="#334155">   sort_order</text>
+                <text x="412" y="106" font-size="8.5" fill="#334155">   is_active</text>
+
+                <rect x="585" y="15" width="160" height="125" rx="5" fill="#FFFFFF" stroke="#10A9BC" stroke-width="1.6"/>
+                <rect x="585" y="15" width="160" height="22" rx="5" fill="#10A9BC"/>
+                <text x="665" y="30" text-anchor="middle" font-size="10" font-weight="700" fill="#FFFFFF">materials (4-Stage)</text>
+                <text x="592" y="50" font-size="8.5" fill="#0F172A">PK id</text>
+                <text x="592" y="64" font-size="8.5" fill="#334155">FK course_id, module_id</text>
+                <text x="592" y="78" font-size="8.5" fill="#334155">   content_type (video/..)</text>
+                <text x="592" y="92" font-size="8.5" fill="#334155">   video_path (storage)</text>
+                <text x="592" y="106" font-size="8.5" fill="#334155">   quiz_payload (JSON)</text>
+                <text x="592" y="120" font-size="8.5" fill="#334155">   sort_order, duration</text>
+
+                <!-- Row 2 -->
+                <rect x="15" y="165" width="170" height="120" rx="5" fill="#FFFFFF" stroke="#0C3553" stroke-width="1.5"/>
+                <rect x="15" y="165" width="170" height="22" rx="5" fill="#0C3553"/>
+                <text x="100" y="180" text-anchor="middle" font-size="10" font-weight="700" fill="#FFFFFF">enrollments</text>
+                <text x="22" y="200" font-size="8.5" fill="#0F172A">PK id</text>
+                <text x="22" y="214" font-size="8.5" fill="#334155">FK user_id, course_id</text>
+                <text x="22" y="228" font-size="8.5" fill="#334155">   status (active/completed)</text>
+                <text x="22" y="242" font-size="8.5" fill="#334155">   enrolled_at</text>
+                <text x="22" y="256" font-size="8.5" fill="#334155">   completed_at</text>
+
+                <rect x="205" y="165" width="180" height="120" rx="5" fill="#FFFFFF" stroke="#0C3553" stroke-width="1.5"/>
+                <rect x="205" y="165" width="180" height="22" rx="5" fill="#0C3553"/>
+                <text x="295" y="180" text-anchor="middle" font-size="10" font-weight="700" fill="#FFFFFF">user_progress</text>
+                <text x="212" y="200" font-size="8.5" fill="#0F172A">PK id</text>
+                <text x="212" y="214" font-size="8.5" fill="#334155">FK user_id, material_id</text>
+                <text x="212" y="228" font-size="8.5" fill="#334155">   completed_at</text>
+                <text x="212" y="242" font-size="8.5" fill="#334155">UQ (user_id, material_id)</text>
+
+                <rect x="405" y="165" width="165" height="120" rx="5" fill="#FFFFFF" stroke="#10A9BC" stroke-width="1.6"/>
+                <rect x="405" y="165" width="165" height="22" rx="5" fill="#10A9BC"/>
+                <text x="487" y="180" text-anchor="middle" font-size="10" font-weight="700" fill="#FFFFFF">assessments (Stage 4)</text>
+                <text x="412" y="200" font-size="8.5" fill="#0F172A">PK id</text>
+                <text x="412" y="214" font-size="8.5" fill="#334155">FK course_id</text>
+                <text x="412" y="228" font-size="8.5" fill="#334155">   title, assessment_type</text>
+                <text x="412" y="242" font-size="8.5" fill="#334155">   quiz_payload (JSON)</text>
+                <text x="412" y="256" font-size="8.5" fill="#334155">   passing_score (70)</text>
+
+                <rect x="585" y="165" width="160" height="120" rx="5" fill="#FFFFFF" stroke="#0C3553" stroke-width="1.5"/>
+                <rect x="585" y="165" width="160" height="22" rx="5" fill="#0C3553"/>
+                <text x="665" y="180" text-anchor="middle" font-size="9.5" font-weight="700" fill="#FFFFFF">assessment_submissions</text>
+                <text x="592" y="200" font-size="8.5" fill="#0F172A">PK id</text>
+                <text x="592" y="214" font-size="8.5" fill="#334155">FK assessment_id, user_id</text>
+                <text x="592" y="228" font-size="8.5" fill="#334155">   response_text, score</text>
+                <text x="592" y="242" font-size="8.5" fill="#334155">   status, feedback</text>
+                <text x="592" y="256" font-size="8.5" fill="#334155">   submitted_at</text>
+
+                <!-- Row 3 -->
+                <rect x="15" y="310" width="170" height="130" rx="5" fill="#FFFFFF" stroke="#0C3553" stroke-width="1.5"/>
+                <rect x="15" y="310" width="170" height="22" rx="5" fill="#0C3553"/>
+                <text x="100" y="325" text-anchor="middle" font-size="10" font-weight="700" fill="#FFFFFF">certificates</text>
+                <text x="22" y="345" font-size="8.5" fill="#0F172A">PK id</text>
+                <text x="22" y="359" font-size="8.5" fill="#334155">UQ certificate_no</text>
+                <text x="22" y="373" font-size="8.5" fill="#334155">FK user_id, course_id</text>
+                <text x="22" y="387" font-size="8.5" fill="#334155">FK issued_by</text>
+                <text x="22" y="401" font-size="8.5" fill="#334155">   is_revoked, issued_at</text>
+
+                <rect x="205" y="310" width="180" height="130" rx="5" fill="#FFFFFF" stroke="#0C3553" stroke-width="1.5"/>
+                <rect x="205" y="310" width="180" height="22" rx="5" fill="#0C3553"/>
+                <text x="295" y="325" text-anchor="middle" font-size="10" font-weight="700" fill="#FFFFFF">vouchers &amp; redemptions</text>
+                <text x="212" y="345" font-size="8.5" fill="#0F172A">PK id (vouchers)</text>
+                <text x="212" y="359" font-size="8.5" fill="#334155">UQ code, benefit_type</text>
+                <text x="212" y="373" font-size="8.5" fill="#334155">FK course_id, max_uses</text>
+                <text x="212" y="387" font-size="8.5" fill="#334155">   expires_at, status</text>
+                <text x="212" y="401" font-size="8.5" fill="#334155">FK voucher_redemptions</text>
+
+                <rect x="405" y="310" width="165" height="130" rx="5" fill="#FFFFFF" stroke="#0C3553" stroke-width="1.5"/>
+                <rect x="405" y="310" width="165" height="22" rx="5" fill="#0C3553"/>
+                <text x="487" y="325" text-anchor="middle" font-size="10" font-weight="700" fill="#FFFFFF">plans &amp; subscriptions</text>
+                <text x="412" y="345" font-size="8.5" fill="#0F172A">PK id (plans)</text>
+                <text x="412" y="359" font-size="8.5" fill="#334155">UQ code, price, cycle</text>
+                <text x="412" y="373" font-size="8.5" fill="#334155">   features (JSON)</text>
+                <text x="412" y="387" font-size="8.5" fill="#334155">FK subscriptions.user_id</text>
+                <text x="412" y="401" font-size="8.5" fill="#334155">   status, ends_at</text>
+
+                <rect x="585" y="310" width="160" height="130" rx="5" fill="#FFFFFF" stroke="#0C3553" stroke-width="1.5"/>
+                <rect x="585" y="310" width="160" height="22" rx="5" fill="#0C3553"/>
+                <text x="665" y="325" text-anchor="middle" font-size="9.5" font-weight="700" fill="#FFFFFF">landing_sections &amp; logs</text>
+                <text x="592" y="345" font-size="8.5" fill="#0F172A">PK section_key (CMS)</text>
+                <text x="592" y="359" font-size="8.5" fill="#334155">   content (JSON), active</text>
+                <text x="592" y="373" font-size="8.5" fill="#334155">PK activity_logs.id</text>
+                <text x="592" y="387" font-size="8.5" fill="#334155">PK leads.id, settings.key</text>
+                <text x="592" y="401" font-size="8.5" fill="#334155">PK notifications.id</text>
+            </svg>
+        </div>
+        <div class="figure-caption">Gambar G.11. Entity-Relationship Diagram (ERD) Basis Data MySQL 8+ FKKSM-LMS.</div>
+    </div>
+
+    <!-- =================================================================== -->
+    <!-- BAGIAN H — PENGUJIAN FUNGSIONAL, AUDIT DEFECT, KEAMANAN & KESIMPULAN -->
+    <!-- =================================================================== -->
+    <div class="page-break"></div>
+    <h2>BAGIAN H — PENGUJIAN FUNGSIONAL, AUDIT DEFECT, KEAMANAN, DAN KESIMPULAN</h2>
+
+    <h3>H.1 Hasil Pengujian Otomatis Lintas Subsistem (PHPUnit &amp; Playwright E2E)</h3>
+    <p>Seluruh fitur yang dijelaskan di dalam dokumen ini telah diuji menggunakan <strong>23 metode pengujian otomatis PHPUnit (168 assertions)</strong> serta pengujian peramban otomatis <strong>Playwright Chromium End-to-End (E2E)</strong> dengan tingkat kelulusan <strong>100% (0 gagal)</strong>:</p>
+    <table class="doc-table">
+        <thead>
+            <tr>
+                <th style="width: 24%;">Subsistem Pengujian</th>
+                <th style="width: 18%;">Berkas / Suite Uji</th>
+                <th style="width: 16%;">Total Pengujian</th>
+                <th style="width: 14%;">Lulus (Pass)</th>
+                <th style="width: 10%;">Gagal</th>
+                <th style="width: 18%;">Keterangan Verifikasi</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Fitur Inti LMS, CMS &amp; Seeder</strong></td>
+                <td><code>tests/Feature/FkksmLmsTest.php</code></td>
+                <td>13 Test Cases</td>
+                <td><span class="badge-pass">13 Lulus</span></td>
+                <td>0 Gagal</td>
+                <td>Seluruh halaman publik, login, dashboard, voucher, CMS, dan idempotensi seeder lulus 100%.</td>
+            </tr>
+            <tr>
+                <td><strong>Keamanan, RBAC, SSO PKCE &amp; Alur 4 Tahap</strong></td>
+                <td><code>tests/Feature/SecurityAndSsoAuditTest.php</code></td>
+                <td>8 Test Cases (Kompleks)</td>
+                <td><span class="badge-pass">8 Lulus</span></td>
+                <td>0 Gagal</td>
+                <td>Header keamanan, anti-IDOR, XSS guard, rate limiter, Google SSO PKCE, video stream &amp; lock 4 tahap lulus 100%.</td>
+            </tr>
+            <tr>
+                <td><strong>Unit &amp; Health Check</strong></td>
+                <td><code>ExampleTest.php</code> (Unit &amp; Feature)</td>
+                <td>2 Test Cases</td>
+                <td><span class="badge-pass">2 Lulus</span></td>
+                <td>0 Gagal</td>
+                <td>Total <strong>23 passed (168 assertions)</strong> dalam 1,59 detik.</td>
+            </tr>
+            <tr>
+                <td><strong>Playwright Browser E2E &amp; Visual Audit</strong></td>
+                <td><code>verify_browser.py</code> &amp; <code>capture_makalah_screenshots.py</code></td>
+                <td>48 Halaman &amp; Skenario UI</td>
+                <td><span class="badge-pass">48 Lulus</span></td>
+                <td>0 Gagal</td>
+                <td>0 broken image, 0 Cakap identity, SweetAlert2 aktif di semua aksi, paritas layout Guest vs Auth 100%.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>H.2 Register Skenario Pengujian Fungsional End-to-End (TEST CASE REGISTER)</h3>
+    <table class="doc-table">
+        <thead>
+            <tr>
+                <th style="width: 5%;">No</th>
+                <th style="width: 17%;">Modul</th>
+                <th style="width: 26%;">Fitur / Skenario Testing</th>
+                <th style="width: 24%;">Hasil yang Diharapkan</th>
+                <th style="width: 20%;">Hasil Aktual</th>
+                <th style="width: 8%;">Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>1</td><td>Authentication &amp; SSO</td><td>Login sebagai Admin, Instruktur, dan Peserta dengan kredensial valid</td><td>Masuk ke Dashboard sesuai role dan memunculkan modal sambutan SweetAlert2</td><td>Sesi terbentuk, Session ID dirotasi, dan modal SweetAlert2 tampil akurat</td><td><span class="badge-pass">Pass</span></td></tr>
+            <tr><td>2</td><td>Authentication &amp; SSO</td><td>Validasi login gagal &amp; pembatas laju (Rate Limiter 5x gagal)</td><td>Menolak percobaan ke-6 dengan pesan throttle selama 60 detik</td><td>Percobaan ke-6 langsung ditolak dengan pesan pembatas laju</td><td><span class="badge-pass">Pass</span></td></tr>
+            <tr><td>3</td><td>Authentication &amp; SSO</td><td>Alur Google OAuth 2.0 + PKCE (`S256`) + OIDC Nonce Callback</td><td>Menerbitkan `state`, `nonce`, `code_challenge`, dan menolak `state` palsu</td><td>Validasi PKCE &amp; Nonce berjalan akurat dan membuat/memuat akun SSO</td><td><span class="badge-pass">Pass</span></td></tr>
+            <tr><td>4</td><td>Portal Publik &amp; Header UX</td><td>Konsistensi tampilan halaman Home (`/`) saat Guest vs setelah Login</td><td>Tinggi header (81px) dan lebar Hero/Onboarding (1216px) identik 100%</td><td>Tidak ada pergeseran layout; gambar Unsplash &amp; FKKSM termuat 100%</td><td><span class="badge-pass">Pass</span></td></tr>
+            <tr><td>5</td><td>Admin Landing CMS</td><td>Mengubah Hero Banner, Kursus Terlaris, Skill Badges, dan FAQ dari `/lms/landing-cms`</td><td>Perubahan tersimpan, cache dibersihkan, dan halaman `/` langsung berubah</td><td>Perubahan langsung tampil di halaman utama beserta log audit</td><td><span class="badge-pass">Pass</span></td></tr>
+            <tr><td>6</td><td>Manajemen Kursus &amp; RBAC</td><td>Pembuatan kursus baru, unggah sampul, dan proteksi IDOR lintas instruktur</td><td>Instruktur A ditolak (`403`) saat mencoba mengedit kursus Instruktur B</td><td>Proteksi kepemilikan kursus memblokir akses lintas instruktur secara ketat</td><td><span class="badge-pass">Pass</span></td></tr>
+            <tr><td>7</td><td>Silabus &amp; Video Storage</td><td>Unggah video MP4 ke Local Storage dan streaming via `/lms/media/video/{file}`</td><td>Menyimpan video di `storage/app/public/videos` &amp; merespons `video/mp4`</td><td>Endpoint streaming merespons HTTP 200/206 `Accept-Ranges: bytes`</td><td><span class="badge-pass">Pass</span></td></tr>
+            <tr><td>8</td><td>Classroom 4-Stage Lock</td><td>Mencoba melompat ke Tahap 2 (Materi) atau Tahap 3 (Latihan Soal) sebelum Tahap 1 (Video) selesai</td><td>Menolak akses, memunculkan modal `Tahap Masih Terkunci`, dan mengarahkan ke Tahap 1</td><td>Baik klik sidebar maupun akses URL langsung diblokir secara berurutan</td><td><span class="badge-pass">Pass</span></td></tr>
+            <tr><td>9</td><td>Validasi Latihan Soal</td><td>Mengirim jawaban Latihan Soal modul dengan skor di bawah 70% vs di atas 70%</td><td>Skor &lt;70% ditolak dengan modal peringatan; skor ≥70% membuka tahap berikutnya</td><td>Validasi skor pilihan ganda bekerja akurat dan membuka tahap berikutnya</td><td><span class="badge-pass">Pass</span></td></tr>
+            <tr><td>10</td><td>Latihan Akhir &amp; Sertifikat</td><td>Menyelesaikan Latihan Akhir dengan skor ≥70% setelah seluruh modul tuntas</td><td>Mencatat nilai evaluasi, menandai kursus selesai, dan menerbitkan sertifikat unik</td><td>Sertifikat `CERT-MM2100-...` diterbitkan otomatis secara atomik</td><td><span class="badge-pass">Pass</span></td></tr>
+            <tr><td>11</td><td>Voucher &amp; Subscription</td><td>Pemeriksaan kode voucher via AJAX SweetAlert2 &amp; penukaran kupon subsidi</td><td>Menampilkan rincian manfaat di modal SweetAlert2 dan mengunci kuota (`lockForUpdate`)</td><td>Modal status voucher (`Tersedia`/`Tidak Valid`) dan klaim berjalan akurat</td><td><span class="badge-pass">Pass</span></td></tr>
+            <tr><td>12</td><td>Verifikasi Sertifikat Publik</td><td>Pemeriksaan nomor sertifikat `CERT-MM2100-2026-FKKSM01` dan uji pencabutan Admin</td><td>Menampilkan status `VALID` saat aktif dan `DICABUT` saat di-revoke Admin</td><td>Halaman verifikasi publik menampilkan status keabsahan secara real-time</td><td><span class="badge-pass">Pass</span></td></tr>
+        </tbody>
+    </table>
+
+    <h3>H.3 Log Audit Temuan Bug &amp; Kerentanan yang Telah Diperbaiki (RESOLVED DEFECT LOG)</h3>
+    <p>Selama proses pengembangan dan audit menyeluruh, seluruh temuan bug visual, validasi, maupun celah keamanan telah diinvestigasi hingga ke akar masalah dan <strong>telah diperbaiki 100% (Status: Fixed &amp; Verified)</strong>:</p>
+    <table class="doc-table">
+        <thead>
+            <tr>
+                <th style="width: 11%;">Kode Audit</th>
+                <th style="width: 18%;">Modul</th>
+                <th style="width: 25%;">Temuan Awal Sebelumnya</th>
+                <th style="width: 34%;">Perbaikan Teknis yang Diterapkan</th>
+                <th style="width: 12%;">Status Akhir</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>FIX-0001</strong></td>
+                <td>Header &amp; Layout Parity (<code>/</code>)</td>
+                <td>Tampilan header halaman utama berbeda/terpotong ketika pengguna login mengklik <em>Portal Utama</em> dibandingkan saat logout.</td>
+                <td>Mendesain ulang <code>components/navbar.blade.php</code> dengan <em>segmented pill navigation</em> dan tinggi tetap <code>h-20</code> (81px) sehingga identik 100% baik saat Guest maupun Auth.</td>
+                <td><span class="badge-fixed">Fixed (Lulus)</span></td>
+            </tr>
+            <tr>
+                <td><strong>FIX-0002</strong></td>
+                <td>Ruang Belajar 4-Stage Lock</td>
+                <td>Peserta sebelumnya dapat membuka materi secara acak tanpa menyelesaikan tahapan sebelumnya satu per satu.</td>
+                <td>Mengimplementasikan perhitungan <code>$unlockedMaterialIds</code> berurutan di <code>ClassroomController</code> (Video → Materi → Latihan Soal → Latihan Akhir) beserta modal SweetAlert2.</td>
+                <td><span class="badge-fixed">Fixed (Lulus)</span></td>
+            </tr>
+            <tr>
+                <td><strong>FIX-0003</strong></td>
+                <td>Keamanan IDOR &amp; RBAC</td>
+                <td>Potensi penyelesaian materi lintas kursus atau pengeditan kursus milik instruktur lain.</td>
+                <td>Menambahkan validasi kepemilikan kursus, pengecekan <code>Enrollment</code> aktif, serta validasi <code>Rule::exists('course_modules')->where('course_id', $course->id)</code>.</td>
+                <td><span class="badge-fixed">Fixed (Lulus)</span></td>
+            </tr>
+            <tr>
+                <td><strong>FIX-0004</strong></td>
+                <td>Keamanan Unggahan &amp; URL XSS</td>
+                <td>Potensi unggahan berkas SVG/script berbahaya atau penyisipan URL <code>javascript:</code> pada materi/CMS.</td>
+                <td>Membuat <code>SecurityHelper::storeSafeImage</code> (verifikasi header biner <code>getimagesize</code>), <code>storeSafeVideo</code>, dan <code>sanitizeUrl</code>.</td>
+                <td><span class="badge-fixed">Fixed (Lulus)</span></td>
+            </tr>
+            <tr>
+                <td><strong>FIX-0005</strong></td>
+                <td>Identitas Visual &amp; Footer</td>
+                <td>Masih terdapat gambar impor lama serta blok ISO 27001 / SDG / Kominfo di footer halaman utama.</td>
+                <td>Mengganti seluruh gambar seeder dengan fotografi industri internet (Unsplash) &amp; aset FKKSM resmi serta membersihkan <code>components/footer.blade.php</code>.</td>
+                <td><span class="badge-fixed">Fixed (Lulus)</span></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>H.4 Sistem Keamanan yang Diterapkan</h3>
+    <table class="doc-table">
+        <thead>
+            <tr>
+                <th style="width: 28%;">Jenis Pengamanan</th>
+                <th style="width: 72%;">Teknologi / Cara Kerja pada Aplikasi FKKSM-LMS</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Autentikasi, Rotasi Sesi &amp; Google SSO PKCE</strong></td>
+                <td>Login lokal meregenerasi Session ID untuk mencegah <em>Session Fixation</em>, sedangkan pergantian kata sandi merotasi <code>remember_token</code>. Alur Google SSO di <code>SsoController</code> menerapkan <strong>OAuth 2.0 + PKCE (<code>code_challenge_method=S256</code>)</strong>, validasi state anti-CSRF, dan verifikasi klaim <code>nonce</code>, <code>iss</code>, serta <code>aud</code> pada ID Token OIDC.</td>
+            </tr>
+            <tr>
+                <td><strong>Keamanan Kata Sandi</strong></td>
+                <td>Seluruh kata sandi pengguna di-hash menggunakan algoritma <strong>Bcrypt</strong> melalui <code>Hash::make()</code> dan <code>$casts = ['password' => 'hashed']</code> sehingga tidak pernah tersimpan dalam bentuk teks asli.</td>
+            </tr>
+            <tr>
+                <td><strong>Hak Akses Berlapis (RBAC &amp; Anti-IDOR)</strong></td>
+                <td>Pemisahan hak akses 4 tingkat (<code>student</code>, <code>instructor</code>, <code>admin</code>, <code>super_admin</code>) dengan proteksi kepemilikan kursus pada Instruktur, proteksi anti-eskalasi peran di <code>UserController</code>, serta penguncian urutan belajar 4 tahap di <code>ClassroomController</code>.</td>
+            </tr>
+            <tr>
+                <td><strong>Pembatasan Laju Permintaan (Rate Limiting)</strong></td>
+                <td>Dikonfigurasi di <code>AppServiceProvider</code>: <code>throttle:login</code> (5x/menit per IP+akun), <code>throttle:register</code> (5x/menit), <code>throttle:sso</code> (10x/menit), <code>throttle:voucher-ops</code> (15x/menit), dan <code>throttle:lead-submit</code> (8x/menit).</td>
+            </tr>
+            <tr>
+                <td><strong>Header Keamanan HTTP &amp; Proteksi CSRF</strong></td>
+                <td>Middleware <code>SecurityHeaders</code> memasang <code>X-Frame-Options: SAMEORIGIN</code>, <code>X-Content-Type-Options: nosniff</code>, <code>Referrer-Policy: strict-origin-when-cross-origin</code>, <code>Permissions-Policy</code>, dan <code>Content-Security-Policy: frame-ancestors 'self'</code>. Seluruh formulir POST/PUT/PATCH/DELETE wajib menyertakan token CSRF.</td>
+            </tr>
+            <tr>
+                <td><strong>Validasi Berkas Biner, Sanitasi URL &amp; Transaksi Atomik</strong></td>
+                <td>Unggahan gambar diperiksa tipe MIME nyata dan dimensi binernya (memblokir SVG/PHP palsu); unggahan video disimpan dengan nama UUID acak di <code>storage/app/public/videos/</code>; pencarian SQL menggunakan <code>SecurityHelper::escapeLike()</code>; serta penukaran voucher dan penerbitan sertifikat dibungkus dalam <code>DB::transaction()</code> dengan <code>lockForUpdate()</code>.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>H.5 Kesimpulan Akhir</h3>
+    <p>Dengan tersusunnya makalah dan dokumentasi resmi sistem <strong>FKKSM Learning Management System (FKKSM-LMS) Kawasan Industri MM2100</strong> ini, seluruh pihak yang terlibat—mulai dari pengelola pelatihan (Administrator), praktisi pengajar (Instruktur), hingga seluruh peserta pelatihan (Student) dan mitra HRD perusahaan—memiliki panduan komprehensif yang mencerminkan kondisi aktual sistem secara menyeluruh.</p>
+    <p>Seluruh fitur mulai dari Portal Publik yang terintegrasi penuh dengan Admin Landing CMS, Header Navigasi Clean UX, Ruang Belajar 4 Tahap Berurutan (<strong>Video Local Storage → Materi E-Book → Latihan Soal → Latihan Akhir</strong>), sistem Voucher Subsidi dan Subscription, Verifikasi Sertifikat Digital, hingga pengamanan Google SSO PKCE dan RBAC telah teruji dan lulus verifikasi 100%.</p>
+
+</div>
+</body>
+</html>

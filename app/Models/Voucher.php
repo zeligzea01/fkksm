@@ -58,8 +58,11 @@ class Voucher extends Model
         if ($this->starts_at && $this->starts_at->isFuture()) {
             return false;
         }
-        if ($this->max_uses && $this->redemptions()->count() >= $this->max_uses) {
-            return false;
+        if ($this->max_uses) {
+            $usedCount = $this->redemptions_count ?? $this->redemptions()->count();
+            if ($usedCount >= $this->max_uses) {
+                return false;
+            }
         }
         return true;
     }

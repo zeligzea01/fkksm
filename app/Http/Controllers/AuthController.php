@@ -7,7 +7,9 @@ use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\View\View;
 
@@ -21,11 +23,11 @@ class AuthController extends Controller
     public function login(Request $request): RedirectResponse
     {
         $credentials = $request->validate([
-            'login' => ['required', 'string'],
-            'password' => ['required', 'string'],
+            'login' => ['required', 'string', 'max:190'],
+            'password' => ['required', 'string', 'max:255'],
         ]);
 
-        $loginInput = $credentials['login'];
+        $loginInput = strtolower(trim($credentials['login']));
         $fieldType = filter_var($loginInput, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
 
         $user = User::where($fieldType, $loginInput)->first();
@@ -69,17 +71,22 @@ class AuthController extends Controller
 
     public function register(Request $request): RedirectResponse
     {
+        $request->merge([
+            'username' => strtolower(trim((string) $request->input('username', ''))),
+            'email' => strtolower(trim((string) $request->input('email', ''))),
+        ]);
+
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:140'],
-            'username' => ['required', 'string', 'min:3', 'max:60', 'unique:users,username', 'regex:/^[A-Za-z0-9._-]+$/'],
+            'username' => ['required', 'string', 'min:3', 'max:60', 'unique:users,username', 'regex:/^[a-z0-9._-]+$/'],
             'email' => ['required', 'string', 'email', 'max:190', 'unique:users,email'],
             'password' => ['required', 'confirmed', Password::min(8)],
         ]);
 
         $user = User::create([
-            'name' => $validated['name'],
-            'username' => strtolower($validated['username']),
-            'email' => strtolower($validated['email']),
+            'name' => trim($validated['name']),
+            'username' => $validated['username'],
+            'email' => $validated['email'],
             'password' => Hash::make($validated['password']),
             'role' => 'student',
             'status' => 'active',
@@ -120,12 +127,20 @@ class AuthController extends Controller
         ]);
 
         $user = Auth::user();
-        $user->update([
-            'password' => Hash::make($validated['password']),
-            'must_change_password' => false,
-        ]);
+        $user->password = Hash::make($validated['password']);
+        $user->must_change_password = false;
+        $user->setRememberToken(Str::random(60));
+        $user->save();
 
-        ActivityLog::record($user->id, 'password_changed', 'Kata sandi akun diperbarui.');
+        $request->session()->regenerate();
+        if (config('session.driver') === 'database') {
+            DB::table(config('session.table', 'sessions'))
+                ->where('user_id', $user->id)
+                ->where('id', '!=', $request->session()->getId())
+                ->delete();
+        }
+
+        ActivityLog::record($user->id, 'password_changed', 'Kata sandi akun diperbarui dan seluruh sesi lain dihentikan.');
 
         return back()->with('success', 'Kata sandi Anda berhasil diperbarui.');
     }

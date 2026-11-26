@@ -1,147 +1,194 @@
-@extends('layouts.lms')
-
-@section('title', 'Manajemen Materi & Modul | FKKSM MM2100')
-@section('page_title', 'Manajemen Modul & Pelajaran')
-@section('page_subtitle', 'Atur hierarki silabus, video instruksi, dan teks materi pada setiap kursus.')
+@extends('layouts.lms', ['title' => 'Manajemen Modul & Materi 4 Tahap — FKKSM LMS'])
 
 @section('content')
-<div class="space-y-8">
-    @foreach ($courses as $course)
-        <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-6">
-            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-slate-100 pb-4">
-                <div>
-                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-100 text-blue-800 uppercase tracking-wider">
-                        {{ $course->category }}
-                    </span>
-                    <h3 class="text-xl font-black text-slate-900 mt-1">{{ $course->title }}</h3>
-                </div>
+<div class="mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+    <div>
+        <h1 class="text-xl sm:text-2xl font-extrabold text-[#333333]">Silabus Modul & Materi 4 Tahap</h1>
+        <p class="text-xs text-[#757575] mt-0.5">Kelola urutan pembelajaran wajib: <strong>1. Video (Storage) → 2. Materi/E-Book → 3. Latihan Soal → 4. Latihan Akhir</strong>.</p>
+    </div>
+    <a href="{{ route('lms.courses.create') }}" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#10A9BC] hover:bg-[#0d8e9e] text-white text-xs font-extrabold transition-colors">
+        + Buat Kursus Baru
+    </a>
+</div>
 
-                <!-- Modals Trigger Buttons -->
+<div class="space-y-6">
+    @forelse($courses as $course)
+        <div class="bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden">
+            <div class="p-5 bg-slate-50/70 border-b border-slate-100 flex flex-wrap items-center justify-between gap-4">
+                <div>
+                    <div class="flex items-center gap-2">
+                        <span class="px-2.5 py-0.5 rounded-full bg-[#E7F6F8] text-[#10A9BC] text-[10px] font-extrabold uppercase">
+                            {{ $course->category }}
+                        </span>
+                        <span class="text-xs text-[#757575]">Instruktur: {{ $course->instructor?->name ?? 'FKKSM' }}</span>
+                    </div>
+                    <h2 class="text-base font-extrabold text-[#333333] mt-1">{{ $course->title }}</h2>
+                </div>
                 <div class="flex items-center gap-2">
-                    <button type="button" onclick="document.getElementById('moduleModal-{{ $course->id }}').classList.remove('hidden')" class="px-3.5 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs transition">
+                    <a href="{{ route('lms.classroom.show', $course) }}" class="px-3 py-1.5 rounded-lg border border-[#10A9BC] text-[#10A9BC] hover:bg-[#E7F6F8] text-xs font-bold transition-colors">
+                        Pratinjau Player
+                    </a>
+                    <button type="button" onclick="document.getElementById('modal-mod-{{ $course->id }}').classList.remove('hidden')" class="px-3 py-1.5 rounded-lg border border-slate-200 bg-white hover:bg-slate-100 text-xs font-bold text-[#333333] cursor-pointer">
                         + Tambah Modul
                     </button>
-                    <button type="button" onclick="document.getElementById('materialModal-{{ $course->id }}').classList.remove('hidden')" class="px-3.5 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs transition">
-                        + Tambah Materi
+                    <button type="button" onclick="document.getElementById('modal-mat-{{ $course->id }}').classList.remove('hidden')" class="px-3 py-1.5 rounded-lg bg-[#10A9BC] hover:bg-[#0d8e9e] text-white text-xs font-bold cursor-pointer">
+                        + Tambah Tahap Materi
                     </button>
                 </div>
             </div>
 
-            <!-- Modules and Materials List -->
-            <div class="space-y-4">
-                @forelse ($course->modules as $mod)
-                    <div class="rounded-2xl border border-slate-200 overflow-hidden bg-slate-50/50">
-                        <div class="px-4 py-3 bg-slate-100 flex items-center justify-between text-xs font-bold text-slate-800">
-                            <span class="flex items-center gap-2">
-                                <svg class="w-4 h-4 text-[#10A9BC] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/></svg>
-                                <span>{{ $mod->title }}</span>
-                            </span>
-                            <form action="{{ route('lms.modules.destroy', $mod) }}" method="POST" onsubmit="return confirm('Hapus modul ini beserta seluruh materinya?')">
+            <div class="p-5 space-y-4">
+                @forelse($course->modules as $module)
+                    <div class="rounded-xl border border-slate-200/80 overflow-hidden">
+                        <div class="px-4 py-2.5 bg-slate-50 flex items-center justify-between">
+                            <div>
+                                <span class="text-xs font-extrabold text-[#333333]">{{ $module->title }}</span>
+                                @if($module->summary)
+                                    <span class="text-[11px] text-[#757575] ml-2">— {{ $module->summary }}</span>
+                                @endif
+                            </div>
+                            <form method="POST" action="{{ route('lms.modules.destroy', $module) }}" data-confirm="Hapus modul ini beserta seluruh tahapan materinya?">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="text-rose-600 hover:text-rose-700 font-semibold text-[11px]">Hapus Modul</button>
+                                <button type="submit" class="text-[11px] font-bold text-red-600 hover:underline cursor-pointer">Hapus Modul</button>
                             </form>
                         </div>
-
-                        <ul class="divide-y divide-slate-100">
-                            @forelse ($mod->materials as $mat)
-                                <li class="px-4 py-3 bg-white flex items-center justify-between text-xs">
-                                    <div class="flex items-center gap-3">
-                                        <svg class="w-4 h-4 text-slate-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
-                                        <div>
-                                            <p class="font-bold text-slate-800">{{ $mat->title }}</p>
-                                            <span class="text-[10px] text-slate-400 uppercase font-semibold">{{ $mat->content_type_label }}</span>
-                                        </div>
+                        <div class="divide-y divide-slate-100">
+                            @forelse($module->materials as $mat)
+                                <div class="px-4 py-2.5 flex items-center justify-between text-xs">
+                                    <div class="flex items-center gap-2.5">
+                                        <span class="px-2 py-0.5 rounded bg-[#E7F6F8] text-[#0C3553] text-[10px] font-extrabold uppercase">
+                                            {{ $mat->sidebar_type_label }}
+                                        </span>
+                                        <span class="font-semibold text-[#333333]">{{ $mat->title }}</span>
+                                        @if($mat->video_path)
+                                            <span class="text-[10px] text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded font-mono">
+                                                storage/{{ $mat->video_path }}
+                                            </span>
+                                        @endif
                                     </div>
-                                    <form action="{{ route('lms.materials.destroy', $mat) }}" method="POST" onsubmit="return confirm('Hapus materi ini?')">
+                                    <form method="POST" action="{{ route('lms.materials.destroy', $mat) }}" data-confirm="Hapus tahap materi ini?">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="text-slate-400 hover:text-rose-600 transition text-[11px]">Hapus</button>
+                                        <button type="submit" class="text-[11px] font-bold text-red-500 hover:underline cursor-pointer">Hapus</button>
                                     </form>
-                                </li>
+                                </div>
                             @empty
-                                <li class="px-4 py-3 text-xs text-slate-400 text-center">Belum ada materi di modul ini.</li>
+                                <div class="px-4 py-3 text-xs text-slate-400">Belum ada tahapan materi di modul ini.</div>
                             @endforelse
-                        </ul>
+                        </div>
                     </div>
                 @empty
-                    <p class="text-xs text-slate-400 py-4 text-center">Kursus ini belum memiliki modul. Klik "+ Tambah Modul" untuk memulai.</p>
+                    <div class="text-center py-6 text-xs text-[#757575]">Belum ada modul silabus untuk kursus ini.</div>
                 @endforelse
             </div>
+        </div>
 
-            <!-- Modal Tambah Modul -->
-            <div id="moduleModal-{{ $course->id }}" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
-                <div class="bg-white rounded-3xl p-6 sm:p-8 max-w-md w-full shadow-2xl">
-                    <h4 class="font-bold text-lg text-slate-900 mb-4">Tambah Modul ke: {{ $course->title }}</h4>
-                    <form action="{{ route('lms.modules.store', $course) }}" method="POST" class="space-y-4">
-                        @csrf
-                        <div>
-                            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Judul Modul *</label>
-                            <input type="text" name="title" required placeholder="Contoh: Modul 1: Pengenalan Regulasi" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-blue-500">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Ringkasan</label>
-                            <textarea name="summary" rows="2" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-blue-500"></textarea>
-                        </div>
-                        <div class="flex justify-end gap-2 pt-2">
-                            <button type="button" onclick="document.getElementById('moduleModal-{{ $course->id }}').classList.add('hidden')" class="px-4 py-2 rounded-xl border border-slate-200 text-xs font-bold">Batal</button>
-                            <button type="submit" class="px-4 py-2 rounded-xl bg-blue-600 text-white font-bold text-xs">Simpan Modul</button>
-                        </div>
-                    </form>
-                </div>
+        {{-- Modal Tambah Modul --}}
+        <div id="modal-mod-{{ $course->id }}" class="hidden fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-xs flex items-center justify-center p-4">
+            <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-xl">
+                <h3 class="text-base font-extrabold text-[#333333] mb-4">Tambah Modul ke {{ $course->title }}</h3>
+                <form method="POST" action="{{ route('lms.modules.store', $course) }}" class="space-y-4">
+                    @csrf
+                    <div>
+                        <label class="block text-xs font-bold text-[#333333] mb-1">Judul Modul</label>
+                        <input type="text" name="title" required placeholder="Contoh: Modul 1: Dasar K3 Pabrik" class="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-xs">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-[#333333] mb-1">Ringkasan Modul</label>
+                        <input type="text" name="summary" placeholder="Deskripsi singkat modul" class="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-xs">
+                    </div>
+                    <div class="flex justify-end gap-2 pt-2">
+                        <button type="button" onclick="document.getElementById('modal-mod-{{ $course->id }}').classList.add('hidden')" class="px-4 py-2 rounded-xl border border-slate-200 text-xs font-bold">Batal</button>
+                        <button type="submit" class="px-4 py-2 rounded-xl bg-[#10A9BC] text-white text-xs font-extrabold cursor-pointer">Simpan Modul</button>
+                    </div>
+                </form>
             </div>
+        </div>
 
-            <!-- Modal Tambah Materi -->
-            <div id="materialModal-{{ $course->id }}" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
-                <div class="bg-white rounded-3xl p-6 sm:p-8 max-w-lg w-full shadow-2xl">
-                    <h4 class="font-bold text-lg text-slate-900 mb-4">Tambah Materi Pelajaran</h4>
-                    <form action="{{ route('lms.materials.store', $course) }}" method="POST" class="space-y-4">
-                        @csrf
+        {{-- Modal Tambah Materi (Supports Video Storage Upload, Materi E-Book, Latihan Soal) --}}
+        <div id="modal-mat-{{ $course->id }}" class="hidden fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-xs flex items-center justify-center p-4 overflow-y-auto">
+            <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-xl my-8">
+                <h3 class="text-base font-extrabold text-[#333333] mb-4">Tambah Tahap Pembelajaran ke {{ $course->title }}</h3>
+                <form method="POST" action="{{ route('lms.materials.store', $course) }}" enctype="multipart/form-data" class="space-y-4">
+                    @csrf
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                         <div>
-                            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Pilih Modul</label>
-                            <select name="module_id" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs bg-white">
-                                @foreach ($course->modules as $mod)
+                            <label class="block text-xs font-bold text-[#333333] mb-1">Pilih Modul</label>
+                            <select name="module_id" class="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-xs">
+                                @foreach($course->modules as $mod)
                                     <option value="{{ $mod->id }}">{{ $mod->title }}</option>
                                 @endforeach
                             </select>
                         </div>
                         <div>
-                            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Judul Materi *</label>
-                            <input type="text" name="title" required placeholder="Contoh: Prosedur Penggunaan APAR" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs">
+                            <label class="block text-xs font-bold text-[#333333] mb-1">Tahap Pembelajaran</label>
+                            <select name="content_type" class="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-xs">
+                                <option value="video">1. Video Pembelajaran (Storage)</option>
+                                <option value="ebook">2. Materi / E-Book Bacaan</option>
+                                <option value="text">2. Materi Teks / SOP</option>
+                                <option value="practice">3. Latihan Soal (Kuis Modul)</option>
+                                <option value="link">Tautan Materi Eksternal</option>
+                            </select>
                         </div>
-                        <div class="grid grid-cols-2 gap-3">
-                            <div>
-                                <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Tipe Materi</label>
-                                <select name="content_type" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs bg-white">
-                                    <option value="text">Teks Dokumen</option>
-                                    <option value="link">Tautan / Video</option>
-                                    <option value="file">Berkas Unduhan</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label class="block text-xs font-bold text-slate-700 uppercase mb-1">URL Tautan / Video (Opsional)</label>
-                                <input type="url" name="content_url" placeholder="https://youtube.com/..." class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs">
-                            </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                        <div class="sm:col-span-2">
+                            <label class="block text-xs font-bold text-[#333333] mb-1">Judul Tahap Materi</label>
+                            <input type="text" name="title" required placeholder="Judul Video / Materi / Latihan Soal" class="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-xs">
                         </div>
                         <div>
-                            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Teks Materi Lengkap</label>
-                            <textarea name="content_text" rows="4" placeholder="Tuliskan naskah materi pembelajaran di sini..." class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs"></textarea>
+                            <label class="block text-xs font-bold text-[#333333] mb-1">Durasi (Menit)</label>
+                            <input type="number" name="duration_minutes" value="5" min="1" max="300" class="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-xs">
                         </div>
-                        <div class="flex justify-end gap-2 pt-2">
-                            <button type="button" onclick="document.getElementById('materialModal-{{ $course->id }}').classList.add('hidden')" class="px-4 py-2 rounded-xl border border-slate-200 text-xs font-bold">Batal</button>
-                            <button type="submit" class="px-4 py-2 rounded-xl bg-blue-600 text-white font-bold text-xs">Simpan Materi</button>
+                    </div>
+
+                    <div class="p-3.5 rounded-xl bg-[#F7F9FB] border border-[#E5E9F0] space-y-2">
+                        <label class="block text-xs font-extrabold text-[#0C3553]">Unggah Video ke Local Storage (Khusus Tahap Video — Maks 20MB MP4/WEBM)</label>
+                        <input type="file" name="video_file" accept="video/mp4,video/webm" class="w-full text-xs text-slate-600">
+                        <p class="text-[11px] text-[#757575]">Jika dikosongkan pada tipe Video, sistem otomatis menggunakan video sampel ringan di <code>storage/app/public/videos/fkksm-sample.mp4</code>.</p>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-[#333333] mb-1">URL Eksternal (Opsional untuk Tautan Materi)</label>
+                        <input type="url" name="content_url" placeholder="https://..." class="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-xs">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-[#333333] mb-1">Isi Materi / Ringkasan E-Book / Pengantar</label>
+                        <textarea name="content_text" rows="3" placeholder="Tuliskan uraian materi lengkap..." class="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-xs"></textarea>
+                    </div>
+
+                    <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200/80 space-y-2">
+                        <div class="text-xs font-extrabold text-[#333333]">Pertanyaan Latihan Soal (Opsional — Khusus Tahap 3: Latihan Soal)</div>
+                        <input type="text" name="quiz_question" placeholder="Pertanyaan pilihan ganda..." class="w-full px-3 py-1.5 rounded-lg border border-slate-200 bg-white text-xs">
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                            <input type="text" name="quiz_options[0]" placeholder="Opsi A (Index 0)" class="px-2.5 py-1.5 rounded-lg border border-slate-200 bg-white text-xs">
+                            <input type="text" name="quiz_options[1]" placeholder="Opsi B (Index 1)" class="px-2.5 py-1.5 rounded-lg border border-slate-200 bg-white text-xs">
+                            <input type="text" name="quiz_options[2]" placeholder="Opsi C (Index 2)" class="px-2.5 py-1.5 rounded-lg border border-slate-200 bg-white text-xs">
                         </div>
-                    </form>
-                </div>
+                        <div>
+                            <label class="text-[11px] font-bold text-[#757575]">Kunci Jawaban Benar:</label>
+                            <select name="quiz_answer" class="ml-2 px-2.5 py-1 rounded border border-slate-200 bg-white text-xs">
+                                <option value="0">Opsi A</option>
+                                <option value="1">Opsi B</option>
+                                <option value="2">Opsi C</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-end gap-2 pt-2">
+                        <button type="button" onclick="document.getElementById('modal-mat-{{ $course->id }}').classList.add('hidden')" class="px-4 py-2 rounded-xl border border-slate-200 text-xs font-bold">Batal</button>
+                        <button type="submit" class="px-4 py-2 rounded-xl bg-[#10A9BC] text-white text-xs font-extrabold cursor-pointer">Simpan Tahap Materi</button>
+                    </div>
+                </form>
             </div>
         </div>
-    @endforeach
-
-    @if ($courses->hasPages())
-        <div class="bg-white rounded-xl border border-slate-200 p-3 shadow-xs">
-            {{ $courses->links() }}
+    @empty
+        <div class="bg-white rounded-2xl border border-slate-200/80 p-12 text-center text-xs text-[#757575]">
+            Belum ada kursus yang Anda ampu.
         </div>
-    @endif
+    @endforelse
 </div>
 @endsection
-

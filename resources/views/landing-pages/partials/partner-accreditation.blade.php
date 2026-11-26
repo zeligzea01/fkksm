@@ -1,6 +1,6 @@
 <!-- Government, Accreditation & Institutional Partners -->
 <section class="py-12 bg-white border-b border-slate-200">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <div class="fkksm-container text-center">
         <span class="text-[10px] font-mono font-bold uppercase tracking-[0.2em] text-slate-400 block mb-6">
             TERAKREDITASI &amp; TERHUBUNG DENGAN REGULASI RESMI
         </span>

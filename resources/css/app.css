@@ -7,10 +7,10 @@
 
 @theme {
     --font-heading: 'Barlow Condensed', Impact, sans-serif;
-    --font-sans: 'DM Sans', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    --font-sans: 'Plus Jakarta Sans', 'DM Sans', system-ui, -apple-system, sans-serif;
     --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
 
-    /* FKKSM MM2100 Brand Industrial Color Tokens */
+    /* FKKSM MM2100 Brand Industrial Color Tokens (Public Portal) */
     --color-fkksm-navy: #132B45;
     --color-fkksm-dark: #123A5A;
     --color-fkksm-deep: #0C3553;
@@ -24,6 +24,16 @@
     --color-fkksm-cream: #F5F8FC;
     --color-fkksm-muted: #61758A;
     --color-fkksm-line: #DCE6EE;
+
+    /* FKKSM LMS System Tokens (Unified with Landing Page Industrial Navy & Cyan Palette) */
+    --color-lms-navy: #0C3553;
+    --color-lms-navy-dark: #0A2540;
+    --color-lms-cyan: #10A9BC;
+    --color-lms-cyan-hover: #0E97A8;
+    --color-lms-cyan-soft: #E7F6F8;
+    --color-lms-cyan-light: #54D6D0;
+    --color-lms-border: #DCE6EE;
+    --color-lms-canvas: #F5F8FC;
 }
 
 /* Custom Industrial Keyframes & Utilities */
@@ -42,7 +52,34 @@
     animation-play-state: paused;
 }
 
-/* Industrial Grid Pattern for Hero and Cards */
+/* FKKSM LMS Hero Gradient Surface (Unified with Landing Page Industrial Navy & Cyan Theme) */
+.bg-lms-hero {
+    background: linear-gradient(120deg, #0A2540 0%, #0C3553 48%, #176D91 84%, #10A9BC 100%);
+    position: relative;
+}
+
+.bg-lms-hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(84, 214, 208, 0.14) 1px, transparent 1px);
+    background-size: 24px 24px;
+    pointer-events: none;
+    border-radius: inherit;
+}
+
+/* Craftsmanship tabular numbers and smooth transitions */
+.tabular-nums {
+    font-variant-numeric: tabular-nums;
+}
+
+.lms-transition {
+    transition-property: color, background-color, border-color, box-shadow, opacity, transform;
+    transition-duration: 150ms;
+    transition-timing-function: cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Industrial Grid Pattern for Public Hero and Cards */
 .bg-industrial-grid {
     background-image: radial-gradient(rgba(19, 174, 185, 0.12) 1px, transparent 1px);
     background-size: 20px 20px;
@@ -51,4 +88,74 @@
 .bg-industrial-grid-dark {
     background-image: radial-gradient(rgba(84, 214, 208, 0.15) 1px, transparent 1px);
     background-size: 24px 24px;
+}
+
+/* Unified Responsive Container System (Mobile -> Laptop -> FHD -> 2K/QHD -> 4K) */
+.fkksm-container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    max-width: 82rem; /* 1312px on standard desktop */
+}
+
+@media (min-width: 640px) {
+    .fkksm-container {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .fkksm-container {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+}
+
+@media (min-width: 1536px) {
+    .fkksm-container {
+        max-width: 96rem; /* 1536px */
+        padding-left: 2.5rem;
+        padding-right: 2.5rem;
+    }
+}
+
+@media (min-width: 1920px) {
+    .fkksm-container {
+        max-width: 112rem; /* 1792px on Full HD */
+        padding-left: 3rem;
+        padding-right: 3rem;
+    }
+}
+
+@media (min-width: 2300px) {
+    .fkksm-container {
+        max-width: 140rem; /* 2240px on 2K / QHD (2560px) */
+        padding-left: 3.5rem;
+        padding-right: 3.5rem;
+    }
+}
+
+@media (min-width: 3000px) {
+    .fkksm-container {
+        max-width: 168rem; /* 2688px on Ultrawide / 4K */
+        padding-left: 4rem;
+        padding-right: 4rem;
+    }
+}
+
+/* LMS Workspace Fluid Container (Fills 100% up to 2K, caps smoothly on 4K) */
+.fkksm-lms-container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 100%;
+}
+
+@media (min-width: 2560px) {
+    .fkksm-lms-container {
+        max-width: 152rem; /* 2432px */
+    }
 }
