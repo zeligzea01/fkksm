@@ -25,9 +25,7 @@
             </h2>
             <p class="text-xs text-[#61758A] mt-1">Struktur kepengurusan periode aktif koordinasi industri kawasan MM2100.</p>
         </div>
-        <div class="flex justify-center">
-            <img src="{{ asset('images/struktur-fkksm.png') }}" onerror="this.onerror=null;this.src='{{ asset('fkksm/assets/images/activity-01.jpg') }}'" alt="Struktur Organisasi FKKSM MM2100" class="max-w-full h-auto rounded-xl border border-[#DCE6EE] shadow-sm">
-        </div>
+        <x-org-chart />
     </div>
 
     <!-- MM2100 Industry Overview -->
